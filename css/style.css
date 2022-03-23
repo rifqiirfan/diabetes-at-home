@@ -1,0 +1,282 @@
+/* Import Google Font (IBM Plex Sans) */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+* {
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; 
+    font-family: 'IBM Plex Sans', 'Helvetica', sans-serif;
+}
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --blue: #110db1;
+    --orange: #fb9b00;
+    --red: #fb0000;
+}
+
+/* --- Body --- */
+
+body {
+    background-color: var(--white);
+    line-height: 1.5;
+}
+
+/* --- Navbar --- */
+
+.navbar {
+    display: flex;
+    height: 120px;
+    background-color: var(--white);
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 200px;
+}
+
+.navbar > ul {
+    display: flex;
+    list-style: none;
+    font-size: 1.25em;
+}
+
+.navbar > ul > li > a {
+    text-decoration: none;
+    margin: .75em;
+    color: var(--black);
+}
+
+.navbar > ul > li > a:hover {
+    color: var(--blue);
+    border-bottom: 1.5px solid var(--blue);
+}
+
+.cta button {
+    padding: 8px 30px;
+    background-color: var(--blue);
+    color: var(--white);
+    border: 3px solid var(--blue);
+    font-size: 1.25em;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#button:hover {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 3px solid var(--blue);
+}
+
+/* --- About Section --- */
+.intro {
+    height: 600px;
+    width: 100%;
+    padding: 60px;
+    background-image: url("/media/friends.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+.carousel > h1 {
+    font-size: 6vw;
+}
+
+.carousel > p {
+    font-size: 2.5vw;
+}
+
+/* --- About Section --- */
+.about {
+    height: 600px;
+    width: 100%;
+    padding: 30px;
+    background-color: var(--white);
+    color: var(--blue);
+    text-align: center;
+}
+
+.about > h2 {
+    font-size: 2em;
+}
+
+.about > p {
+    color: var(--black);
+    line-height: 2;
+    font-size: 1.075em;
+}
+
+/* --- What is Diabetes --- */
+
+/* Title */
+
+.title {
+    padding: 30px 10%;
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.title > h1 {
+    font-size: 2em;
+}
+
+.title a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+.title a:hover {
+    text-decoration: none;
+    color: var(--orange);
+}
+
+/* Description */
+.description {
+    padding: 30px 10%;
+    line-height: 2;
+    font-size: 1.075em;
+}
+
+.description > h2 {
+    padding-bottom: 10px;
+}
+
+.video-container {
+    overflow: hidden;
+    position: relative;
+    width:100%;
+}
+
+.video-container::after {
+    padding-top: 56.25%;
+    display: block;
+    content: '';
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Key Facts */
+.key-facts {
+    padding: 30px 10%;
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.key-facts > ul > li {
+    list-style: none;
+}
+
+.key-facts > h2 {
+    padding-bottom: 10px;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+    padding: 30px;
+    background-color: var(--orange);
+    color: var(--black);
+    border-radius: 3em;
+}
+
+#number {
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+/* Source */
+.source {
+    padding: 30px 10%;
+    background-color: var(--white);
+    color: var(--black);
+}
+.source a{
+    text-decoration: none;
+    color: var(--blue);
+}
+
+/* --- Login --- */
+.login {
+    height: 360px;
+    background: linear-gradient(60deg, #0db1ab, #fb9b00, #fb0083);
+    background-size: 600% 600%;
+
+    -webkit-animation: GradientAnimation 30s ease infinite;
+    -moz-animation: GradientAnimation 30s ease infinite;
+    -o-animation: GradientAnimation 30s ease infinite;
+    animation: GradientAnimation 30s ease infinite;
+}
+
+@-webkit-keyframes GradientAnimation {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@-moz-keyframes GradientAnimation {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@-o-keyframes GradientAnimation {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+@keyframes GradientAnimation {
+    0%{background-position:0% 75%}
+    50%{background-position:100% 26%}
+    100%{background-position:0% 75%}
+}
+
+/* --- Footer --- */
+.footer {
+    display: flex;
+    background-color: var(--orange);
+    margin: 0;
+    padding: 1.25em;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer p {
+    color: var(--black);
+}
+
+/* --- Responsive Queries --- */
+@media only screen and (max-width: 968px) {
+    /* --- About Section --- */
+    .carousel > h1 {
+        font-size: 3em;
+    }
+    
+    .carousel > p {
+        font-size: 1.25em;
+    }
+
+    /* Key Facts */
+    #grid {
+        grid-template-columns: auto;
+    }
+}
