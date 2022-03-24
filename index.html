@@ -7,7 +7,6 @@
     <title>Home | Diabetes@Home</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" type="image/jpg" href="media/diabetes-at-home_fav.png"/>
-    <script src="js/main.js"></script>
     <script src="https://kit.fontawesome.com/8187ee8ac7.js" crossorigin="anonymous"></script>
     <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" crossorigin="anonymous" />
 </head>
@@ -22,12 +21,16 @@
             </li>
             <li class="nav-item">
                 <a href="#about" class="nav-link"></i>About Us</a>
-            </li>
             <li class="nav-item">
                 <a href="what-is-diabetes.html" class="nav-link">What is Diabetes?</a>
             </li>
         </ul>
         <a class="cta" href="login.html"><button id="button">Login</button></a>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </nav>
 </header>
 <body>
@@ -38,11 +41,24 @@
         </div>
     </section>
     <section class="about" id="about">
+        <div></div>
         <h2>About Diabetes@Home</h2>
         <p>We are the company that help people to manage their diabetes in the convenience of their own home, recording data that can be monitored remotely by their clinician</p><br/>
+        <p>To access the features of this website, you need to login or sign up if you are a new member.</p>
+    </section>
+    <section class="dev-team" id="team">
+        <h2>The Developers</h2>
+        <div class="team">
+            <div class="developer">Bowen Xu</div>
+            <div class="developer">Haoyu Gu</div>
+            <div class="developer">Jiayi Zhang</div>
+            <div class="developer">Rifqi Imaduddin Irfan</div>
+            <div class="developer">Ruifeng Zhan</div>
+        </div>
     </section>
 </body>
 <footer class="footer">
     <p>Diabetes@Home | Made in Australia <span class="flag-icon flag-icon-au"></span><br></p>
 </footer>
+<script src="/js/main.js"></script>
 </html>

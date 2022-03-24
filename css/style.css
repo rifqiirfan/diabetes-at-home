@@ -20,28 +20,23 @@ html {
     --red: #fb0000;
 }
 
-/* --- Body --- */
 
+/* --- Body --- */
 body {
     background-color: var(--white);
     line-height: 1.5;
 }
 
 /* --- Navbar --- */
-
 .navbar {
     display: flex;
     height: 120px;
+    width: 100%;
     background-color: var(--white);
     justify-content: space-between;
     align-items: center;
+    top: 0;
     padding: 30px 10%;
-}
-
-.nav-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .logo {
@@ -81,6 +76,26 @@ body {
     border: 3px solid var(--blue);
 }
 
+.hamburger {
+    display: none;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #101010;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* --- About Section --- */
 .intro {
     height: 600px;
@@ -103,16 +118,16 @@ body {
 
 /* --- About Section --- */
 .about {
-    height: 600px;
+    height: 20em;
     width: 100%;
     padding: 30px;
     background-color: var(--white);
-    color: var(--blue);
     text-align: center;
 }
 
 .about > h2 {
     font-size: 2em;
+    color: var(--blue);
 }
 
 .about > p {
@@ -121,10 +136,49 @@ body {
     font-size: 1.075em;
 }
 
+/* --- Dev Team Section --- */
+.dev-team {
+    height: 20em;
+    width: 100%;
+    background-color: var(--blue);
+}
+
+.dev-team > h2 {
+    font-size: 2em;
+    color: var(--white);
+    text-align: center;
+    padding: 30px;
+}
+
+.team {
+    display: flex;
+    justify-content: space-around;
+}
+
+.developer {
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--black);
+    text-align: center;
+    background: var(--white);
+}
+
+.developer:hover:nth-child(odd) {
+    background-color: var(--orange);
+    color: var(--black);
+}
+
+.developer:hover:nth-child(even) {
+    background-color: var(--red);
+    color: var(--white);
+}
+
 /* --- What is Diabetes --- */
 
 /* Title */
-
 .title {
     padding: 30px 10%;
     background-color: var(--blue);
@@ -258,6 +312,7 @@ body {
     padding: 1.25em;
     justify-content: center;
     align-items: center;
+    border-bottom: .75em solid var(--red);
 }
 
 .footer p {
@@ -266,6 +321,48 @@ body {
 
 /* --- Responsive Queries --- */
 @media only screen and (max-width: 968px) {
+
+    .nav-menu {
+        position: absolute;
+        left: -100%;
+        top: 7.5rem;
+        z-index: 1;
+        flex-direction: column;
+        background-color: #fff;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 2rem 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        -webkit-transform: translateY(8px) rotate(45deg);
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        -webkit-transform: translateY(-8px) rotate(-45deg);
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
     /* --- About Section --- */
     .carousel > h1 {
         font-size: 3em;
@@ -273,6 +370,19 @@ body {
     
     .carousel > p {
         font-size: 1.25em;
+    }
+
+    .dev-team {
+        height: 100%;
+        width: 100%;
+    }
+
+    .team {
+        display: grid;
+        grid-gap: 30px;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        padding: 2.5em;
     }
 
     /* Key Facts */
