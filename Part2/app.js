@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 })
 
 // link to our router
-const peopleRouter = require('./routes/peopleRouter')
+const patientRouter = require('./routes/patientRouter')
 
 // middleware to log a message each time a request arrives at the server - handy for debugging
 app.use((req, res, next) => {
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 })
 
 // the demo routes are added to the end of the '/demo-management' path
-app.use('/people', peopleRouter)
+app.use('/patient', patientRouter)
 
 
 // Tells the app to listen on port 3000 and logs tha tinformation to the console.
