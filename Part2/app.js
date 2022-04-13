@@ -1,43 +1,33 @@
-// Import express
-const express = require('express')
+const express = require("express");
+const exphbs = require("express-handlebars");
+const app = express();
+// require('dotenv').config()
+const port = process.env.PORT || 5000;
 
-// Set your app up as an express app
-const app = express()
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+// hbs template engine
+app.engine(
+  "hbs",
+  exphbs.engine({
+    defaultLayout: "main",
+    extname: "hbs",
+    helpers: require("./public/js/helpers.js").helpers,
+  })
+);
 
-// Set up to handle POST requests
-app.use(express.json())     // needed if POST data is in JSON format
-// app.use(express.urlencoded())  // only needed for URL-encoded input
+// root
+app.get("/", (req, res) => {
+  // res.send("you can choose to go to patient page or clinician page");
+  // res.sendFile(__dirname + "/static/index.html");
+  res.render("index.hbs");
+});
 
-// Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
-app.get('/', (req, res) => {
-    res.render('index.hbs')
-})
+// middleware
+const ClinicianRouter = require("./routes/demoRouter.js");
 
-// link to our router
-const peopleRouter = require('./routes/peopleRouter')
+app.use("/clinician", ClinicianRouter);
 
-// middleware to log a message each time a request arrives at the server - handy for debugging
-app.use((req, res, next) => {
-    console.log('message arrived: ' + req.method + ' ' + req.path)
-    next()
-})
-
-// the demo routes are added to the end of the '/demo-management' path
-app.use('/people', peopleRouter)
-
-
-// Tells the app to listen on port 3000 and logs tha tinformation to the console.
-app.listen(3000, () => {
-    console.log('Demo app is listening on port 3000!')
-})
-
-
-
-
-app.use(express.static('public')) // define where static assets live
-const exphbs = require('express-handlebars') // include Handlebars module
-app.engine('hbs', exphbs.engine({ // configure Handlebars
-    defaultlayout: 'main',
-    extname: 'hbs'
-}))
-app.set('view engine', 'hbs') // set Handlebars view engine
+app.listen(port, () =>
+  console.log("> Server is up and running on http://localhost:" + port)
+);
