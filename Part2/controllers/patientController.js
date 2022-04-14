@@ -39,8 +39,22 @@ const renderRecordData = (req, res) => {
   res.render("recordData.hbs", { records: record , values : values });
 };
 
+const updateRecord = (req, res) => {
+  console.log("-- req form to update record -- ", req.body);
+  let patientId = 1;
+  const record = data.find((r) => r.patientId == patientId);
+  // console.log("-- record info when update -- ", record);
+  const data = record.data[req.body.key];
+  data.value = req.body.value;
+  data.comment = req.body.comment;
+  data.status = "recorded";
+  data.createdAt = new Date().toString();
+  res.redirect("/general/recordData");
+};
+
 module.exports = {
     addOnePatient,
     getDataById,
     renderRecordData,
+    updateRecord,
 }

@@ -15,12 +15,16 @@
     </tr>
     <tr>
       {{!-- bgl --}}
-      <td style="text-align: center"> {{records.data.bgl.availbility}} </td>
-      <td style="text-align: center"> {{records.data.bgl.fullName}} </td>
-      <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.minimum}}"> </td>
-      <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.maximum}}"></td>
-      <td style="text-align: center"> {{records.data.bgl.createdAt}} </td>
-      <td style="text-align: center">{{records.data.bgl.status}}</td>
+      {{#with records as |r|}}
+      <td style="text-align: center"> {{r.data.bgl.availbility}} </td>
+      
+      <td style="text-align: center"> {{r.data.bgl.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value =" {{r.data.bgl.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value =" {{r.data.bgl.maximum}}"></td>
+      <td style="text-align: center"> {{r.data.bgl.createdAt}} </td>
+      <td style="text-align: center">{{r.data.bgl.status}}</td>
+      {{/with}}
+      
 
     </tr>
     <tr>
@@ -76,20 +80,32 @@
 <th style="text-align: center"> Exercise (S.C) </th>
 </tr>
 
-<tr>
-<th style = "text-align: center">Values</th>
-<td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.value}} </td>
-<td style = "text-align: center">{{values.dateHistory.valueReceived.weight.value}}</td>
-<td style = "text-align: center">{{values.dateHistory.valueReceived.doit.value}}</td>
-<td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.value}}</td>
-</tr>
+{{!-- {{#with values.dateHistory.valueReceived as |v|}} --}}
 
 <tr>
+  {{!-- <th style = "text-align: center">Values</th>
+    <td style = "text-align: center ; background-color:{{#if ../../../records.id}} white {{else}} red {{/if}}"> {{v.bgl.value}} </td>
+    <td style = "text-align: center">{{v.weight.value}}</td>
+    <td style = "text-align: center">{{v.doit.value}}</td>
+    <td style = "text-align: center">{{v.exercise.value}}</td> --}}
+    <th style = "text-align: center">Values</th>
+    <td style = "text-align: center ; background-color:{{#thresholdJudge values.dateHistory.valueReceived.bgl.value records.data.bgl.maximum records.data.bgl.minimum }}  {{else}} red {{/thresholdJudge}}"> {{values.dateHistory.valueReceived.bgl.value}} </td>
+    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.weight.value records.data.weight.maximum records.data.weight.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.weight.value}}</td>
+    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.doit.value records.data.doit.maximum records.data.doit.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.doit.value}}</td>
+    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.exercise.value records.data.exercise.maximum records.data.exercise.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.exercise.value}}</td>
+   
+    
+</tr>
+
+{{!-- {{/with}} --}}
+<tr>
+  
 <th style = "text-align: center">Time Recorded</th>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.timeRecorded}} </td>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.weight.timeRecorded}}</td>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.doit.timeRecorded}}</td>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.timeRecorded}}</td>
+
 </tr>
 
 </table>

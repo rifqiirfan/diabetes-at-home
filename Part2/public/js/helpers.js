@@ -13,6 +13,16 @@ const helpers = {
     return options.inverse(this);
   },
 
+  thresholdJudge: function (value, max, min, options){
+    if(value >= min ){
+      return options.fn(this);
+    }else{
+      return options.inverse(this);
+    }
+  }
+
+
+
 
 };
 
