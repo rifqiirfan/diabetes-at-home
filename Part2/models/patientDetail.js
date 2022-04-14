@@ -8,7 +8,7 @@ const patientDetail = [
         yearofBirth: "1999",
         textBio: "I'm healthy",
         supportMessage: "Go for it",
-        eRate: 0.5
+        
     },
     {
         Id: 2,
@@ -19,7 +19,7 @@ const patientDetail = [
         yearofBirth: "2000",
         textBio: "hahaha",
         supportMessage: "Go for it",
-        eRate: 0.8
+       
     },
     {
         Id: 3,
@@ -30,7 +30,7 @@ const patientDetail = [
         yearofBirth: "1999",
         textBio: "I'm good",
         supportMessage: "hang on for it",
-        eRate: 0.85
+       
     },
 ];
 module.exports = patientDetail;
