@@ -1,7 +1,7 @@
 // link to model
 const data = require('../models/patientData.js');
 const detail = require('../models/patientDetail.js');
-
+const datarecords = require('../models/patientRecords.js');
 
 
 // handle request to get one data instance
@@ -34,8 +34,9 @@ const addOnePatient = (req, res) => {
 const renderRecordData = (req, res) => {
   let patientId = 1;
   const record = data.find((r) => r.patientId == patientId);
+  const values = datarecords.find((r) => r.patientID == patientId);
   console.log("-- record info when display -- ", record);
-  res.render("recordData.hbs", { records: record });
+  res.render("recordData.hbs", { records: record , values : values });
 };
 
 module.exports = {
