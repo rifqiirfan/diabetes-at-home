@@ -19,7 +19,7 @@
       <td style="text-align: center"> {{records.data.bgl.fullName}} </td>
       <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.minimum}}"> </td>
       <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.maximum}}"></td>
-      <td style="text-align: center"> <input type = "text" value ="{{records.data.bgl.createdAt}}"> </td>
+      <td style="text-align: center"> {{records.data.bgl.createdAt}} </td>
       <td style="text-align: center">{{records.data.bgl.status}}</td>
 
     </tr>
@@ -29,7 +29,7 @@
       <td style="text-align: center"> {{records.data.weight.fullName}} </td>
       <td style="text-align: center"> <input type = "text" value ="{{records.data.weight.minimum}}"> </td>
       <td style="text-align: center"> <input type = "text" value ="{{records.data.weight.maximum}}"> </td>
-      <td style="text-align: center"> <input type = "text" value ="{{records.data.weight.createdAt}}"> </td>
+      <td style="text-align: center"> {{records.data.weight.createdAt}} </td>
       <td style="text-align: center">{{records.data.weight.status}}</td>
       </tr>
 <tr>
@@ -38,7 +38,7 @@
       <td style="text-align: center"> {{records.data.doit.fullName}} </td>
       <td style="text-align: center"> <input type = "text" value =" {{records.data.doit.minimum}}"> </td>
       <td style="text-align: center"> <input type = "text" value =" {{records.data.doit.maximum}}"> </td>
-      <td style="text-align: center"> <input type = "text" value ="{{records.data.doit.createdAt}} "></td>
+      <td style="text-align: center"> {{records.data.doit.createdAt}} </td>
       <td style="text-align: center">{{records.data.doit.status}}</td>
 </tr>
 <tr>
@@ -47,7 +47,7 @@
       <td style="text-align: center"> {{records.data.exercise.fullName}} </td>
       <td style="text-align: center"> <input type = "text" value =" {{records.data.exercise.minimum}}"> </td>
       <td style="text-align: center"> <input type = "text" value ="{{records.data.exercise.maximum}} "></td>
-      <td style="text-align: center"> <input type = "text" value ="{{records.data.exercise.createdAt}}"> </td>
+      <td style="text-align: center"> {{records.data.exercise.createdAt}} </td>
       <td style="text-align: center">{{records.data.exercise.status}}</td>
     </tr>
     {{!-- <tr>
@@ -65,6 +65,7 @@
 
   </table>
 
+{{!-- Table for patient records --}}
 <h2> Patient {{records.patientId}}'s Data in {{records.recordDate}} </h2>
 <table border = "1">
 <tr>
@@ -76,11 +77,21 @@
 </tr>
 
 <tr>
-<td style = "text-align: center"> </td>
+<th style = "text-align: center">Values</th>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.value}} </td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.weight.value}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.doit.value}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.value}}</td>
+</tr>
 
+<tr>
+<th style = "text-align: center">Time Recorded</th>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.timeRecorded}} </td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.weight.timeRecorded}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.doit.timeRecorded}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.timeRecorded}}</td>
+</tr>
 
-
-  </tr>
 </table>
 
 
@@ -92,7 +103,7 @@
 
   <h2> Displaying Patient Comment </h2>
   <textarea id = 'patientComment' name = 'patientComment' rows = '10' cols='50' readonly>
-    {{records.comment}}
+    {{values.dateHistory.commentText.text}}
   </textarea>
 
   {{!-- <table border="1">
