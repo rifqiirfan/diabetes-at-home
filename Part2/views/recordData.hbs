@@ -1,23 +1,56 @@
 <div>
   <h1>
-    Patient {{records.patientId}}'s Recorded Data in {{records.recordDate}}
+    Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}
   </h1>
   <table border="1">
+    {{!-- Safety Threshold Table --}}
     <tr>
-      <th> Data Name </th>
-      <th> Data Value </th>
-      <th> Data Recorded Date </th>
+      <th> Availbility</th>
+      <th> Attribute Name </th>
+      <th> Attribute Lower Bound </th>
+      <th>Attribute Upper Bound </th>
+      <th> Data Recorded Time </th>
       <th> Data Status </th>
-      <th> Comment </th>
+      {{!-- <th> Comment </th> --}}
     </tr>
     <tr>
-      <td> {{records.data.bgl.fullName}} </td>
-      <td> {{records.data.bgl.value}} </td>
-      <td> {{records.data.bgl.createdAt}} </td>
-      <td> {{records.data.bgl.status}} </td>
-      <td> {{records.data.bgl.comment}} </td>
+      {{!-- bgl --}}
+      <td style="text-align: center"> {{records.data.bgl.availbility}} </td>
+      <td style="text-align: center"> {{records.data.bgl.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.maximum}}"></td>
+      <td style="text-align: center"> {{records.data.bgl.createdAt}} </td>
+      <td style="text-align: center">{{records.data.bgl.status}}</td>
+
     </tr>
     <tr>
+      {{!-- weight --}}
+      <td style="text-align: center"> {{records.data.weight.availbility}} </td>
+      <td style="text-align: center"> {{records.data.weight.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value ="{{records.data.weight.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value ="{{records.data.weight.maximum}}"> </td>
+      <td style="text-align: center"> {{records.data.weight.createdAt}} </td>
+      <td style="text-align: center">{{records.data.weight.status}}</td>
+      </tr>
+<tr>
+  {{!-- doit --}}
+      <td style="text-align: center"> {{records.data.doit.availbility}} </td>
+      <td style="text-align: center"> {{records.data.doit.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value =" {{records.data.doit.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value =" {{records.data.doit.maximum}}"> </td>
+      <td style="text-align: center"> {{records.data.doit.createdAt}} </td>
+      <td style="text-align: center">{{records.data.doit.status}}</td>
+</tr>
+<tr>
+  {{!-- exercise --}}
+     <td style="text-align: center"> {{records.data.exercise.availbility}} </td>
+      <td style="text-align: center"> {{records.data.exercise.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value =" {{records.data.exercise.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value ="{{records.data.exercise.maximum}} "></td>
+      <td style="text-align: center"> {{records.data.exercise.createdAt}} </td>
+      <td style="text-align: center">{{records.data.exercise.status}}</td>
+    </tr>
+    {{!-- <tr>
       {{#with records.data.weight}}
       <td> {{fullName}} </td>
       <td style="background-color: red"> {{value}} </td>
@@ -28,9 +61,39 @@
       <td > {{comnent}} </td>
       
       {{/with}}
-    </tr>
+    </tr> --}}
 
   </table>
+
+<h2> Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}} </h2>
+<table border = "1">
+<tr>
+<th style="text-align: center"> Time\Atttibute </th>
+<th style="text-align: center"> B.G.L (in mmol\L) </th>
+<th style="text-align: center"> Weight(Kg) </th>
+<th style="text-align: center"> Insulin Count </th>
+<th style="text-align: center"> Exercise (S.C) </th>
+</tr>
+
+<tr>
+<td style = "text-align: center"> </td>
+
+
+
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+  <h2> Displaying Patient Comment </h2>
+  <textarea id = 'patientComment' name = 'patientComment' rows = '10' cols='50' readonly>
+    {{records.comment}}
+  </textarea>
 
   {{!-- <table border="1">
 
