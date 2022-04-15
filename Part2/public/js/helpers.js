@@ -14,7 +14,7 @@ const helpers = {
   },
 
   thresholdJudge: function (value, max, min, options){
-    if(value >= min ){
+    if(value >= min && value<= max){
       return options.fn(this);
     }else{
       return options.inverse(this);
