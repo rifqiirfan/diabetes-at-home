@@ -1,5 +1,5 @@
 <h1>Patient information</h1>
-{{#with oneItem}}
+{{#with onePatient}}
 <ul>
     <li>{{this.id}}</li>
     <li>{{this.firstName}}</li>
@@ -16,4 +16,27 @@
     <p><input type="submit" /></p>
 </form>
 
+
 <h1>History</h1>
+<table border="1">
+    <tr>
+        <th style="text-align: center"> Date </th>
+        <th style="text-align: center"> B.G.L (in mmol\L) </th>
+        <th style="text-align: center"> Weight(Kg) </th>
+        <th style="text-align: center"> Insulin Count </th>
+        <th style="text-align: center"> Exercise (S.C) </th>
+    </tr>
+
+
+    {{#each record.dateHistory}}
+    <tr>
+        <td style="text-align: center">{{this.actualDate}} </td>
+        <td style="text-align: center">{{this.valueReceived.bgl.value}} </td>
+        <td style="text-align: center">{{this.valueReceived.weight.value}}</td>
+        <td style="text-align: center">{{this.valueReceived.doit.value}}</td>
+        <td style="text-align: center">{{this.valueReceived.exercise.value}}</td>
+    </tr>
+    {{/each}}
+
+
+</table>
