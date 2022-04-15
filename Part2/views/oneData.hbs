@@ -1,4 +1,4 @@
-<h1>Displaying one item</h1>
+<h1>Patient information</h1>
 {{#with oneItem}}
 <ul>
     <li>{{this.id}}</li>
@@ -6,3 +6,14 @@
     <li>{{this.lastName}} </li>
 </ul>
 {{/with}}
+
+<h1>Entry</h1>
+<form action="/patient/{{this.id}}" method="POST">
+    <input type="number" placeholder="Blood glucose level (in nmol/L)" name="bgl" min="0" max="999" />
+    <input type="number" placeholder="Weight (in kg)" name="weight" min="0" max="999" />
+    <input type="number" placeholder="Doses of insulin taken (number of doses)" name="doit" min="0" max="999" />
+    <input type="number" placeholder="exercise (step count)" name="exercise" min="0" max="999" />
+    <input type="submit" />
+</form>
+
+<h1>History</h1>

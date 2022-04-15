@@ -1,15 +1,15 @@
 // link to model
-const patientData = require('../models/patientDetail')
+const allPatientData = require('../models/patientDetail')
 
 // handle request to get all data
 const getAllPatientData = (req, res) => {
-    res.render('allData.hbs', { data: patientData }) // send data to browser
+    res.render('allData.hbs', { data: allPatientData }) // send data to browser
 }
 
 // handle request to get one data instance
 const getPatientDataById = (req, res) => {
     // search the database by ID
-    const data = patientData.find(data => data.id === req.params.id)
+    const data = allPatientData.find(data => data.id === req.params.id)
 
     // return data if this ID exists
     if (data) {
@@ -22,7 +22,7 @@ const getPatientDataById = (req, res) => {
 // add an object to the database
 const insertData = (req, res) => {
     const { id, firstName, lastName } = req.body
-    patientData.push({ id, firstName, lastName })
+    allPatientData.push({ id, firstName, lastName })
     return res.redirect('back')
 }
 
