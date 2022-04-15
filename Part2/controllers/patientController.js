@@ -11,7 +11,7 @@ const getAllPatientData = (req, res) => {
 const getPatientDataById = (req, res) => {
     // search the database by ID
     const data = allPatientData.find(data => data.id === req.params.id)
-    let patientId = 1;
+    let patientId = req.params.id
     const record = patientRecords.find((r) => r.patientID == patientId)
 
     // return data if this ID exists
@@ -25,10 +25,10 @@ const getPatientDataById = (req, res) => {
 // add an object to the database
 const insertData = (req, res) => {
     const { bgl, weight, doit, exercise } = req.body
-    let patientId = 1;
+    let patientId = req.params.id
     const record = patientRecords.find((r) => r.patientID == patientId)
     patientRecords.push({
-        patientID: 1,
+        patientID: patientId,
         dateHistory: [
             {
                 actualDate: '2019-01-01',
@@ -37,7 +37,6 @@ const insertData = (req, res) => {
                         value: 8.0,
                         timeRecorded: "08:05",
                     },
-
                     weight: {
                         value: 80,
                         timeRecorded: "08:10",
@@ -53,7 +52,7 @@ const insertData = (req, res) => {
                 },
 
                 commentText: {
-                    text: "Sample text from the patient 10001",
+                    text: "mmm",
                     timeRecorded: '',
                 },
             },
