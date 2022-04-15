@@ -1,6 +1,6 @@
 const patientDetail = [
     {
-        id: 1,
+        id: '1',
         firstName: "Pat",
         lastName: "",
         email: "pat@gmail.com",
@@ -11,7 +11,7 @@ const patientDetail = [
         
     },
     {
-        id: 2,
+        id: '2',
         firstName: "Arno",
         lastName: "Zhan",
         email: "Az@gmail.com",
@@ -22,7 +22,7 @@ const patientDetail = [
        
     },
     {
-        id: 3,
+        id: '3',
         firstName: "Alice",
         lastName: "Wang",
         email: "AW@gmail.com",
