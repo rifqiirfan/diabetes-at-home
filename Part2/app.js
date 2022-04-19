@@ -28,6 +28,6 @@ const ClinicianRouter = require("./routes/demoRouter.js");
 
 app.use("/clinician", ClinicianRouter);
 
-app.listen(port, () =>
-  console.log("> Server is up and running on http://localhost:" + port)
-);
+app.listen(process.env.PORT || 5000, () => {
+console.log('The library app is running!')
+});
