@@ -10,8 +10,6 @@ const schema = new mongoose.Schema({
     records: {
         actualDate: { type: String, required: true }
     }
-
-
 })
 const Patient = mongoose.model('Patient', schema)
 module.exports = Patient
