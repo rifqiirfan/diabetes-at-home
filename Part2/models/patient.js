@@ -5,11 +5,11 @@ const schema = new mongoose.Schema({
     screenName: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    yearOfBirth: { type: Number, required: true },
+    yearOfBirth: { type: String, required: true },
     textBio: { type: String, required: true },
-    records: {
-        actualDate: { type: String, required: true }
-    }
+    records: [{
+        recordID: { type: ObjectID }
+    }]
 })
 const Patient = mongoose.model('Patient', schema)
 module.exports = Patient
