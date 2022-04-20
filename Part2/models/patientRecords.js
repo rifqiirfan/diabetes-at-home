@@ -1,64 +1,64 @@
- const patientRecords= [
+const patientRecords = [
     {
         patientID: 1,
         dateHistory: [
-        {
-            actualDate: '2019-01-01',
-            valueReceived:{
+            {
+                actualDate: '2019-01-01',
+                valueReceived: {
                     bgl: {
                         value: 8.0,
                         timeRecorded: "08:05",
                     },
 
-                    weight:{
-                            value:80,
-                            timeRecorded:"08:10",
+                    weight: {
+                        value: 80,
+                        timeRecorded: "08:10",
                     },
-                    doit:{
-                        value:2,
-                        timeRecorded:"23:30",
+                    doit: {
+                        value: 2,
+                        timeRecorded: "23:30",
                     },
-                    exercise:{
+                    exercise: {
                         value: 13451,
                         timeRecorded: "21:00",
                     }
+                },
+
+                commentText: {
+                    text: "Sample text from the patient 10001",
+                    timeRecorded: '',
+                },
             },
 
-            commentText:{
-                text: "Sample text from the patient 10001",
-                timeRecorded: '',
-            },
-        },
 
-
-        {
-            actualDate: '2019-01-01',
-            valueReceived:{
+            {
+                actualDate: '2019-01-02',
+                valueReceived: {
                     bgl: {
-                        value: 8.0,
+                        value: 9.0,
                         timeRecorded: "08:05",
                     },
 
-                    weight:{
-                            value:80,
-                            timeRecorded:"08:10",
+                    weight: {
+                        value: 82,
+                        timeRecorded: "08:10",
                     },
-                    doit:{
-                        value:2,
-                        timeRecorded:"23:30",
+                    doit: {
+                        value: 2,
+                        timeRecorded: "23:30",
                     },
-                    exercise:{
+                    exercise: {
                         value: 13451,
                         timeRecorded: "21:00",
                     }
-            },
+                },
 
-            commentText:{
-                text: "Sample text from the patient 10001",
-                timeRecorded: '',
+                commentText: {
+                    text: "Sample text from the patient 10001",
+                    timeRecorded: '',
+                },
             },
-        },
-    ]
+        ]
     },
 ]
 module.exports = patientRecords;
