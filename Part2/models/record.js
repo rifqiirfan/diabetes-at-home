@@ -27,5 +27,5 @@ const recordSchema = new mongoose.Schema({
 );
 
 // create collection records in mongodb
-const Record = mongoose.model("Record", schema);
+const Record = mongoose.model("Record", recordSchema);
 module.exports = Record;
