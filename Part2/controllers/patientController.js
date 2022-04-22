@@ -13,17 +13,30 @@ const getAllPatientData = async (req, res, next) => {
 }
 
 // handle request to get one data instance
-const getPatientDataById = (req, res) => {
-    // search the database by ID
-    const data = allPatientData.find(data => data.id === req.params.id)
-    let patientId = req.params.id
-    const record = patientRecords.find((r) => r.patientID == patientId)
+const getPatientDataById = async (req, res, next) => {
+    try {
+        // get data for a specific patient from patient schema (fname, lname...)
+        const data = await allPatientData.findById(req.params.patient_id).lean()
 
-    // return data if this ID exists
-    if (data) {
-        res.render('oneData.hbs', { onePatient: data, record: record })
-    } else {
-        res.sendStatus(404)
+        // get an array of recordID from patient schema
+        const all_rec_id = data.records
+        // initialize an empty array to store record data
+        const all_rec =[]
+        // loop through the recordID array in patient schema
+        // use the recordID to retrieve record data from record schema
+        // store the record data in all_rec[]
+        for (var i = 0; i < all_rec_id.length; i++) {
+            const one_rec = await patientRecords.findById(data.records[i].recordID).lean()
+            all_rec.push(one_rec)
+        }
+
+        if (!data) {
+            return res.sendStatus(404)
+        }
+        return res.render('oneData.hbs', { onePatient: data, record: all_rec })
+
+    } catch (err) {
+        return next(err)
     }
 }
 
@@ -32,38 +45,7 @@ const insertData = (req, res) => {
     const { bgl, weight, doit, exercise } = req.body
     let patientId = req.params.id
     const record = patientRecords.find((r) => r.patientID == patientId)
-    patientRecords.push({
-        patientID: patientId,
-        dateHistory: [
-            {
-                actualDate: '2019-01-01',
-                valueReceived: {
-                    bgl: {
-                        value: 8.0,
-                        timeRecorded: "08:05",
-                    },
-                    weight: {
-                        value: 80,
-                        timeRecorded: "08:10",
-                    },
-                    doit: {
-                        value: 2,
-                        timeRecorded: "23:30",
-                    },
-                    exercise: {
-                        value: 13451,
-                        timeRecorded: "21:00",
-                    }
-                },
-
-                commentText: {
-                    text: "mmm",
-                    timeRecorded: '',
-                },
-            },
-        ]
-    },
-    )
+    patientRecords.push()
     return res.redirect('back')
 }
 
