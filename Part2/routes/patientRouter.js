@@ -10,7 +10,7 @@ const patientController = require('../controllers/patientController')
 patientRouter.get('/', patientController.getAllPatientData)
 
 // add a route to handle the GET request for one data instance
-patientRouter.get('/:id', patientController.getPatientDataById)
+patientRouter.get('/:patient_id', patientController.getPatientDataById)
 
 // add a new JSON object to the database
 patientRouter.post('/', patientController.insertData)

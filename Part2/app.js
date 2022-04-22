@@ -2,18 +2,18 @@ const exphbs = require('express-handlebars')
 
 // Import express
 const express = require('express')
-    // Set your app up as an express app
+// Set your app up as an express app
 const app = express()
 
 // configure Handlebars
 app.engine(
-        'hbs',
-        exphbs.engine({
-            defaultLayout: 'main',
-            extname: 'hbs',
-        })
-    )
-    // set Handlebars view engine
+    'hbs',
+    exphbs.engine({
+        defaultLayout: 'main',
+        extname: 'hbs',
+    })
+)
+// set Handlebars view engine
 app.set('view engine', 'hbs')
 
 app.use(express.static('public'))
@@ -34,6 +34,9 @@ app.get('/', (req, res) => {
 })
 
 // Tells the app to listen on port 3000 and logs that information to the console.
-app.listen(3000, () => {
-    console.log('patient app is listening on port 3000!')
+app.listen(process.env.PORT || 3000, () => {
+    console.log('The library app is running!')
 })
+
+// our new model that will connect to MongoDB
+require('./models/index.js')

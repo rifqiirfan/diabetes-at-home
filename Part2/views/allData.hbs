@@ -2,13 +2,12 @@
 <ul>
 
 {{#each data}}
-    <li><a href="/patient/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></li>
+    <li><a href="/patient/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></li>
 {{/each}}
 </ul>
 
 <!--
 <form action="/patient" method="POST">
-    <input type="number" placeholder="ID" name="id" min="0" max="999" />
     <input type="text" placeholder="First name" name="firstName" />
     <input type="text" placeholder="Last name" name="lastName" />
     <input type="submit" />

@@ -1,10 +1,15 @@
 // link to model
-const allPatientData = require('../models/patientDetail')
-const patientRecords = require('../models/patientRecords')
+const allPatientData = require('../models/patient')
+const patientRecords = require('../models/record')
 
-// handle request to get all data
-const getAllPatientData = (req, res) => {
-    res.render('allData.hbs', { data: allPatientData }) // send data to browser
+
+const getAllPatientData = async (req, res, next) => {
+    try {
+        const allPatients = await allPatientData.find().lean()
+        return res.render('allData', { data: allPatients })
+    } catch (err) {
+        return next(err)
+    }
 }
 
 // handle request to get one data instance

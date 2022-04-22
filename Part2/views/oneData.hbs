@@ -1,14 +1,14 @@
 <h1>Patient information</h1>
 {{#with onePatient}}
 <ul>
-    <li>{{this.id}}</li>
+    <li>{{this._id}}</li>
     <li>{{this.firstName}}</li>
     <li>{{this.lastName}} </li>
 </ul>
 {{/with}}
 
 <h1>Entry</h1>
-<form action="/patient/{{this.id}}" method="POST">
+<form action="/patient/{{this._id}}" method="POST">
     <label> Blood glucose level (in nmol/L):</label>
     <input type="number" placeholder="" name="bgl" min="0" max="999" /></br> 
     <input type="number" placeholder="Weight (in kg)" name="weight" min="0" max="999" /></br>

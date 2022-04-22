@@ -8,7 +8,7 @@ const schema = new mongoose.Schema({
     yearOfBirth: { type: String, required: true },
     textBio: { type: String, required: true },
     records: [{
-        recordID: { type: ObjectID }
+        recordID: { type: mongoose.Schema.Types.ObjectId }
     }]
 })
 const Patient = mongoose.model('Patient', schema)
