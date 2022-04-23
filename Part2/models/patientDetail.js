@@ -1,6 +1,6 @@
 const patientDetail = [
     {
-        id: '1',
+        Id: 1,
         firstName: "Pat",
         lastName: "",
         email: "pat@gmail.com",
@@ -8,10 +8,10 @@ const patientDetail = [
         yearofBirth: "1999",
         textBio: "I'm healthy",
         supportMessage: "Go for it",
-
+        
     },
     {
-        id: '2',
+        Id: 2,
         firstName: "Arno",
         lastName: "Zhan",
         email: "Az@gmail.com",
@@ -19,10 +19,10 @@ const patientDetail = [
         yearofBirth: "2000",
         textBio: "hahaha",
         supportMessage: "Go for it",
-
+       
     },
     {
-        id: '3',
+        Id: 3,
         firstName: "Alice",
         lastName: "Wang",
         email: "AW@gmail.com",
@@ -30,7 +30,7 @@ const patientDetail = [
         yearofBirth: "1999",
         textBio: "I'm good",
         supportMessage: "hang on for it",
-
+       
     },
 ];
 module.exports = patientDetail;

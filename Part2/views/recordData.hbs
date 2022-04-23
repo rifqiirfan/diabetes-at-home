@@ -1,0 +1,174 @@
+<div>
+  <h1>
+    Patient {{record.patientId.screenName}}'s Safety Threshold in {{record.recordDate}}
+  </h1>
+  <table border="1">
+    {{!-- Safety Threshold Table --}}
+    <tr>
+      <th> Availbility</th>
+      <th> Attribute Name </th>
+      <th> Attribute Lower Bound </th>
+      <th>Attribute Upper Bound </th>
+      <th> Data Recorded Time </th>
+      <th> Data Status </th>
+      {{!-- <th> Comment </th> --}}
+    </tr>
+    <tr>
+      {{!-- bgl --}}
+      
+      {{!-- <td style="text-align: center"> {{r.data.bgl.availbility}} </td> --}}
+      
+      <td style="text-align: center"> {{record.data.bgl.fullName}} </td>
+      {{!-- <td style="text-align: center"> <input type = "text" value =" {{r.data.bgl.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value =" {{r.data.bgl.maximum}}"></td> --}}
+      <td style="text-align: center"> <input type = "text" value =" {{record.data.bgl.value}}"> </td>
+      <td style="text-align: center"> {{record.data.bgl.createdAt}} </td>
+      <td style="text-align: center">{{record.data.bgl.status}}</td>
+      
+      
+
+    </tr>
+    {{!-- <tr> --}}
+      {{!-- weight --}}
+      {{!-- <td style="text-align: center"> {{record.data.weight.availbility}} </td> --}}
+      {{!-- <td style="text-align: center"> {{record.data.weight.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value ="{{record.data.weight.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value ="{{record.data.weight.maximum}}"> </td>
+      <td style="text-align: center"> {{record.data.weight.createdAt}} </td>
+      <td style="text-align: center">{{record.data.weight.status}}</td>
+      </tr>
+<tr> --}}
+  {{!-- doit --}}
+      {{!-- <td style="text-align: center"> {{record.data.doit.availbility}} </td>
+      <td style="text-align: center"> {{record.data.doit.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value =" {{record.data.doit.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value =" {{record.data.doit.maximum}}"> </td>
+      <td style="text-align: center"> {{record.data.doit.createdAt}} </td>
+      <td style="text-align: center">{{record.data.doit.status}}</td>
+</tr>
+<tr> --}}
+  {{!-- exercise --}}
+     {{!-- <td style="text-align: center"> {{record.data.exercise.availbility}} </td>
+      <td style="text-align: center"> {{record.data.exercise.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value =" {{record.data.exercise.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value ="{{record.data.exercise.maximum}} "></td>
+      <td style="text-align: center"> {{record.data.exercise.createdAt}} </td>
+      <td style="text-align: center">{{record.data.exercise.status}}</td>
+    </tr> --}}
+    {{!-- <tr>
+      {{#with record.data.weight}}
+      <td> {{fullName}} </td>
+      <td style="background-color: red"> {{value}} </td>
+      <td> {{createdAt}} </td>
+      
+      <td > {{status}} </td>
+      
+      <td > {{comnent}} </td>
+      
+      {{/with}}
+    </tr> --}}
+
+  </table>
+
+{{!-- Table for patient record --}}
+<h2> Patient {{record.patientId}}'s Data in {{record.recordDate}} </h2>
+<table border = "1">
+<tr>
+<th style="text-align: center"> Time\Atttibute </th>
+<th style="text-align: center"> B.G.L (in mmol\L) </th>
+<th style="text-align: center"> Weight(Kg) </th>
+<th style="text-align: center"> Insulin Count </th>
+<th style="text-align: center"> Exercise (S.C) </th>
+</tr>
+
+{{!-- {{#with values.dateHistory.valueReceived as |v|}} --}}
+
+<tr>
+  {{!-- <th style = "text-align: center">Values</th>
+    <td style = "text-align: center ; background-color:{{#if ../../../record.id}} white {{else}} red {{/if}}"> {{v.bgl.value}} </td>
+    <td style = "text-align: center">{{v.weight.value}}</td>
+    <td style = "text-align: center">{{v.doit.value}}</td>
+    <td style = "text-align: center">{{v.exercise.value}}</td> --}}
+    <th style = "text-align: center">Values</th>
+    <td style = "text-align: center ; background-color:{{#thresholdJudge values.dateHistory.valueReceived.bgl.value record.data.bgl.maximum record.data.bgl.minimum }}  {{else}} red {{/thresholdJudge}}"> {{values.dateHistory.valueReceived.bgl.value}} </td>
+    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.weight.value record.data.weight.maximum record.data.weight.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.weight.value}}</td>
+    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.doit.value record.data.doit.maximum record.data.doit.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.doit.value}}</td>
+    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.exercise.value record.data.exercise.maximum record.data.exercise.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.exercise.value}}</td>
+   
+    
+</tr>
+
+{{!-- {{/with}} --}}
+<tr>
+  
+<th style = "text-align: center">Time Recorded</th>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.timeRecorded}} </td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.weight.timeRecorded}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.doit.timeRecorded}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.timeRecorded}}</td>
+
+</tr>
+
+</table>
+
+
+
+
+
+
+
+
+  <h2> Displaying Patient Comment </h2>
+  <textarea id = 'patientComment' name = 'patientComment' rows = '10' cols='50' readonly>
+    {{values.dateHistory.commentText.text}}
+  </textarea>
+
+  {{!-- <table border="1">
+
+    <tr>
+      <th> Data Abbr </th>
+      <th> Data Name </th>
+      <th> Data Value </th>
+      <th> Data Recorded Date </th>
+      <th> Data Status </th>
+      <th> Comment </th>
+    </tr>
+
+    {{#each record.data}}
+    <form action="/general/recordData" method="POST">
+      <tr>
+        <td> {{@key}} </td>
+        <input type="hidden" name="key" value="{{@key}}">
+        <td> {{this.fullName}} </td>
+        {{#ifUnrecorded this.status}}
+        <td> <input type="text" name="value" placeholder="Enter your record here" required> </td>
+        {{else}}
+        <td> {{this.value}} </td>
+        {{/ifUnrecorded}}
+        <td> {{this.createdAt}} </td>
+        <td style="background-color:
+          {{#ifRecorded this.status}}
+          green
+          {{else}}
+          {{#ifUnrecorded this.status}}
+          red
+          {{else}}
+          white
+          {{/ifUnrecorded}}
+          {{/ifRecorded}}
+          ;">
+          {{this.status}}
+        </td>
+        {{#ifUnrecorded this.status}}
+        <td> <input type="text" name="comment" placeholder="Enter your comment here" required> </td>
+        {{else}}
+        <td> {{this.comment}} </td>
+        {{/ifUnrecorded}}
+        {{#ifUnrecorded this.status}}
+        <td> <button type="submit"> submit </td>
+        {{/ifUnrecorded}}
+      </tr>
+    </form>
+    {{/each}}
+  </table> --}}
+</div>

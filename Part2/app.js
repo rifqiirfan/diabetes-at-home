@@ -1,42 +1,37 @@
-const exphbs = require('express-handlebars')
+const express = require("express");
+const exphbs = require("express-handlebars");
+const app = express();
+// require('dotenv').config()
+const port = process.env.PORT || 5000;
 
-// Import express
-const express = require('express')
-// Set your app up as an express app
-const app = express()
+//connect to database
+require('./models/db.js');
 
-// configure Handlebars
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+// hbs template engine
 app.engine(
-    'hbs',
-    exphbs.engine({
-        defaultLayout: 'main',
-        extname: 'hbs',
-    })
-)
-// set Handlebars view engine
-app.set('view engine', 'hbs')
+  "hbs",
+  exphbs.engine({
+    defaultLayout: "main",
+    extname: "hbs",
+    helpers: require("./public/js/helpers.js").helpers,
+  })
+);
 
-app.use(express.static('public'))
+// root
+app.get("/", (req, res) => {
+  // res.send("you can choose to go to patient page or clinician page");
+  // res.sendFile(__dirname + "/static/index.html");
+  res.render("index.hbs");
+});
 
-// Set up to handle POST requests
-app.use(express.json()) // needed if POST data is in JSON format
-app.use(express.urlencoded({ extended: false })) // only needed for URL-encoded input
+// middleware
+const ClinicianRouter = require("./routes/demoRouter.js");
 
-// link to our router
-const patientRouter = require('./routes/patientRouter')
+app.use("/clinician", ClinicianRouter);
 
-// the demo routes are added to the end of the '/patient' path
-app.use('/patient', patientRouter)
-
-// Tells the app to send the string: "Our demo app is working!" when you hit the '/' endpoint.
-app.get('/', (req, res) => {
-    res.render('index.hbs')
-})
-
-// Tells the app to listen on port 3000 and logs that information to the console.
-app.listen(process.env.PORT || 3000, () => {
-    console.log('The library app is running!')
-})
-
-// our new model that will connect to MongoDB
-require('./models/index.js')
+app.listen(port, () =>
+  console.log("> Server is up and running on http://localhost:" + port)
+);
