@@ -21,7 +21,7 @@ const getPatientDataById = async (req, res, next) => {
         // get an array of recordID from patient schema
         const all_rec_id = data.records
         // initialize an empty array to store record data
-        const all_rec =[]
+        const all_rec = []
         // loop through the recordID array in patient schema
         // use the recordID to retrieve record data from record schema
         // store the record data in all_rec[]
@@ -42,20 +42,49 @@ const getPatientDataById = async (req, res, next) => {
 
 // add an object to the database
 const insertData = async (req, res, next) => {
-    const { bgl, weight, doit, exercise } = req.body
-    let patientId = req.params.id
-    const record = patientRecords.find((r) => r.patientID == patientId)
-    patientRecords.push()
-    return res.redirect('back')
-
-
     try {
-        new_rec = new Record( req.body )
+        // RECORD CREATION AND INSERTION:
+        // capture input value
+        const { bgl, weight, doit, exercise, comment } = req.body
+        // create a record
+        var new_rec = new patientRecords({
+            "patientId": "1001",
+            "recordDate": Date.now(),
+            "bgl_fullName": "blood glocose level",
+            "bgl_status": "recorded",
+            "bgl_value": bgl,
+            "bgl_createdAt": Date.now(),
+            "weight_fullName": "weight",
+            "weight_status": "recorded",
+            "weight_value": weight,
+            "weight_createdAt": Date.now(),
+            "doit_fullName": "doses of insulin taken",
+            "doit_status": "recorded",
+            "doit_value": doit,
+            "doit_createdAt": Date.now(),
+            "ex_fullName": "exercise",
+            "ex_status": "recorded",
+            "ex_value": exercise,
+            "ex_createdAt": Date.now(),
+            "cmt_fullName": comment,
+            "cmt_value": "I feel good"
+        })
+        // insert the new record to db
         await new_rec.save()
-        return res.redirect('/patient/:patient_id')
+
+        // RECORD UPDATING FOR PATIENT:
+        // // get the new record id
+        // var new_rec_id = {recordID: new_rec._id}
+        // // find the patient
+        // const data = await allPatientData.findById(req.params.patient_id).lean()
+        // // update the records array for patient
+        // data.records.push(new_rec_id)
+        
+        return res.redirect('back')
     } catch (err) {
         return next(err)
     }
+
 }
 
 
