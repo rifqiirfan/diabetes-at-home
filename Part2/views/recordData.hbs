@@ -1,30 +1,30 @@
 <div>
-  <h1>
+  <h3>
     Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}
-  </h1>
-  <table border="1">
+  </h3>
+  <font size ="2px">
+  <table border="1" align="left">
     {{!-- Safety Threshold Table --}}
     <tr>
       <th> Availbility</th>
       <th> Attribute Name </th>
       <th> Attribute Lower Bound </th>
       <th>Attribute Upper Bound </th>
-      <th> Data Recorded Time </th>
+      <th> Suggestted Recorded Time </th>
       <th> Data Status </th>
-      {{!-- <th> Comment </th> --}}
+      <th> Value </th>
+      <th> Actual Recorded Time </th>
     </tr>
     <tr>
       {{!-- bgl --}}
-      {{#with records as |r|}}
-      <td style="text-align: center"> {{r.data.bgl.availbility}} </td>
-      
-      <td style="text-align: center"> {{r.data.bgl.fullName}} </td>
-      <td style="text-align: center"> <input type = "text" value =" {{r.data.bgl.minimum}}"> </td>
-      <td style="text-align: center"> <input type = "text" value =" {{r.data.bgl.maximum}}"></td>
-      <td style="text-align: center"> {{r.data.bgl.createdAt}} </td>
-      <td style="text-align: center">{{r.data.bgl.status}}</td>
-      {{/with}}
-      
+      <td style="text-align: center"> {{records.data.bgl.availbility}} </td>
+      <td style="text-align: center"> {{records.data.bgl.fullName}} </td>
+      <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.minimum}}"> </td>
+      <td style="text-align: center"> <input type = "text" value =" {{records.data.bgl.maximum}}"></td>
+      <td style="text-align: center"> {{records.data.bgl.createdAt}} </td>
+      <td style="text-align: center">{{records.data.bgl.status}}</td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.value}} </td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.timeRecorded}} </td>
 
     </tr>
     <tr>
@@ -35,6 +35,8 @@
       <td style="text-align: center"> <input type = "text" value ="{{records.data.weight.maximum}}"> </td>
       <td style="text-align: center"> {{records.data.weight.createdAt}} </td>
       <td style="text-align: center">{{records.data.weight.status}}</td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.weight.value}}</td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.weight.timeRecorded}}</td>
       </tr>
 <tr>
   {{!-- doit --}}
@@ -44,6 +46,9 @@
       <td style="text-align: center"> <input type = "text" value =" {{records.data.doit.maximum}}"> </td>
       <td style="text-align: center"> {{records.data.doit.createdAt}} </td>
       <td style="text-align: center">{{records.data.doit.status}}</td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.doit.value}}</td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.doit.timeRecorded}}</td>
+
 </tr>
 <tr>
   {{!-- exercise --}}
@@ -53,6 +58,8 @@
       <td style="text-align: center"> <input type = "text" value ="{{records.data.exercise.maximum}} "></td>
       <td style="text-align: center"> {{records.data.exercise.createdAt}} </td>
       <td style="text-align: center">{{records.data.exercise.status}}</td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.value}}</td>
+      <td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.timeRecorded}}</td>
     </tr>
     {{!-- <tr>
       {{#with records.data.weight}}
@@ -69,9 +76,9 @@
 
   </table>
 
-{{!-- Table for patient records --}}
-<h2> Patient {{records.patientId}}'s Data in {{records.recordDate}} </h2>
-<table border = "1">
+{{!-- Table for patient records
+<h3 align="right"> Patient {{records.patientId}}'s Data in {{records.recordDate}} </h3>
+<table border = "1" align="right">
 <tr>
 <th style="text-align: center"> Time\Atttibute </th>
 <th style="text-align: center"> B.G.L (in mmol\L) </th>
@@ -80,35 +87,23 @@
 <th style="text-align: center"> Exercise (S.C) </th>
 </tr>
 
-{{!-- {{#with values.dateHistory.valueReceived as |v|}} --}}
-
 <tr>
-  {{!-- <th style = "text-align: center">Values</th>
-    <td style = "text-align: center ; background-color:{{#if ../../../records.id}} white {{else}} red {{/if}}"> {{v.bgl.value}} </td>
-    <td style = "text-align: center">{{v.weight.value}}</td>
-    <td style = "text-align: center">{{v.doit.value}}</td>
-    <td style = "text-align: center">{{v.exercise.value}}</td> --}}
-    <th style = "text-align: center">Values</th>
-    <td style = "text-align: center ; background-color:{{#thresholdJudge values.dateHistory.valueReceived.bgl.value records.data.bgl.maximum records.data.bgl.minimum }}  {{else}} red {{/thresholdJudge}}"> {{values.dateHistory.valueReceived.bgl.value}} </td>
-    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.weight.value records.data.weight.maximum records.data.weight.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.weight.value}}</td>
-    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.doit.value records.data.doit.maximum records.data.doit.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.doit.value}}</td>
-    <td style = "text-align: center; background-color:{{#thresholdJudge values.dateHistory.valueReceived.exercise.value records.data.exercise.maximum records.data.exercise.minimum }}  {{else}} red {{/thresholdJudge}}">{{values.dateHistory.valueReceived.exercise.value}}</td>
-   
-    
+<th style = "text-align: center">Values</th>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.value}} </td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.weight.value}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.doit.value}}</td>
+<td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.value}}</td>
 </tr>
 
-{{!-- {{/with}} --}}
 <tr>
-  
 <th style = "text-align: center">Time Recorded</th>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.bgl.timeRecorded}} </td>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.weight.timeRecorded}}</td>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.doit.timeRecorded}}</td>
 <td style = "text-align: center">{{values.dateHistory.valueReceived.exercise.timeRecorded}}</td>
-
 </tr>
 
-</table>
+</table> --}}
 
 
 
@@ -117,7 +112,7 @@
 
 
 
-  <h2> Displaying Patient Comment </h2>
+  <h3> Displaying Patient Comment </h3>
   <textarea id = 'patientComment' name = 'patientComment' rows = '10' cols='50' readonly>
     {{values.dateHistory.commentText.text}}
   </textarea>
