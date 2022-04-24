@@ -8,12 +8,9 @@ const datarecords = require('../models/patientRecords.js');
 const getDataById = (req, res) => {
     
     const data = detail.find(data => data.id === req.params.id)
-
-    
     if (data) {
         res.send(detail);
     } else {
-        
         res.send(["patient not found"]);
     }
 }
