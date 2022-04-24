@@ -41,12 +41,21 @@ const getPatientDataById = async (req, res, next) => {
 }
 
 // add an object to the database
-const insertData = (req, res) => {
+const insertData = async (req, res, next) => {
     const { bgl, weight, doit, exercise } = req.body
     let patientId = req.params.id
     const record = patientRecords.find((r) => r.patientID == patientId)
     patientRecords.push()
     return res.redirect('back')
+
+
+    try {
+        new_rec = new Record( req.body )
+        await new_rec.save()
+        return res.redirect('/patient/:patient_id')
+    } catch (err) {
+        return next(err)
+    }
 }
 
 
