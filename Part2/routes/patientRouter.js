@@ -10,7 +10,7 @@ const patientController = require('../controllers/patientController')
 patientRouter.get('/', patientController.getAllPatientData)
 
 // add a route to handle entry patient data 
-patientRouter.get('/:entry', patientController.getPatientDataById)
+patientRouter.get('/:entry', patientController.entryPatientData)
 
 // add a route to handle the GET request for one data instance
 patientRouter.get('/:patient_id', patientController.getPatientDataById)
