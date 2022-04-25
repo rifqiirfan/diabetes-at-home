@@ -1,7 +1,15 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-header, footer {
+
+header,
+footer {
     background-color: lightgray;
     text-align: center;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    background-color: darkseagreen;
 }
