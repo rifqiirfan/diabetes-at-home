@@ -12,7 +12,7 @@ async function findPatient() {
     if (result.length == 0) {
       const newPatient = new Patient({
         firstName: "Alice",
-        lastName: "Wang",
+        lastName: "Wan",
         screenName: "AW",
         email: "AW@gmail.com",
         password: "12345678",
@@ -69,28 +69,7 @@ function formatDate(date) {
   return [year, month, day].join("-");
 }
 
-// handle request to get one data instance
-const getDataById = (req, res) => {
-    
-    const data = detail.find(data => data.id === req.params.id)
-    if (data) {
-        res.send(detail);
-    } else {
-        res.send(["patient not found"]);
-    }
-}
 
-const addOnePatient = (req, res) => {
-    
-    const newPatient = req.body;
-    if (JSON.stringify(newPatient) != "{}") {
-      
-      if (!data.find((d) => d.id == newPatient.id)) {
-        data.push(newPatient);
-      }
-    }
-    res.send(data);
-  };
 
 
 const renderRecordData = async (req, res) => {
@@ -103,7 +82,7 @@ const renderRecordData = async (req, res) => {
         options: { lean : true},
       })
       .lean();
-    console.log(record);
+    // console.log(record);
 
     res.render("recordData.hbs", {record : record});
   } catch(e){
@@ -113,21 +92,27 @@ const renderRecordData = async (req, res) => {
 };
 
 const updateRecord = async (req, res) => {
-  console.log("-- req form to update record -- ", req.body);
-  let patientId = 1;
-  const record = data.find((r) => r.patientId == patientId);
-  // console.log("-- record info when update -- ", record);
-  const data = record.data[req.body.key];
-  data.value = req.body.value;
-  data.comment = req.body.comment;
-  data.status = "recorded";
-  data.createdAt = new Date().toString();
-  res.redirect("/general/recordData");
+  // console.log("-- req form to update record -- ", req.body);
+  try {
+    const patientId = await findPatient();
+    const recordId = await findRecord(patientId);
+    const record = await Record.findById({ recordId });
+    const data = record.data[req.body.key];
+    data.value = req.body.value;
+    data.comment = req.body.comment;
+    data.status = "recorded";
+    data.createdAt = new Date().toLocaleString("en-Au", {
+      timeZone: "Australia/Melbourne",
+    });
+    record.save();
+    res.redirect("/clinician/recordData");
+  } catch (err) {
+    console.log("error happens in update record: ", err);
+  }
 };
 
 module.exports = {
-    addOnePatient,
-    getDataById,
+    
     renderRecordData,
     updateRecord,
 }

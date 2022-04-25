@@ -1,7 +1,7 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
-// require('dotenv').config()
+require('dotenv').config()
 const port = process.env.PORT || 5000;
 
 //connect to database
