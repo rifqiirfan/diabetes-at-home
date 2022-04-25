@@ -1,0 +1,14 @@
+<h1>Entry</h1>
+<form action="/patient/{{this._id}}" method="POST">
+    <label> Blood glucose level (in nmol/L):</label>
+    <input type="number" name="bgl" min="0" max="999" /></br>
+    <label> Weight (in kg):</label>
+    <input type="number" placeholder="" name="weight" min="0" max="999" /></br>
+    <label> Doses of insulin taken (number of doses)</label>
+    <input type="number" placeholder="" name="doit" min="0" max="999" /></br>
+    <label> Exercise (step count)</label>
+    <input type="number" placeholder="" name="exercise" min="0" max="999" /></br>
+    <label> Comment</label>
+    <input type="text" name="comment" />
+    <input type="Submit" /></br>
+</form>
