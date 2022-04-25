@@ -95,11 +95,20 @@ const entryPatientData = async(req, res, next) => {
     }
 }
 
+const viewPatientData = async(req, res, next) => {
+    try {
+        return res.render('view.hbs')
+    } catch (err) {
+        return next(err)
+    }
+}
+
 
 module.exports = {
     getAllPatientData,
     getPatientDataById,
     insertData,
-    entryPatientData
+    entryPatientData,
+    viewPatientData
 
 }
