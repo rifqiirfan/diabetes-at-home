@@ -1,8 +1,12 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 const app = express();
-// require('dotenv').config()
+require('dotenv').config()
 const port = process.env.PORT || 5000;
+
+//connect to database
+require('./models/db.js');
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -28,6 +32,6 @@ const ClinicianRouter = require("./routes/demoRouter.js");
 
 app.use("/clinician", ClinicianRouter);
 
-app.listen(process.env.PORT || 5000, () => {
-console.log('The library app is running!')
-});
+app.listen(port, () =>
+  console.log("> Server is up and running on http://localhost:" + port)
+);
