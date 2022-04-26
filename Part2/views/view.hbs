@@ -1,25 +1,26 @@
-<h1>History</h1>
-<table border="1">
-    <tr>
-        <th style="text-align: center"> Date </th>
-        <th style="text-align: center"> B.G.L (in mmol\L) </th>
-        <th style="text-align: center"> Weight(Kg) </th>
-        <th style="text-align: center"> Insulin Count </th>
-        <th style="text-align: center"> Exercise (S.C) </th>
-        <th style="text-align: center"> Comment </th>
-    </tr>
+<section class="patient-history">
+    <h1 class="title">History</h1>
+    <div class="responsive-table">
+        <table class="patient-history-table">
+            <tr>
+                <th>Date</th>
+                <th>Blood Glucose Level <br/>(mmol\L)</th>
+                <th>Weight <br/>(kg)</th>
+                <th>Insulin Count</th>
+                <th>Exercise <br/>(step count)</th>
+                <th>Comment</th>
+            </tr>
 
-
-    {{#each record}}
-    <tr>
-        <td style="text-align: center">{{this.recordDate}} </td>
-        <td style="text-align: center">{{this.bgl_value}} </td>
-        <td style="text-align: center">{{this.weight_value}} </td>
-        <td style="text-align: center">{{this.doit_value}} </td>
-        <td style="text-align: center">{{this.ex_value}} </td>
-        <td style="text-align: center">{{this.cmt_value}} </td>
-    </tr>
-    {{/each}}
-
-
-</table>
+            {{#each record}}
+            <tr>
+                <td>{{this.recordDate}}</td>
+                <td>{{this.bgl_value}}</td>
+                <td>{{this.weight_value}}</td>
+                <td>{{this.doit_value}}</td>
+                <td>{{this.ex_value}}</td>
+                <td>{{this.cmt_value}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</section>
