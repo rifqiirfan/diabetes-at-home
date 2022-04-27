@@ -29,29 +29,44 @@ const insertData = async (req, res, next) => {
     try {
         // RECORD CREATION AND INSERTION:
         // capture input value
-        const { bgl, weight, doit, exercise, comment } = req.body
+        const { bgl, weight, doit, exercise, 
+            bgl_comment, weight_comment, doit_comment, ex_comment} = req.body
         // create a record
         var new_rec = new patientRecords({
-            "patientId": "1001",
+            "patientID": {
+                "$oid": "62690854f78cd27a90116870"
+            },
             "recordDate": Date.now(),
-            "bgl_fullName": "blood glocose level",
-            "bgl_status": "recorded",
-            "bgl_value": bgl,
-            "bgl_createdAt": Date.now(),
-            "weight_fullName": "weight",
-            "weight_status": "recorded",
-            "weight_value": weight,
-            "weight_createdAt": Date.now(),
-            "doit_fullName": "doses of insulin taken",
-            "doit_status": "recorded",
-            "doit_value": doit,
-            "doit_createdAt": Date.now(),
-            "ex_fullName": "exercise",
-            "ex_status": "recorded",
-            "ex_value": exercise,
-            "ex_createdAt": Date.now(),
-            "cmt_fullName": "comment",
-            "cmt_value": comment
+            "data": {
+                "bgl": {
+                    "fullName": "blood glocose level",
+                    "status": "recorded",
+                    "value": bgl,
+                    "comment": bgl_comment,
+                    "createdAt": Date.now()
+                },
+                "weight": {
+                    "fullName": "weight",
+                    "status": "recorded",
+                    "value": weight,
+                    "comment": weight_comment,
+                    "createdAt": Date.now()
+                },
+                "doit": {
+                    "fullName": "doses of insulin taken",
+                    "status": "recorded",
+                    "value": doit,
+                    "comment": doit_comment,
+                    "createdAt": Date.now()
+                },
+                "exercise": {
+                    "fullName": "exercise",
+                    "status": "recorded",
+                    "value": exercise,
+                    "comment": ex_comment,
+                    "createdAt": Date.now()
+                }
+            }
         })
         // insert the new record to db
         await new_rec.save()
@@ -100,7 +115,7 @@ const viewPatientData = async (req, res, next) => {
         // use the recordID to retrieve record data from record schema
         // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
-            const one_rec = await patientRecords.findById(data.records[i].recordID).lean()
+            const one_rec = await patientRecords.findById(data.records[i]).lean()
             all_rec.push(one_rec)
         }
 

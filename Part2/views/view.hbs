@@ -11,9 +11,12 @@
             </tr>
 
             <tr>
-                <td>{{record.recordDate}}</td>
-                {{#each record.data}}
-                <td>{{this.value}}</td>
+                {{#each record}}
+                <td style="text-align: center"> {{this.recordDate}}</td>
+                <td style="text-align: center"> {{this.data.bgl.value}}</td>
+                <td style="text-align: center"> {{this.data.weight.value}}</td>
+                <td style="text-align: center"> {{this.data.doit.value}}</td>
+                <td style="text-align: center"> {{this.data.exercise.value}}</td>
                 {{/each}}
             </tr>
         </table>
