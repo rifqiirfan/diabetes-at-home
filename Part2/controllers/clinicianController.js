@@ -2,7 +2,16 @@
 const Patient = require("../models/patient.js");
 const Record = require("../models/record.js");
 
-async function findPatient() {
+const getAllPatientData = async (req, res, next) => {
+  try {
+      const allPatients = await Patient.find().lean();
+      return res.render('dashboard.hbs', { data: allPatients });
+  } catch (err) {
+      return next(err);
+  }
+}
+
+async function findPatient(pid) {
   try {
     // find all document in Patient Collection to findout if it is empty
     const result = await Patient.find();
@@ -24,7 +33,8 @@ async function findPatient() {
       return patient.id;
     } else {
       // find our target patient Pat
-      const patient = await Patient.findOne({ firstName: "Alice" });
+      // const patient = await Patient.findOne({_id: pid});
+      const patient = await Patient.findById(pid);
       return patient.id;
     }
   } catch (err) {
@@ -71,7 +81,7 @@ function formatDate(date) {
 
 const renderRecordData = async (req, res) => {
   try{
-    const patientId = await findPatient();
+    const patientId = await findPatient(req.params.id);
     const recordId = await findRecord(patientId);
     const record = await Record.findOne({ _id: recordId})
       .populate({
@@ -91,9 +101,9 @@ const renderRecordData = async (req, res) => {
 const updateRecord = async (req, res) => {
   console.log("-- req form to update record -- ", req.body);
   try {
-    const patientId = await findPatient();
+    const patientId = await findPatient(req.params.id);
     const recordId = await findRecord(patientId);
-    const record = await Record.findById( recordId );
+    const record = await Record.findById( recordId )
     // const record = await Record.findOne({ _id :recordId });
 
     const data = record.data[req.body.key];
@@ -105,14 +115,14 @@ const updateRecord = async (req, res) => {
       timeZone: "Australia/Melbourne",
     });
     record.save();
-    res.redirect("/clinician/recordData");
+    res.redirect("back");
   } catch (err) {
     console.log("error happens in update record: ", err);
   }
 };
 
 module.exports = {
-    
+    getAllPatientData,
     renderRecordData,
     updateRecord,
 }

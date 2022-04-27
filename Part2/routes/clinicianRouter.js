@@ -3,9 +3,9 @@ const controller = require("../controllers/clinicianController.js");
 
 const clinicRouter = express.Router();
 
-
-clinicRouter.get("/recordData", controller.renderRecordData);
-clinicRouter.post("/recordData", controller.updateRecord);
+clinicRouter.get('/', controller.getAllPatientData);
+clinicRouter.get("/:id", controller.renderRecordData);
+clinicRouter.post("/:id", controller.updateRecord);
 
 
 

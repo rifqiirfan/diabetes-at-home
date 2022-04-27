@@ -32,10 +32,11 @@ const insertData = async (req, res, next) => {
         const { bgl, weight, doit, exercise, 
             bgl_comment, weight_comment, doit_comment, ex_comment} = req.body
         // create a record
-        var new_rec = new patientRecords({
-            "patientID": {
-                "$oid": "62690854f78cd27a90116870"
-            },
+        
+        const patient = await allPatientData.findById(req.params.patient_id);
+
+        const new_rec = new patientRecords({
+            "patientID":  patient.id,
             "recordDate": Date.now(),
             "data": {
                 "bgl": {
@@ -73,9 +74,9 @@ const insertData = async (req, res, next) => {
 
         // RECORD UPDATING FOR PATIENT:
         // get the new record id
-        var new_rec_id = { recordID: new_rec._id }
-        allPatientData.findById(req.params.patient_id)
-        console.log("patient id: " + req.params.patient_id)
+        // var new_rec_id = { recordID: new_rec._id }
+        // allPatientData.findById(req.params.patient_id)
+        // console.log("patient id: " + req.params.patient_id)
 
 
         // // find the patient
@@ -83,7 +84,7 @@ const insertData = async (req, res, next) => {
         // // update the records array for patient
         // data.records.push(new_rec_id)
 
-        return res.redirect('back')
+        return res.redirect('../')
     } catch (err) {
         return next(err)
     }

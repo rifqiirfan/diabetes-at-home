@@ -18,12 +18,23 @@
       </tr>
 
       {{#each records.data}}
+<<<<<<< Updated upstream
       <form class="safety-threshold-table-form" action="/clinician/recordData" method="POST">
         <tr>
           <td>{{@key}}</td>
           <input type="hidden" name="key" value="{{@key}}">
           <td>{{this.availbility}}</td>
           <td>{{this.fullName}}</td>
+=======
+      <form action="" method="POST">
+
+        <tr>
+          <td>{{@key}}</td>
+          <input type="hidden" name="key" value="{{@key}}">
+
+          <td style="text-align: center"> {{this.availbility}} </td>
+          <td style="text-align: center"> {{this.fullName}} </td>
+>>>>>>> Stashed changes
           {{!-- {{#ifUnrecorded this.status}}
           <td style="text-align: center"> <input type="text" name="min" placeholder="Enter minimum shreshold"></td>
           {{else}}
