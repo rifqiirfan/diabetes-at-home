@@ -35,12 +35,12 @@ async function findPatient() {
 async function findRecord(patientId) {
   try {
     const result = await Record.findOne({
-      patientId: patientId,
+      patientID: patientId,
       recordDate: formatDate(new Date()),
     });
     if (!result) {
       const newRecord = new Record({
-        patientId: patientId,
+        patientID: patientId,
         recordDate: formatDate(new Date()),
       });
 
@@ -75,7 +75,7 @@ const renderRecordData = async (req, res) => {
     const recordId = await findRecord(patientId);
     const record = await Record.findOne({ _id: recordId})
       .populate({
-        path: "patientId",
+        path: "patientID",
         options: { lean : true},
       })
       .lean();

@@ -24,7 +24,7 @@
           <input type="hidden" name="key" value="{{@key}}">
           <td style="text-align: center"> {{this.availbility}} </td>
           <td style="text-align: center"> {{this.fullName}} </td>
-          {{#ifUnrecorded this.status}}
+          {{!-- {{#ifUnrecorded this.status}}
           <td style="text-align: center"> <input type="text" name="min" placeholder="Enter minimum shreshold"></td>
           {{else}}
           <td>{{this.minValue}}</td>
@@ -33,7 +33,7 @@
           <td style="text-align: center"> <input type="text" name="max" placeholder="Enter maximum shreshold"></td>
           {{else}}
           <td>{{this.maxValue}}</td>
-          {{/ifUnrecorded}}
+          {{/ifUnrecorded}} --}}
           <td style="text-align: center"> {{this.createdAt}} </td>
           <td style="text-align: center">{{this.status}}</td>
           {{#ifUnrecorded this.status}}
