@@ -31,10 +31,9 @@ const insertData = async (req, res, next) => {
         // capture input value
         const { bgl, weight, doit, exercise, 
             bgl_comment, weight_comment, doit_comment, ex_comment} = req.body
-        // create a record
-        
         const patient = await allPatientData.findById(req.params.patient_id);
 
+        // create a record
         const new_rec = new patientRecords({
             "patientID":  patient.id,
             "recordDate": Date.now(),
@@ -73,16 +72,17 @@ const insertData = async (req, res, next) => {
         await new_rec.save()
 
         // RECORD UPDATING FOR PATIENT:
-        // get the new record id
-        // var new_rec_id = { recordID: new_rec._id }
-        // allPatientData.findById(req.params.patient_id)
-        // console.log("patient id: " + req.params.patient_id)
-
-
-        // // find the patient
-        // const data = await allPatientData.findById(req.params.patient_id).lean()
-        // // update the records array for patient
-        // data.records.push(new_rec_id)
+        //console.log("patient id: " + req.params.patient_id)
+        //console.log("new rec id: " + new_rec._id)
+        allPatientData.findOne(
+            {_id : req.params.patient_id},
+            function(err, pati) {
+                if(!err) {
+                    pati.records.push({ recordID: new_rec._id })
+                    pati.save()
+                }
+            }
+        )
 
         return res.redirect('../')
     } catch (err) {
@@ -116,7 +116,7 @@ const viewPatientData = async (req, res, next) => {
         // use the recordID to retrieve record data from record schema
         // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
-            const one_rec = await patientRecords.findById(data.records[i]).lean()
+            const one_rec = await patientRecords.findById(data.records[i].recordID).lean()
             all_rec.push(one_rec)
         }
 

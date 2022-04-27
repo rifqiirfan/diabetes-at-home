@@ -10,15 +10,15 @@
                 <th>Exercise <br />(step count)</th>
             </tr>
 
+            {{#each record}}
             <tr>
-                {{#each record}}
                 <td style="text-align: center"> {{this.recordDate}}</td>
                 <td style="text-align: center"> {{this.data.bgl.value}}</td>
                 <td style="text-align: center"> {{this.data.weight.value}}</td>
                 <td style="text-align: center"> {{this.data.doit.value}}</td>
                 <td style="text-align: center"> {{this.data.exercise.value}}</td>
-                {{/each}}
             </tr>
+            {{/each}}
         </table>
     </div>
 </section>

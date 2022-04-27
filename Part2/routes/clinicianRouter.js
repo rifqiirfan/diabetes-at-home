@@ -7,7 +7,4 @@ clinicRouter.get('/', controller.getAllPatientData);
 clinicRouter.get("/:id", controller.renderRecordData);
 clinicRouter.post("/:id", controller.updateRecord);
 
-
-
-
 module.exports = clinicRouter;

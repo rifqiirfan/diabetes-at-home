@@ -6,8 +6,6 @@ const patientRouter = express.Router()
 // require our controller
 const patientController = require('../controllers/patientController')
 
-
-
 // add a route to handle the GET request for all demo data
 patientRouter.get('/', patientController.getAllPatientData)
 
