@@ -27,6 +27,44 @@ const recordSchema = new mongoose.Schema({
 
   cmt_fullName: { type: String, default: "comment", immutable: true },
   cmt_value: { type: String }
+  // data: {
+  //   bgl: {
+  //     fullName: {type: String, default: "blood glocose level", immutable: true},
+  //     status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+  //     value: {type: Number, default: 0},
+  //     minValue: {type: Number, default: 0},
+  //     maxValue: {type: Number, default: Number.MAX_VALUE},
+  //     comment: {type: String, default: ""},
+  //     createdAt: {type: String, default: null},
+  //   }, 
+  //   weight: {
+  //     fullName: {type: String, default: "weight", immutable: true},
+  //     status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+  //     value: {type: Number, default: 0},
+  //     minValue: {type: Number, default: 0},
+  //     maxValue: {type: Number, default: Number.MAX_VALUE},
+  //     comment: {type: String, default: 0},
+  //     createdAt: {type: String, default: null},
+  //   }, 
+  //   doit: {
+  //     fullName: {type: String, default: "doses of insulin taken", immutable: true},
+  //     status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+  //     value: {type: Number, default: 0},
+  //     minValue: {type: Number, default: 0},
+  //     maxValue: {type: Number, default: Number.MAX_VALUE},
+  //     comment: {type: String, default: 0},
+  //     createdAt: {type: String, default: null},
+  //   }, 
+  //   exercise: {
+  //     fullName: {type: String, default: "exercise", immutable: true},
+  //     status: {type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded"},
+  //     value: {type: Number, default: 0},
+  //     minValue: {type: Number, default: 0},
+  //     maxValue: {type: Number, default: Number.MAX_VALUE},
+  //     comment: {type: String, default: 0},
+  //     createdAt: {type: String, default: null},
+  //   },
+  // }
 });
 
 // create collection records in mongodb
