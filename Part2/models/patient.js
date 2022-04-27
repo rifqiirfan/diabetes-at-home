@@ -10,18 +10,22 @@ const patientSchema = new mongoose.Schema({
   textBio: { type: String, required: true },
   data: {
     bgl: {
+      availability: { type: Boolean, default: true },
       minValue: { type: Number, default: 0 },
       maxValue: { type: Number, default: Number.MAX_VALUE }
     },
     weight: {
+      availability: { type: Boolean, default: true },
       minValue: { type: Number, default: 0 },
       maxValue: { type: Number, default: Number.MAX_VALUE }
     },
     doit: {
+      availability: { type: Boolean, default: true },
       minValue: { type: Number, default: 0 },
       maxValue: { type: Number, default: Number.MAX_VALUE }
     },
     exercise: {
+      availability: { type: Boolean, default: true },
       minValue: { type: Number, default: 0 },
       maxValue: { type: Number, default: Number.MAX_VALUE }
     }
