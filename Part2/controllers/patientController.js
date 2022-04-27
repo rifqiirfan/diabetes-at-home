@@ -57,8 +57,12 @@ const insertData = async (req, res, next) => {
         await new_rec.save()
 
         // RECORD UPDATING FOR PATIENT:
-        // // get the new record id
-        // var new_rec_id = {recordID: new_rec._id}
+        // get the new record id
+        var new_rec_id = { recordID: new_rec._id }
+        allPatientData.findById(req.params.patient_id)
+        console.log("patient id: " + req.params.patient_id)
+
+
         // // find the patient
         // const data = await allPatientData.findById(req.params.patient_id).lean()
         // // update the records array for patient

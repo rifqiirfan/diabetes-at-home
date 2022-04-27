@@ -2,62 +2,63 @@
   <h3>
     Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}
   </h3>
-  <font size ="2px">
-  <table border="1" align="left">
-    {{!-- Safety Threshold Table --}}
-    <tr>
-      <th> Availbility</th>
-      <th> Attribute Name </th>
-      <th> Attribute Lower Bound </th>
-      <th>Attribute Upper Bound </th>
-      <th> Suggestted Recorded Time </th>
-      <th> Data Status </th>
-      <th> Value </th>
-      <th> Actual Recorded Time </th>
-    </tr>
-
-    {{#each records.data}}
-    <form action="/clinician/recordData" method="POST">
-      
+  <font size="2px">
+    <table border="1" align="left">
+      {{!-- Safety Threshold Table --}}
       <tr>
-        <td>{{@key}}</td>
-        <input type="hidden" name="key" value="{{@key}}">
-        <td style="text-align: center"> {{this.availbility}} </td>
-        <td style="text-align: center"> {{this.fullName}} </td>
-        {{#ifUnrecorded this.status}}
-        <td style="text-align: center"> <input type = "text" name="min" placeholder="Enter minimum shreshold"></td>
-        {{else}}
-        <td>{{this.minValue}}</td>
-        {{/ifUnrecorded}}
-        {{#ifUnrecorded this.status}}
-        <td style="text-align: center"> <input type = "text" name="max" placeholder="Enter maximum shreshold"></td>
-        {{else}}
-        <td>{{this.maxValue}}</td>
-        {{/ifUnrecorded}}
-        <td style="text-align: center"> {{this.createdAt}} </td>
-        <td style="text-align: center">{{this.status}}</td>
-        {{#ifUnrecorded this.status}}
-        <td style = "text-align: center"> <input type = "text" name="value" placeholder="Enter your record here" required> </td>
-        {{else}}
-        <td>{{this.value}}</td>
-        {{/ifUnrecorded}}
-        <td style = "text-align: center"> {{this.timeRecorded}} </td>
-        <td> <button type="submit"> submit</button></td>
+        <th> Availbility</th>
+        <th> Attribute Name </th>
+        <th> Attribute Lower Bound </th>
+        <th> Attribute Upper Bound </th>
+        <th> Suggestted Recorded Time </th>
+        <th> Data Status </th>
+        <th> Value </th>
+        <th> Actual Recorded Time </th>
       </tr>
 
+      {{#each records.data}}
+      <form action="/clinician/recordData" method="POST">
 
-    </form>
-    {{/each}}
+        <tr>
+          <td>{{@key}}</td>
+          <input type="hidden" name="key" value="{{@key}}">
+          <td style="text-align: center"> {{this.availbility}} </td>
+          <td style="text-align: center"> {{this.fullName}} </td>
+          {{#ifUnrecorded this.status}}
+          <td style="text-align: center"> <input type="text" name="min" placeholder="Enter minimum shreshold"></td>
+          {{else}}
+          <td>{{this.minValue}}</td>
+          {{/ifUnrecorded}}
+          {{#ifUnrecorded this.status}}
+          <td style="text-align: center"> <input type="text" name="max" placeholder="Enter maximum shreshold"></td>
+          {{else}}
+          <td>{{this.maxValue}}</td>
+          {{/ifUnrecorded}}
+          <td style="text-align: center"> {{this.createdAt}} </td>
+          <td style="text-align: center">{{this.status}}</td>
+          {{#ifUnrecorded this.status}}
+          <td style="text-align: center"> <input type="text" name="value" placeholder="Enter your record here" required>
+          </td>
+          {{else}}
+          <td>{{this.value}}</td>
+          {{/ifUnrecorded}}
+          <td style="text-align: center"> {{this.timeRecorded}} </td>
+          <td> <button type="submit"> submit</button></td>
+        </tr>
 
-  </table>
+
+      </form>
+      {{/each}}
+
+    </table>
 
 
 
 
-  <h3> Displaying Patient Comment </h3>
-  <textarea id = 'patientComment' name = 'patientComment' rows = '10' cols='50' readonly>
+    <h3> Displaying Patient Comment </h3>
+    <textarea id='patientComment' name='patientComment' rows='10' cols='50' readonly>
     {{values.dateHistory.commentText.text}}
   </textarea>
 
-  
+
 </div>

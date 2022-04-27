@@ -4,23 +4,18 @@
         <table class="patient-history-table">
             <tr>
                 <th>Date</th>
-                <th>Blood Glucose Level <br/>(mmol\L)</th>
-                <th>Weight <br/>(kg)</th>
+                <th>Blood Glucose Level <br />(mmol\L)</th>
+                <th>Weight <br />(kg)</th>
                 <th>Insulin Count</th>
-                <th>Exercise <br/>(step count)</th>
-                <th>Comment</th>
+                <th>Exercise <br />(step count)</th>
             </tr>
 
-            {{#each record}}
             <tr>
-                <td>{{this.recordDate}}</td>
-                <td>{{this.bgl_value}}</td>
-                <td>{{this.weight_value}}</td>
-                <td>{{this.doit_value}}</td>
-                <td>{{this.ex_value}}</td>
-                <td>{{this.cmt_value}}</td>
+                <td>{{record.recordDate}}</td>
+                {{#each record.data}}
+                <td>{{this.value}}</td>
+                {{/each}}
             </tr>
-            {{/each}}
         </table>
     </div>
 </section>
