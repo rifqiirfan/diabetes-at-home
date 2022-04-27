@@ -1,9 +1,10 @@
-<div>
-  <h3>
-    Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}
-  </h3>
-  <font size="2px">
-    <table border="1" align="left">
+<section class="clinician-safety-threshold">
+  <h1 class="title">
+    Patient {{records.patientId}}'s Safety Threshold
+  </h1>
+  <p>in {{records.recordDate}}</p>
+  
+  <table class="safety-threshold-table">
       {{!-- Safety Threshold Table --}}
       <tr>
         <th> Availbility</th>
@@ -17,13 +18,12 @@
       </tr>
 
       {{#each records.data}}
-      <form action="/clinician/recordData" method="POST">
-
+      <form class="safety-threshold-table-form" action="/clinician/recordData" method="POST">
         <tr>
           <td>{{@key}}</td>
           <input type="hidden" name="key" value="{{@key}}">
-          <td style="text-align: center"> {{this.availbility}} </td>
-          <td style="text-align: center"> {{this.fullName}} </td>
+          <td>{{this.availbility}}</td>
+          <td>{{this.fullName}}</td>
           {{!-- {{#ifUnrecorded this.status}}
           <td style="text-align: center"> <input type="text" name="min" placeholder="Enter minimum shreshold"></td>
           {{else}}
@@ -34,16 +34,15 @@
           {{else}}
           <td>{{this.maxValue}}</td>
           {{/ifUnrecorded}} --}}
-          <td style="text-align: center"> {{this.createdAt}} </td>
-          <td style="text-align: center">{{this.status}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>{{this.status}}</td>
           {{#ifUnrecorded this.status}}
-          <td style="text-align: center"> <input type="text" name="value" placeholder="Enter your record here" required>
-          </td>
+            <td><input type="text" name="value" placeholder="Enter your record here" required></td>
           {{else}}
           <td>{{this.value}}</td>
           {{/ifUnrecorded}}
-          <td style="text-align: center"> {{this.timeRecorded}} </td>
-          <td> <button type="submit"> submit</button></td>
+          <td>{{this.timeRecorded}}</td>
+          <td><button type="submit" class="clinician-button">Submit</button></td>
         </tr>
 
 
@@ -52,13 +51,10 @@
 
     </table>
 
-
-
-
-    <h3> Displaying Patient Comment </h3>
-    <textarea id='patientComment' name='patientComment' rows='10' cols='50' readonly>
+    <h2 class="comment-title"> Displaying Patient Comment </h2>
+    <textarea id='patientComment' class="patient-comment" name='patientComment' rows="10" cols="50" readonly>
     {{values.dateHistory.commentText.text}}
   </textarea>
 
 
-</div>
+</section>

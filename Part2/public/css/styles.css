@@ -31,9 +31,13 @@ html {
     --footer: var(--dark-green);
     --footer-txt: var(--ivory);
     /* Attributes */
-    --title: 2em;
+    --heading-title: 2em;
+    --additional-title-1: 1.5em;
+    --additional-title-2: 1.25em;
+    --margin-title: 10px;
     --sec-padding: 30px 10%;
     --table-padding: 15px;
+    --input-padding: 10px;
 }
 
 /* Header */
@@ -84,8 +88,8 @@ html {
 }
 
 .title {
-    font-size: var(--title);
-    margin-bottom: 10px;
+    font-size: var(--heading-title);
+    margin-bottom: var(--margin-title);
 }
 
 /* Patient History */
@@ -118,15 +122,72 @@ html {
     width: 20%;
 }
 
-.patient-history-table td:nth-last-child(1) {
-    width: 30%;
-    text-align: left;
-}
-
 .patient-history-table tr:nth-child(odd) {
     background-color: #e3e3e3;
 }
 
 .patient-history-table tr:hover {
     background-color: var(--ivory);
+}
+
+/* Clinician Dashboard */
+/* Patient 's Safety Threshold */
+.clinician-safety-threshold {
+    padding: var(--sec-padding);
+}
+
+.safety-threshold-table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+}
+
+.safety-threshold-table th {
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: var(--table-padding);
+}
+
+.safety-threshold-table tr, td {
+    text-align: center;
+    padding: var(--table-padding);
+}
+
+.safety-threshold-table-form td:nth-child(odd) {
+    background-color: #e3e3e3;
+}
+
+.safety-threshold-table-form td:nth-child(even) {
+    background-color: var(--white);
+}
+
+.safety-threshold-table-form td:hover, td:focus {
+    background-color: var(--ivory);
+}
+
+.comment-title {
+    font-size: var(--additional-title-1);
+    margin-bottom: var(--margin-title);
+}
+
+.clinician-button {
+    background-color: var(--ivory);
+    color: var(--dark-green);
+    padding: 10px;
+    width: 100px;
+    border: 3px solid var(--dark-green);
+    font-size: 1em;
+    font-weight: 700;
+    border-radius: 999em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.clinician-button:hover {
+    background-color: var(--dark-green);
+    color: var(--ivory);
+}
+
+.patient-comment {
+    width: 100%;
 }
