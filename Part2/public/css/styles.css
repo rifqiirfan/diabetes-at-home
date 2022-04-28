@@ -27,17 +27,18 @@ html {
     /* Elements */
     --bg: var(--white);
     --header: var(--ivory);
-    --header-txt: var(--dark-green);
+    --header-text: var(--dark-green);
     --footer: var(--dark-green);
-    --footer-txt: var(--ivory);
+    --footer-text: var(--ivory);
     /* Attributes */
     --heading-title: 2em;
     --additional-title-1: 1.5em;
-    --additional-title-2: 1.25em;
     --margin-title: 10px;
     --sec-padding: 30px 10%;
+    --text-padding: 0 0 15px 0;
     --table-padding: 15px;
     --input-padding: 10px;
+    --input-text: 1em;
 }
 
 /* Header */
@@ -46,7 +47,7 @@ html {
     height: 120px;
     width: 100%;
     background-color: var(--header);
-    color: var(--header-txt);
+    color: var(--header-text);
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
@@ -80,7 +81,7 @@ html {
     align-items: center;
     padding: 20px 10%;
     background-color: var(--footer);
-    color: var(--footer-txt);
+    color: var(--footer-text);
 }
 
 .footer img {
@@ -90,6 +91,122 @@ html {
 .title {
     font-size: var(--heading-title);
     margin-bottom: var(--margin-title);
+}
+
+/* Patient Homepage */
+.patient-homepage {
+    padding: var(--sec-padding);
+}
+
+.patient-homepage-table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.patient-homepage-table tr, td {
+    text-align: center;
+    padding: var(--table-padding);
+}
+
+.patient-homepage-table td:nth-child(1) {
+    text-align: left;
+}
+
+.patient-homepage-table tr:nth-child(even) {
+    background-color: #e3e3e3;
+}
+
+.patient-homepage-table tr:hover {
+    background-color: var(--ivory);
+}
+
+.table-information-button {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 10px;
+    border: 3px solid var(--blue);
+    font-size: 1.125em;
+    font-weight: 700;
+    border-radius: 2em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.table-information-button:hover {
+    background-color: var(--white);
+    color: var(--blue);
+}
+
+.table-entry-button {
+    background-color: var(--green);
+    color: var(--white);
+    padding: 10px;
+    border: 3px solid var(--green);
+    font-size: 1.125em;
+    font-weight: 700;
+    border-radius: 2em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.table-entry-button:hover {
+    background-color: var(--white);
+    color: var(--green);
+}
+
+.table-view-button {
+    background-color: var(--gold);
+    color: var(--white);
+    padding: 10px;
+    border: 3px solid var(--gold);
+    font-size: 1.125em;
+    font-weight: 700;
+    border-radius: 2em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.table-view-button:hover {
+    background-color: var(--white);
+    color: var(--gold);
+}
+
+/* Patient Homepage */
+.patient-information {
+    padding: var(--sec-padding);
+}
+
+.patient-information ul {
+    list-style: none;
+}
+
+.patient-information li {
+    padding: var(--text-padding);
+}
+
+/* Patient Entry */
+.patient-entry {
+    padding: var(--sec-padding);
+}
+
+.patient-entry-form {
+    max-width: 800px;
+    width: 100%;
+}
+
+.patient-entry-form input[type="text"] {
+    width: 100%;
+    padding: var(--input-padding);
+    font-size: var(--input-text);
+}
+
+.patient-entry-form input[type="number"] {
+    width: 20%;
+    padding: var(--input-padding);
+    font-size: var(--input-text);
 }
 
 /* Patient History */
@@ -122,7 +239,7 @@ html {
     width: 20%;
 }
 
-.patient-history-table tr:nth-child(odd) {
+.patient-history-table tr:nth-child(even) {
     background-color: #e3e3e3;
 }
 
@@ -130,8 +247,8 @@ html {
     background-color: var(--ivory);
 }
 
-/* Clinician Dashboard */
-/* Patient 's Safety Threshold */
+/* +++ Clinician Dashboard +++
+   Patient 's Safety Threshold */
 .clinician-safety-threshold {
     padding: var(--sec-padding);
 }
@@ -153,11 +270,11 @@ html {
     padding: var(--table-padding);
 }
 
-.safety-threshold-table-form td:nth-child(odd) {
+.safety-threshold-table-form td:nth-child(even) {
     background-color: #e3e3e3;
 }
 
-.safety-threshold-table-form td:nth-child(even) {
+.safety-threshold-table-form td:nth-child(odd) {
     background-color: var(--white);
 }
 
@@ -190,4 +307,6 @@ html {
 
 .patient-comment {
     width: 100%;
+    font-family: 'Helvetica';
+    font-size: 1em;
 }

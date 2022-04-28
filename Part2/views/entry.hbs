@@ -1,26 +1,31 @@
 <section class="patient-entry">
+    <div class="navigation">
+        <p><a href="/patient">Home</a> > Entry</p>
+    </div>
     <h1 class="title">Entry</h1>
-    <form action="" method="POST">
-        <label> Blood glucose level (in nmol/L):</label>
-        <input type="number" name="bgl" min="0" max="999" /></br>
-        <label> Bgl Comment</label>
-        <input type="text" name="bgl_comment" /><br/>
+    <div class="patient-entry-form">
+        <form action="" method="POST">
+            <label> Blood glucose level (in nmol/L):</label>
+            <input type="number" name="bgl" min="0" max="999" /></br>
+            <label> Blood glucose level comment</label>
+            <input type="text" name="bgl_comment" /><br/>
 
-        <label> Weight (in kg):</label>
-        <input type="number" placeholder="" name="weight" min="0" max="999" /></br>
-        <label> Weight Comment</label>
-        <input type="text" name="weight_comment" /><br/>
+            <label> Weight (in kg):</label>
+            <input type="number" placeholder="" name="weight" min="0" max="999" /></br>
+            <label> Weight comment</label>
+            <input type="text" name="weight_comment" /><br/>
 
-        <label> Doses of insulin taken (number of doses)</label>
-        <input type="number" placeholder="" name="doit" min="0" max="999" /></br>
-        <label> Insulin Comment</label>
-        <input type="text" name="doit_comment" /><br/>
+            <label> Doses of insulin taken (number of doses)</label>
+            <input type="number" placeholder="" name="doit" min="0" max="999" /></br>
+            <label> Doses of insulin comment</label>
+            <input type="text" name="doit_comment" /><br/>
 
-        <label> Exercise (step count)</label>
-        <input type="number" placeholder="" name="exercise" min="0" max="99999" /></br>
-        <label> Exercise Comment</label>
-        <input type="text" name="ex_comment" /><br/>
+            <label> Exercise (step count)</label>
+            <input type="number" placeholder="" name="exercise" min="0" max="99999" /></br>
+            <label> Exercise comment</label>
+            <input type="text" name="ex_comment" /><br/>
 
-        <input type="Submit" /></br>
-    </form>
+            <input type="Submit" /></br>
+        </form>
+    </div>
 </section>

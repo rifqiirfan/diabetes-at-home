@@ -1,17 +1,29 @@
-<h1>Patient Homepage</h1>
-<ul>
+<section class="patient-homepage">
+  <h1>Patient Homepage</h1>
+  {{!-- <ul>
 
-  {{#each data}}
-  <li><a href="/patient/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></li>
+    {{#each data}}
+    <li><a href="/patient/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></li>
 
-  <button>
-    <a href="/patient/entry/{{this._id}}"> Entry </a>
-  </button>
+    <button>
+      <a href="/patient/entry/{{this._id}}"> Entry </a>
+    </button>
 
-  <button>
-    <a href="/patient/view/{{this._id}}"> View </a>
-  </button>
+    <button>
+      <a href="/patient/view/{{this._id}}"> View </a>
+    </button>
 
-  {{/each}}
+    {{/each}}
 
-</ul>
+  </ul> --}}
+  <table class="patient-homepage-table">
+    {{#each data}}
+    <tr>
+      <td>{{this.firstName}} {{this.lastName}}</td>
+      <td><a href="/patient/{{this._id}}"><button class="table-information-button"> Information </button></a></td>
+      <td><a href="/patient/entry/{{this._id}}"><button class="table-entry-button"> Entry </button></a></td>
+      <td><a href="/patient/view/{{this._id}}"><button class="table-view-button"> View </button></a></td>
+    </tr>
+    {{/each}}
+  </table>
+</section>

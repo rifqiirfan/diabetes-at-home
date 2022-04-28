@@ -1,4 +1,7 @@
 <section class="patient-history">
+    <div class="navigation">
+        <p><a href="/patient">Home</a> > History</p>
+    </div>
     <h1 class="title">History</h1>
     <div class="responsive-table">
         <table class="patient-history-table">
@@ -12,11 +15,11 @@
 
             {{#each record}}
             <tr>
-                <td style="text-align: center"> {{this.recordDate}}</td>
-                <td style="text-align: center"> {{this.data.bgl.value}}</td>
-                <td style="text-align: center"> {{this.data.weight.value}}</td>
-                <td style="text-align: center"> {{this.data.doit.value}}</td>
-                <td style="text-align: center"> {{this.data.exercise.value}}</td>
+                <td> {{this.recordDate}}</td>
+                <td> {{this.data.bgl.value}}</td>
+                <td> {{this.data.weight.value}}</td>
+                <td> {{this.data.doit.value}}</td>
+                <td> {{this.data.exercise.value}}</td>
             </tr>
             {{/each}}
         </table>
