@@ -5,7 +5,19 @@ const Record = require("../models/record.js");
 const getAllPatientData = async (req, res, next) => {
   try {
       const allPatients = await Patient.find().lean();
-      return res.render('dashboard.hbs', { data: allPatients });
+      
+      const a = [];
+      for( i = 0; i < allPatients.length; i++ ){
+        const rec_now = await Record.findOne({
+          patientID: allPatients[i]._id,
+          // recordDate: formatDate(new Date()),
+        });
+        const sample = {name: allPatients[i].firstName , bgl: rec_now.data.bgl.value ,
+                        weight: rec_now.data.weight.value, doit: rec_now.data.doit.value,
+                      exercise: rec_now.data.exercise.value}
+        a.push(sample);
+      }
+      return res.render('dashboard.hbs', { data: a });
   } catch (err) {
       return next(err);
   }
