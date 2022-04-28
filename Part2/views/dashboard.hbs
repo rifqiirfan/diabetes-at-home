@@ -1,8 +1,8 @@
 <h1>Dashboard</h1>
-<h2> All data in the dashboard is based on the last 24 hours at {{data.recordDate}} </h2>
-
+<h2> All data in the dashboard is based on the last 24 hours at {{date}} </h2>
 
 <table class="safety-threshold-table">
+
 
 <tr>
 <th>Patient Name</th>
@@ -14,11 +14,18 @@
   
 {{#each data}}
 <tr>
-<td>{{this.name}}</td>
-<td>{{this.bgl}} </td>
+<td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
+<td style="background-color:   
+{{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+
+{{else}}
+orange
+{{/thresholdJudge}};">
+{{this.bgl}} </td>
 <td>{{this.weight}} </td>
 <td>{{this.doit}} </td>
 <td>{{this.exercise}} </td>
+<td>{{./date}} </td>
 </tr>
 {{/each}}
 

@@ -10,14 +10,23 @@ const getAllPatientData = async (req, res, next) => {
       for( i = 0; i < allPatients.length; i++ ){
         const rec_now = await Record.findOne({
           patientID: allPatients[i]._id,
-          // recordDate: formatDate(new Date()),
+          recordDate: formatDate(new Date()),
         });
-        const sample = {name: allPatients[i].firstName , bgl: rec_now.data.bgl.value ,
-                        weight: rec_now.data.weight.value, doit: rec_now.data.doit.value,
-                      exercise: rec_now.data.exercise.value}
+        
+        const sample = {name: allPatients[i].firstName + " " + allPatients[i].lastName , 
+                      id : allPatients[i]._id,
+                      bgl: rec_now.data.bgl.value ,
+                      weight: rec_now.data.weight.value, 
+                      doit: rec_now.data.doit.value,
+                      exercise: rec_now.data.exercise.value, 
+                      bgl_min: allPatients[i].data.bgl.minValue, bgl_max: allPatients[i].data.bgl.maxValue,
+                      weight_min: allPatients[i].data.weight.minValue, weight_max: allPatients[i].data.weight.maxValue,
+                      doit_min: allPatients[i].data.doit.minValue, doit_max: allPatients[i].data.doit.maxValue,
+                      exer_min: allPatients[i].data.exercise.minValue, exer_max: allPatients[i].data.exercise.maxValue}
         a.push(sample);
+        
       }
-      return res.render('dashboard.hbs', { data: a });
+      return res.render('dashboard.hbs', { data: a , date: formatDate(new Date())});
   } catch (err) {
       return next(err);
   }
@@ -85,7 +94,7 @@ function formatDate(date) {
   if (month.length < 2) month = "0" + month;
   if (day.length < 2) day = "0" + day;
 
-  return [year, month, day].join("-");
+  return [day, month, year].join("/");
 }
 
 
@@ -103,7 +112,7 @@ const renderRecordData = async (req, res) => {
       })
       .lean();
     // console.log(record);
-
+    
     res.render("recordData.hbs", {records : record , personal : patientData});
   } catch(e){
     res.status(400);

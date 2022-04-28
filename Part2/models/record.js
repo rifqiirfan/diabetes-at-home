@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const recordSchema = new mongoose.Schema({
     patientID: { type: mongoose.Schema.Types.ObjectId, ref: "Patient", required: true },
-    recordDate: { type: Date, required: true },
+    recordDate: { type: String, required: true },
 
     data: {
         bgl: {

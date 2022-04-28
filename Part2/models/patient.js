@@ -11,23 +11,23 @@ const patientSchema = new mongoose.Schema({
   data: {
     bgl: {
       availability: { type: Boolean, default: true },
-      minValue: { type: Number, default: 0 },
-      maxValue: { type: Number, default: Number.MAX_VALUE }
+      minValue: { type: Number, default: 4 },
+      maxValue: { type: Number, default: 7 }
     },
     weight: {
       availability: { type: Boolean, default: true },
-      minValue: { type: Number, default: 0 },
-      maxValue: { type: Number, default: Number.MAX_VALUE }
+      minValue: { type: Number, default: 55 },
+      maxValue: { type: Number, default: 85 }
     },
     doit: {
       availability: { type: Boolean, default: true },
-      minValue: { type: Number, default: 0 },
-      maxValue: { type: Number, default: Number.MAX_VALUE }
+      minValue: { type: Number, default: 1},
+      maxValue: { type: Number, default: 3 }
     },
     exercise: {
       availability: { type: Boolean, default: true },
-      minValue: { type: Number, default: 0 },
-      maxValue: { type: Number, default: Number.MAX_VALUE }
+      minValue: { type: Number, default: 3000 },
+      maxValue: { type: Number, default: 7200 }
     }
   },
   records: [{
