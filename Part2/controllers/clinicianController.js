@@ -82,6 +82,7 @@ function formatDate(date) {
 const renderRecordData = async (req, res) => {
   try{
     const patientId = await findPatient(req.params.id);
+    const patientData = await Patient.findById(patientId);
     const recordId = await findRecord(patientId);
     const record = await Record.findOne({ _id: recordId})
       .populate({
@@ -91,7 +92,7 @@ const renderRecordData = async (req, res) => {
       .lean();
     // console.log(record);
 
-    res.render("recordData.hbs", {records : record});
+    res.render("recordData.hbs", {records : record , personal : patientData});
   } catch(e){
     res.status(400);
     res.send("error happens when render record data");
