@@ -82,7 +82,7 @@ function formatDate(date) {
 const renderRecordData = async (req, res) => {
   try{
     const patientId = await findPatient(req.params.id);
-    const patientData = await Patient.findById(patientId);
+    const patientData = await Patient.findById(patientId).lean();
     const recordId = await findRecord(patientId);
     const record = await Record.findOne({ _id: recordId})
       .populate({

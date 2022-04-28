@@ -1,31 +1,79 @@
 <section class="clinician-safety-threshold">
   <h1 class="title">
-    Patient {{records.patientId}}'s Safety Threshold
-  </h1>
-  <p>in {{records.recordDate}}</p>
+    Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}</h1>
   
   <table class="safety-threshold-table">
       {{!-- Safety Threshold Table --}}
       <tr>
         <th> Availbility</th>
-        <th> Attribute Name </th>
+        <th> Attribute</th>
+        <th> Status </th>
+        <th> Value </th>
         <th> Attribute Lower Bound </th>
         <th> Attribute Upper Bound </th>
         <th> Suggestted Recorded Time </th>
-        <th> Data Status </th>
-        <th> Value </th>
-        <th> Actual Recorded Time </th>
+        <th> Actual Recorded Time</th>
+        <th> Comment</th>
       </tr>
 
-      {{#each records.data}}
+      <tr>
+        <td> {{personal.data.bgl.availbility}}</td>
+        <td> {{records.data.bgl.fullName}}</td>
+        <td> {{records.data.bgl.status}} </td>
+        <td> {{records.data.bgl.value}} </td>
+        <td> {{personal.data.bgl.minValue}}</td>
+        <td> {{personal.data.bgl.maxValue}}</td>
+        <td> Suggestted Recorded Time </td>
+        <td> {{records.data.bgl.createdAt}}</td>
+        <td> {{records.data.bgl.comment}}</td>
+      </tr>
 
-      <form class="safety-threshold-table-form" action="" method="POST">
+      <tr>
+        <td> {{personal.data.weight.availbility}}</td>
+        <td> {{records.data.weight.fullName}}</td>
+        <td> {{records.data.weight.status}} </td>
+        <td> {{records.data.weight.value}} </td>
+        <td> {{personal.data.weight.minValue}}</td>
+        <td> {{personal.data.weight.maxValue}}</td>
+        <td> Suggestted Recorded Time </td>
+        <td> {{records.data.weight.createdAt}}</td>
+        <td> {{records.data.weight.comment}}</td>
+      </tr>
+
+      <tr>
+        <td> {{personal.data.doit.availbility}}</td>
+        <td> {{records.data.doit.fullName}}</td>
+        <td> {{records.data.doit.status}} </td>
+        <td> {{records.data.doit.value}} </td>
+        <td> {{personal.data.doit.minValue}}</td>
+        <td> {{personal.data.doit.maxValue}}</td>
+        <td> Suggestted Recorded Time </td>
+        <td> {{records.data.doit.createdAt}}</td>
+        <td> {{records.data.doit.comment}}</td>
+      </tr>
+
+      <tr>
+        <td> {{personal.data.exercise.availbility}}</td>
+        <td> {{records.data.exercise.fullName}}</td>
+        <td> {{records.data.exercise.status}} </td>
+        <td> {{records.data.exercise.value}} </td>
+        <td> {{personal.data.exercise.minValue}}</td>
+        <td> {{personal.data.exercise.maxValue}}</td>
+        <td> Suggestted Recorded Time </td>
+        <td> {{records.data.exercise.createdAt}}</td>
+        <td> {{records.data.exercise.comment}}</td>
+      </tr>
+
+      {{!-- {{#each records.data as |record|}}
+      {{!-- {{#each patients.data as |personal|}} --}}
+      {{!-- <form class="safety-threshold-table-form" action="" method="POST">
         <tr>
-          <td>{{@key}}</td>
-          <input type="hidden" name="key" value="{{@key}}">
-          <td>{{this.availbility}}</td>
-          <td>{{this.fullName}}</td>
-
+          {{!-- <td>{{@key}}</td> --}}
+          {{!-- <input type="hidden" name="key" value="{{@key}}"> --}}
+          {{!-- <td>{{this.availbility}}</td> --}}
+          {{!-- <td> {{personal.bgl.availbility}}</td>
+          <td>{{record.fullName}}</td> --}} --}}
+{{!-- <td> {{personal.data.blg.availbility}}</td> --}}
           {{!-- {{#ifUnrecorded this.status}}
           <td style="text-align: center"> <input type="text" name="min" placeholder="Enter minimum shreshold"></td>
           {{else}}
@@ -36,7 +84,7 @@
           {{else}}
           <td>{{this.maxValue}}</td>
           {{/ifUnrecorded}} --}}
-          <td>{{this.createdAt}}</td>
+          {{!-- <td>{{this.createdAt}}</td>
           <td>{{this.status}}</td>
           {{#ifUnrecorded this.status}}
             <td><input type="text" name="value" placeholder="Enter your record here" required></td>
@@ -50,13 +98,18 @@
 
       </form>
       {{/each}}
+      --}}
+      {{!-- <tr>
+      <td>{{personal.data.bgl.availbility}}</td>
+      <td>{{record.data.weight.value}}</td>
+      </tr> --}}
 
     </table>
 
-    <h2 class="comment-title"> Displaying Patient Comment </h2>
+    {{!-- <h2 class="comment-title"> Displaying Patient Comment </h2>
     <textarea id='patientComment' class="patient-comment" name='patientComment' rows="10" cols="50" readonly>
     {{values.dateHistory.commentText.text}}
-  </textarea>
+  </textarea> --}}
 
 
 </section>

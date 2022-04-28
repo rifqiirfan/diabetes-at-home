@@ -16,21 +16,21 @@ const recordSchema = new mongoose.Schema({
       fullName: { type: String, default: "weight", immutable: true },
       status: { type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded" },
       value: { type: Number, default: 0 },
-      comment: { type: String, default: 0 },
+      comment: { type: String, default: "" },
       createdAt: { type: String, default: null }
     },
     doit: {
       fullName: { type: String, default: "doses of insulin taken", immutable: true },
       status: { type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded" },
       value: { type: Number, default: 0 },
-      comment: { type: String, default: 0 },
+      comment: { type: String, default: "" },
       createdAt: { type: String, default: null }
     },
     exercise: {
       fullName: { type: String, default: "exercise", immutable: true },
       status: { type: String, enum: ["recorded", "unrecorded", "no need"], default: "unrecorded" },
       value: { type: Number, default: 0 },
-      comment: { type: String, default: 0 },
+      comment: { type: String, default: "" },
       createdAt: { type: String, default: null }
     },
   }
