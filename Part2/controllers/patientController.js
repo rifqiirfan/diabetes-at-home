@@ -43,28 +43,36 @@ const insertData = async (req, res, next) => {
                     "status": "recorded",
                     "value": bgl,
                     "comment": bgl_comment,
-                    "createdAt": Date.now()
+                    "createdAt":  new Date().toLocaleString("en-Au", {
+                        timeZone: "Australia/Melbourne",
+                      })
                 },
                 "weight": {
                     "fullName": "weight",
                     "status": "recorded",
                     "value": weight,
                     "comment": weight_comment,
-                    "createdAt": Date.now()
+                    "createdAt": new Date().toLocaleString("en-Au", {
+                        timeZone: "Australia/Melbourne",
+                      })
                 },
                 "doit": {
                     "fullName": "doses of insulin taken",
                     "status": "recorded",
                     "value": doit,
                     "comment": doit_comment,
-                    "createdAt": Date.now()
+                    "createdAt":new Date().toLocaleString("en-Au", {
+                        timeZone: "Australia/Melbourne",
+                      })
                 },
                 "exercise": {
                     "fullName": "exercise",
                     "status": "recorded",
                     "value": exercise,
                     "comment": ex_comment,
-                    "createdAt": Date.now()
+                    "createdAt":new Date().toLocaleString("en-Au", {
+                        timeZone: "Australia/Melbourne",
+                      })
                 }
             }
         })
