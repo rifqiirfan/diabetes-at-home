@@ -1,28 +1,32 @@
 <section class="patient-homepage">
   <h1>Patient Homepage</h1>
-  {{!-- <ul>
-
-    {{#each data}}
-    <li><a href="/patient/{{this._id}}">{{this.firstName}} {{this.lastName}}</a></li>
-
-    <button>
-      <a href="/patient/entry/{{this._id}}"> Entry </a>
-    </button>
-
-    <button>
-      <a href="/patient/view/{{this._id}}"> View </a>
-    </button>
-
-    {{/each}}
-
-  </ul> --}}
   <table class="patient-homepage-table">
+    <tr>
+      <th>Patient Name</th>
+      <th>Information</th>
+      <th>Entry</th>
+      <th>View</th>
+    </tr>
     {{#each data}}
     <tr>
-      <td>{{this.firstName}} {{this.lastName}}</td>
-      <td><a href="/patient/{{this._id}}"><button class="table-information-button"> Information </button></a></td>
-      <td><a href="/patient/entry/{{this._id}}"><button class="table-entry-button"> Entry </button></a></td>
-      <td><a href="/patient/view/{{this._id}}"><button class="table-view-button"> View </button></a></td>
+      <td data-th="Patient Name">
+        {{this.firstName}} {{this.lastName}}
+      </td>
+      <td data-th="Information">
+        <a href="/patient/{{this._id}}">
+          <button class="table-information-button"> Information </button>
+        </a>
+      </td>
+      <td data-th="Entry">
+        <a href="/patient/entry/{{this._id}}">
+          <button class="table-entry-button"> Entry </button>
+        </a>
+      </td>
+      <td data-th="View">
+        <a href="/patient/view/{{this._id}}">
+          <button class="table-view-button"> View </button>
+        </a>
+      </td>
     </tr>
     {{/each}}
   </table>

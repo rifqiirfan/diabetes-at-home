@@ -1,35 +1,31 @@
-<h1>Dashboard</h1>
-<h2> All data in the dashboard is based on the last 24 hours at {{date}} </h2>
+<section class="clinician-dashboard">
+    <h1>Dashboard</h1>
+    <h2> All data in the dashboard is based on the last 24 hours at {{date}} </h2>
 
-<table class="safety-threshold-table">
+    <table class="safety-threshold-table">
+        <tr>
+            <th>Patient Name</th>
+            <th>Blood Glocose Level <br/>(in mmol/L)</th>
+            <th>Weight <br/>(in kg)</th>
+            <th>Doses of Insulin Taken</th>
+            <th> Exercise <br/>(Step Count)</th>
+        </tr>
+        
+        {{#each data}}
+        <tr>
+            <td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
 
-
-<tr>
-<th>Patient Name</th>
-<th>Blood Glocose Level (in mmol/L)</th>
-<th>Weight (in Kg)</th>
-<th>Doses of Insulin Taken</th>
-<th> Exercise (Step Count)</th>
-</tr>
-  
-{{#each data}}
-<tr>
-<td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
-<td style="background-color:   
-{{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
-
-{{else}}
-orange
-{{/thresholdJudge}};">
-{{this.bgl}} </td>
-<td>{{this.weight}} </td>
-<td>{{this.doit}} </td>
-<td>{{this.exercise}} </td>
-<td>{{./date}} </td>
-</tr>
-{{/each}}
-
-
-
-
-</table>
+            {{else}}
+            orange
+            {{/thresholdJudge}};">
+            {{this.bgl}} </td>
+            <td>{{this.weight}} </td>
+            <td>{{this.doit}} </td>
+            <td>{{this.exercise}} </td>
+            <td>{{./date}} </td>
+        </tr>
+        {{/each}}
+    </table>
+</section>

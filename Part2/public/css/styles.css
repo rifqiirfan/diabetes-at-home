@@ -57,23 +57,6 @@ html {
     width: 200px;
 }
 
-.navbar ul {
-    display: flex;
-    list-style: none;
-    font-size: 1.25em;
-}
-
-.navbar a {
-    text-decoration: none;
-    margin: .75em;
-    color: var(--dark-green);
-}
-
-.navbar ul > li > a:hover {
-    color: var(--blue);
-    border-bottom: 1.5px solid var(--blue);
-}
-
 /* Footer */
 .footer {
     display: flex;
@@ -93,6 +76,43 @@ html {
     margin-bottom: var(--margin-title);
 }
 
+/* Index Homepage */
+.home-page, .home-page img {
+    display: flex;
+    height: 70vh;
+    width: 50vw;
+}
+.home-image img {
+    object-fit: cover;
+}
+
+.home-navigation {
+    padding: var(--sec-padding);
+    width: 100%;
+}
+
+.home-clinician, .home-patient {
+    margin: 10%;
+}
+
+.home-clinician button, .home-patient button {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 10px;
+    width: 100%;
+    border: 3px solid var(--blue);
+    font-size: 1.125em;
+    font-weight: 700;
+    border-radius: 2em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.home-clinician button:hover, .home-patient button:hover {
+    background-color: var(--white);
+    color: var(--blue);
+}
+
 /* Patient Homepage */
 .patient-homepage {
     padding: var(--sec-padding);
@@ -106,6 +126,12 @@ html {
     overflow-x: scroll;
 }
 
+.patient-homepage-table th {
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: var(--table-padding);
+}
+
 .patient-homepage-table tr, td {
     text-align: center;
     padding: var(--table-padding);
@@ -115,7 +141,7 @@ html {
     text-align: left;
 }
 
-.patient-homepage-table tr:nth-child(even) {
+.patient-homepage-table tr:nth-child(odd) {
     background-color: #e3e3e3;
 }
 
@@ -239,7 +265,7 @@ html {
     width: 20%;
 }
 
-.patient-history-table tr:nth-child(even) {
+.patient-history-table tr:nth-child(odd) {
     background-color: #e3e3e3;
 }
 
@@ -249,11 +275,16 @@ html {
 
 /* +++ Clinician Dashboard +++
    Patient 's Safety Threshold */
+.clinician-dashboard {
+    padding: var(--sec-padding);
+}
+
 .clinician-safety-threshold {
     padding: var(--sec-padding);
 }
 
 .safety-threshold-table {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
@@ -309,4 +340,54 @@ html {
     width: 100%;
     font-family: 'Helvetica';
     font-size: 1em;
+}
+
+@media screen and (max-width: 600px) {
+    /* Index Homepage */
+    .home-image img {
+        height: 30vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+    
+    .home-navigation {
+        width: 100%;
+    }
+
+    /* Patient Homepage */
+	.patient-homepage-table {
+		width: 100%;
+	}
+
+	.patient-homepage-table th {
+		display: none;
+	}
+
+    .patient-homepage-table th[scope="row"] {
+		vertical-align: top;
+	}
+
+	.patient-homepage-table td {
+		display: block;
+        width: auto;
+		text-align: left;
+		border-right: 1px solid #e1edff;
+	}
+
+	.patient-homepage-table td::before {
+		float: left;
+		text-transform: uppercase;
+		font-weight: bold;
+		content: attr(data-header);
+	}
+
+	.patient-homepage-table thead th::before {
+		text-transform: uppercase;
+		font-weight: bold;
+		content: attr(data-header);
+	}
+
+	.patient-homepage-table thead th:first-child span {
+		display: none;
+	}
 }
