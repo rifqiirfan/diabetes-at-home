@@ -5,8 +5,12 @@ INFO30005 Project - Building a web application for Diabetes@Home
 ## Timeline
 
 23 March 2022: First commit
+
 8 April 2022: Add instructions
+
 20 April 2022: Merge patient branch to main branch
+
+28 April 2022: Latest commit for Deliverable 2
 
 ## Team
 
