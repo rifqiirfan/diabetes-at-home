@@ -15,7 +15,7 @@ const getAllPatientData = async (req, res, next) => {
             })
             if(!rec_now){
                 sample = {
-                    name: allPatients[i].firstName + ' ' + allPatients[i].lastName,
+                    name: allPatients[i].firstName + " " + allPatients[i].lastName,
                     id: allPatients[i]._id,
                     bgl: 0,
                     weight: 0,
@@ -33,7 +33,7 @@ const getAllPatientData = async (req, res, next) => {
             }else{
 
                 sample = {
-                    name: allPatients[i].firstName + ' ' + allPatients[i].lastName,
+                    name: allPatients[i].firstName + " " + allPatients[i].lastName,
                     id: allPatients[i]._id,
                     bgl: rec_now.data.bgl.value,
                     weight: rec_now.data.weight.value,
