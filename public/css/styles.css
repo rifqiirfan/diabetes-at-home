@@ -124,6 +124,13 @@ html {
 
 .breadcrumbs-navigation {
     margin: var(--text-padding);
+    color: var(--black);
+}
+
+.breadcrumbs-navigation {
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: bold;
 }
 
 .back-button {
