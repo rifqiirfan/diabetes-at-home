@@ -7,27 +7,47 @@ const getAllPatientData = async (req, res, next) => {
         const allPatients = await Patient.find().lean()
 
         const a = []
+        var sample = {};
         for (i = 0; i < allPatients.length; i++) {
             const rec_now = await Record.findOne({
                 patientID: allPatients[i]._id,
                 recordDate: formatDate(new Date()),
             })
+            if(!rec_now){
+                sample = {
+                    name: allPatients[i].firstName + ' ' + allPatients[i].lastName,
+                    id: allPatients[i]._id,
+                    bgl: 0,
+                    weight: 0,
+                    doit: 0,
+                    exercise: 0,
+                    bgl_min: allPatients[i].data.bgl.minValue,
+                    bgl_max: allPatients[i].data.bgl.maxValue,
+                    weight_min: allPatients[i].data.weight.minValue,
+                    weight_max: allPatients[i].data.weight.maxValue,
+                    doit_min: allPatients[i].data.doit.minValue,
+                    doit_max: allPatients[i].data.doit.maxValue,
+                    exer_min: allPatients[i].data.exercise.minValue,
+                    exer_max: allPatients[i].data.exercise.maxValue,
+                }
+            }else{
 
-            const sample = {
-                name: allPatients[i].firstName + ' ' + allPatients[i].lastName,
-                id: allPatients[i]._id,
-                bgl: rec_now.data.bgl.value,
-                weight: rec_now.data.weight.value,
-                doit: rec_now.data.doit.value,
-                exercise: rec_now.data.exercise.value,
-                bgl_min: allPatients[i].data.bgl.minValue,
-                bgl_max: allPatients[i].data.bgl.maxValue,
-                weight_min: allPatients[i].data.weight.minValue,
-                weight_max: allPatients[i].data.weight.maxValue,
-                doit_min: allPatients[i].data.doit.minValue,
-                doit_max: allPatients[i].data.doit.maxValue,
-                exer_min: allPatients[i].data.exercise.minValue,
-                exer_max: allPatients[i].data.exercise.maxValue,
+                sample = {
+                    name: allPatients[i].firstName + ' ' + allPatients[i].lastName,
+                    id: allPatients[i]._id,
+                    bgl: rec_now.data.bgl.value,
+                    weight: rec_now.data.weight.value,
+                    doit: rec_now.data.doit.value,
+                    exercise: rec_now.data.exercise.value,
+                    bgl_min: allPatients[i].data.bgl.minValue,
+                    bgl_max: allPatients[i].data.bgl.maxValue,
+                    weight_min: allPatients[i].data.weight.minValue,
+                    weight_max: allPatients[i].data.weight.maxValue,
+                    doit_min: allPatients[i].data.doit.minValue,
+                    doit_max: allPatients[i].data.doit.maxValue,
+                    exer_min: allPatients[i].data.exercise.minValue,
+                    exer_max: allPatients[i].data.exercise.maxValue,
+                }
             }
             a.push(sample)
         }

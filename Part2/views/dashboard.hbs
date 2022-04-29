@@ -16,15 +16,34 @@
             <td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
             <td style="background-color:   
             {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
-
             {{else}}
             orange
             {{/thresholdJudge}};">
             {{this.bgl}} </td>
-            <td>{{this.weight}} </td>
-            <td>{{this.doit}} </td>
-            <td>{{this.exercise}} </td>
-            <td>{{./date}} </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+            {{else}}
+            orange
+            {{/thresholdJudge}};">
+            {{this.weight}} </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+            {{else}}
+            orange
+            {{/thresholdJudge}};">
+            {{this.doit}} </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+            {{else}}
+            orange
+            {{/thresholdJudge}};">
+            {{this.exercise}} </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+            {{else}}
+            orange
+            {{/thresholdJudge}};">
+            {{./date}} </td>
         </tr>
         {{/each}}
     </table>
