@@ -22,29 +22,24 @@
             {{/thresholdJudge}};">
             {{this.bgl}} </td>
             <td style="background-color:   
-            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+            {{#thresholdJudge this.weight this.weight_max this.weight_min}}
             {{else}}
             orange
             {{/thresholdJudge}};">
             {{this.weight}} </td>
             <td style="background-color:   
-            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+            {{#thresholdJudge this.doit this.doit_max this.doit_min}}
             {{else}}
             orange
             {{/thresholdJudge}};">
             {{this.doit}} </td>
             <td style="background-color:   
-            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+            {{#thresholdJudge this.exercise this.exercise_max this.exercise_min}}
             {{else}}
             orange
             {{/thresholdJudge}};">
             {{this.exercise}} </td>
-            <td style="background-color:   
-            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
-            {{else}}
-            orange
-            {{/thresholdJudge}};">
-            {{./date}} </td>
+            <td >{{../date}} </td>
         </tr>
         {{/each}}
     </table>
