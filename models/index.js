@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: 'Diabetes@Home',
+    dbName: 'Diabetes_at_Home',
 })
 // Exit on error
 const db = mongoose.connection.on('error', (err) => {
