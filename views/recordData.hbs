@@ -68,16 +68,16 @@
       </tr>
 
       {{!-- {{#each records.data as |record|}}
-      {{!-- {{#each patients.data as |personal|}} --}}
-      {{!-- <form class="safety-threshold-table-form" action="" method="POST">
+      {{#each patients.data as |personal|}}
+      <form class="safety-threshold-table-form" action="" method="POST">
         <tr>
-          {{!-- <td>{{@key}}</td> --}}
-          {{!-- <input type="hidden" name="key" value="{{@key}}"> --}}
-          {{!-- <td>{{this.availbility}}</td> --}}
-          {{!-- <td> {{personal.bgl.availbility}}</td>
-          <td>{{record.fullName}}</td> --}} 
-{{!-- <td> {{personal.data.blg.availbility}}</td> --}}
-          {{!-- {{#ifUnrecorded this.status}}
+          <td>{{@key}}</td>
+          <input type="hidden" name="key" value="{{@key}}">
+          <td>{{this.availbility}}</td>
+          <td> {{personal.bgl.availbility}}</td>
+          <td>{{record.fullName}}</td> 
+          <td> {{personal.data.blg.availbility}}</td>
+          {{#ifUnrecorded this.status}}
           <td style="text-align: center"> <input type="text" name="min" placeholder="Enter minimum shreshold"></td>
           {{else}}
           <td>{{this.minValue}}</td>
@@ -86,8 +86,8 @@
           <td style="text-align: center"> <input type="text" name="max" placeholder="Enter maximum shreshold"></td>
           {{else}}
           <td>{{this.maxValue}}</td>
-          {{/ifUnrecorded}} --}}
-          {{!-- <td>{{this.createdAt}}</td>
+          {{/ifUnrecorded}}
+          <td>{{this.createdAt}}</td>
           <td>{{this.status}}</td>
           {{#ifUnrecorded this.status}}
             <td><input type="text" name="value" placeholder="Enter your record here" required></td>
@@ -101,15 +101,15 @@
 
       </form>
       {{/each}}
-      --}}
-      {{!-- <tr>
+     
+       <tr>
       <td>{{personal.data.bgl.availbility}}</td>
       <td>{{record.data.weight.value}}</td>
-      </tr> --}}
+      </tr>
 
     </table>
 
-    {{!-- <h2 class="comment-title"> Displaying Patient Comment </h2>
+     <h2 class="comment-title"> Displaying Patient Comment </h2>
     <textarea id='patientComment' class="patient-comment" name='patientComment' rows="10" cols="50" readonly>
     {{values.dateHistory.commentText.text}}
   </textarea> --}}

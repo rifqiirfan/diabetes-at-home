@@ -3,6 +3,60 @@ const allPatientData = require('../models/patient')
 const patientRecords = require('../models/record')
 let alert = require('alert')
 
+async function findPatient(pid) {
+    try {
+        // find all document in Patient Collection to findout if it is empty
+        const result = await allPatientData.find()
+        if (result.length == 0) {
+            const newPatient = new allPatientData({
+                firstName: 'Alice',
+                lastName: 'Wang',
+                screenName: 'AW',
+                email: 'AW@gmail.com',
+                password: '12345678',
+                yearOfBirth: '1999',
+                textBio: "I'm good",
+                supportMessage: 'go for it!',
+            })
+
+            // save new patient Pat to database
+            const patient = await newPatient.save()
+
+            return patient.id
+        } else {
+            // find our target patient Pat
+            // const patient = await Patient.findOne({_id: pid});
+            const patient = await allPatientData.findById(pid)
+            return patient.id
+        }
+    } catch (err) {
+        console.log('error happens in patient initialisation: ', err)
+    }
+}
+
+async function findRecord(patientId) {
+    try {
+        const result = await patientRecords.findOne({
+            patientID: patientId,
+            recordDate: formatDate(new Date()),
+        })
+        if (!result) {
+            const newRecord = new patientRecords({
+                patientID: patientId,
+                recordDate: formatDate(new Date()),
+            })
+
+            const record = await newRecord.save()
+            return record.id
+        } else {
+            return result.id
+        }
+    } catch (err) {
+        console.log('error happens in record initialisation: ', err)
+    }
+}
+
+
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -117,7 +171,7 @@ const insertData = async (req, res, next) => {
 
             return res.redirect('../')
         } else {
-            return alert("Today's data has already recorded!")
+            return res.redirect('../')
         }
         // create a record
     } catch (err) {
@@ -125,10 +179,65 @@ const insertData = async (req, res, next) => {
     }
 }
 
+const updateRecord = async (req, res) => {
+    console.log('-- req form to update record -- ', req.body)
+    try {
+        const patientId = await findPatient(req.params.patient_id)
+        const recordId = await findRecord(patientId)
+        const record = await patientRecords.findById(recordId)
+        // const record = await Record.findOne({ _id :recordId });
+
+        const data = record.data[req.body.key]
+        data.value = req.body.value
+        
+        data.status = 'recorded'
+        data.createdAt = new Date().toLocaleString('en-Au', {
+            timeZone: 'Australia/Melbourne',
+        })
+        data.comment = req.body.comment;
+        await record.save()
+        
+        var bool = true;
+        const patient = await allPatientData.findById(req.params.patient_id);
+        for(i=0;i<patient.records.length;i++){
+            if(patient.records[i].recordID == recordId){
+                bool = false;
+            }
+        }
+        if(bool){
+            patient.records.push({recordID: recordId})
+            patient.save
+        }
+
+        
+        res.redirect('back');
+    } catch (err) {
+        console.log('error happens in update record: ', err)
+    }
+}
+
 // entry data page
 const entryPatientData = async (req, res, next) => {
     try {
-        return res.render('entry.hbs')
+        
+        const data = await patientRecords.findOne({
+            patientID: req.params.patient_id,
+            recordDate: formatDate(new Date()),
+        }).lean();
+        if(!data){
+            const new_rec = new patientRecords({
+                patientID: req.params.patient_id,
+                recordDate: formatDate(new Date()),
+            })
+            const rec = new_rec.save()
+            // res.render('entry.hbs', {record :  rec});
+            const path = "/patient/entry/" + req.params.patient_id
+            res.redirect(path)
+        }else{
+            const rec = data;
+            return res.render('entry.hbs', {record :  rec});
+        }
+        
     } catch (err) {
         return next(err)
     }
@@ -142,6 +251,7 @@ const viewPatientData = async (req, res, next) => {
 
         // get an array of recordID from patient schema
         const all_rec_id = data.records
+        
         // initialize an empty array to store record data
         const all_rec = []
         // loop through the recordID array in patient schema
@@ -151,9 +261,11 @@ const viewPatientData = async (req, res, next) => {
             const one_rec = await patientRecords
                 .findById(data.records[i].recordID)
                 .lean()
+            
             all_rec.push(one_rec)
         }
 
+        
         if (!data) {
             return res.sendStatus(404)
         }
@@ -167,6 +279,7 @@ module.exports = {
     getAllPatientData,
     getPatientDataById,
     insertData,
+    updateRecord,
     entryPatientData,
     viewPatientData,
 }

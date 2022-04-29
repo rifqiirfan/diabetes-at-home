@@ -17,7 +17,7 @@ patientRouter.get('/view/:patient_id', patientController.viewPatientData)
 patientRouter.get('/:patient_id', patientController.getPatientDataById)
 
 // add a new JSON object to the database
-patientRouter.post('/entry/:patient_id', patientController.insertData)
+patientRouter.post('/entry/:patient_id', patientController.updateRecord)
 
 // export the router
 module.exports = patientRouter

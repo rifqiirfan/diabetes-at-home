@@ -35,8 +35,8 @@ const patientRouter = require('./routes/patientRouter')
 app.use('/clinician', ClinicianRouter)
 app.use('/patient', patientRouter)
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('The library app is running!')
+app.listen(port, () => {
+    console.log("> Server is up and running on http://localhost:" + port)
 })
 
 require('./models/index.js')
