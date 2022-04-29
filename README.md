@@ -10,7 +10,7 @@ INFO30005 Project - Building a web application for Diabetes@Home
 
 20 April 2022: Merge patient branch to main branch
 
-28 April 2022: Latest commit for Deliverable 2
+29 April 2022: Latest commit for Deliverable 2
 
 ## Team
 
@@ -21,3 +21,13 @@ INFO30005 Project - Building a web application for Diabetes@Home
 | Ruifeng Zhan           | 1067919        |
 | Bowen Xu               | 1183928        |
 | Jiayi Zhang            | 1073959        |
+
+## Dependencies:
+
+"alert": "^5.0.10",
+"express": "^4.17.3",
+"express-handlebars": "^6.0.5",
+ "handlebars": "^4.7.7",
+ "mongoose": "^6.3.1",
+  "dotenv": "^16.0.0",
+   "nodemon": "^2.0.15"
