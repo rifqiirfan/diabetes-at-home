@@ -1,5 +1,5 @@
 <section class="patient-homepage">
-  <h1>Patient Homepage</h1>
+  <h1 class="title">Patient Homepage</h1>
   <table class="patient-homepage-table">
     <tr>
       <th>Patient Name</th>
@@ -9,20 +9,20 @@
     </tr>
     {{#each data}}
     <tr>
-      <td data-th="Patient Name">
-        {{this.firstName}} {{this.lastName}}
+      <td data-header="Patient Name">
+        <p>{{this.firstName}} {{this.lastName}}</p>
       </td>
-      <td data-th="Information">
+      <td data-header="Information">
         <a href="/patient/{{this._id}}">
           <button class="table-information-button"> Information </button>
         </a>
       </td>
-      <td data-th="Entry">
+      <td data-header="Entry">
         <a href="/patient/entry/{{this._id}}">
           <button class="table-entry-button"> Entry </button>
         </a>
       </td>
-      <td data-th="View">
+      <td data-header="View">
         <a href="/patient/view/{{this._id}}">
           <button class="table-view-button"> View </button>
         </a>

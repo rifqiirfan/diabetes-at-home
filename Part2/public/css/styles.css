@@ -34,6 +34,7 @@ html {
     --heading-title: 2em;
     --additional-title-1: 1.5em;
     --margin-title: 10px;
+    --margin-article: 10px;
     --sec-padding: 30px 10%;
     --text-padding: 0 0 15px 0;
     --table-padding: 15px;
@@ -74,6 +75,32 @@ html {
 .title {
     font-size: var(--heading-title);
     margin-bottom: var(--margin-title);
+}
+
+.article {
+    margin-bottom: var(--margin-article);
+}
+
+.breadcrumbs-navigation {
+    margin: var(--text-padding);
+}
+
+.back-button {
+    background-color: var(--red);
+    color: var(--white);
+    padding: 10px;
+    width: 100px;
+    border: 3px solid var(--red);
+    font-size: 1.125em;
+    font-weight: 700;
+    border-radius: 2em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: var(--white);
+    color: var(--red);
 }
 
 /* Index Homepage */
@@ -213,6 +240,17 @@ html {
     padding: var(--text-padding);
 }
 
+.patient-information li:nth-child(2) {
+    font-weight: 700;
+    font-size: var(--input-text);
+}
+
+.patient-information li:nth-child(3) {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-style: italic;
+}
+
 /* Patient Entry */
 .patient-entry {
     padding: var(--sec-padding);
@@ -245,6 +283,7 @@ html {
 }
 
 .patient-history-table {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
@@ -301,16 +340,8 @@ html {
     padding: var(--table-padding);
 }
 
-.safety-threshold-table-form td:nth-child(even) {
-    background-color: #e3e3e3;
-}
-
-.safety-threshold-table-form td:nth-child(odd) {
-    background-color: var(--white);
-}
-
-.safety-threshold-table-form td:hover, td:focus {
-    background-color: var(--ivory);
+.safety-threshold-table td:nth-child(1) {
+    text-decoration: none;
 }
 
 .comment-title {
@@ -364,19 +395,19 @@ html {
 	}
 
     .patient-homepage-table th[scope="row"] {
-		vertical-align: top;
+		vertical-align: middle;
 	}
 
 	.patient-homepage-table td {
 		display: block;
         width: auto;
-		text-align: left;
+		text-align: right;
 		border-right: 1px solid #e1edff;
 	}
 
 	.patient-homepage-table td::before {
 		float: left;
-		text-transform: uppercase;
+        font-size: var(--input-text);
 		font-weight: bold;
 		content: attr(data-header);
 	}
@@ -390,4 +421,12 @@ html {
 	.patient-homepage-table thead th:first-child span {
 		display: none;
 	}
+
+    .patient-homepage-table td:first-child p {
+		margin-left: 50%;
+	}
+
+    .table-information-button, .table-entry-button, .table-view-button {
+        width: 50%;
+    }
 }
