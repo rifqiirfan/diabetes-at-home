@@ -206,7 +206,7 @@ const updateRecord = async (req, res) => {
         }
         if(bool){
             patient.records.push({recordID: recordId})
-            patient.save
+            patient.save()
         }
 
         
@@ -229,7 +229,7 @@ const entryPatientData = async (req, res, next) => {
                 patientID: req.params.patient_id,
                 recordDate: formatDate(new Date()),
             })
-            const rec = new_rec.save()
+            new_rec.save()
             // res.render('entry.hbs', {record :  rec});
             const path = "/patient/entry/" + req.params.patient_id
             res.redirect(path)

@@ -362,7 +362,7 @@ td {
 .patient-entry {
     padding: 2rem;
     background-color: var(--orange);
-    color: var(--white);
+    
 }
 
 .form-entry {
