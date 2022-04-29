@@ -5,31 +5,30 @@
     <h1 class="title">Entry</h1>
     <div class="patient-entry-form">
         <form action="" method="POST">
-            <label> Blood glucose level (in nmol/L):</label>
-            <input type="number" name="bgl" min="0" max="999"  step=".01"/></br>
-            <label> Blood glucose level comment</label>
+            <label class="form-label"> Blood glucose level (in nmol/L):</label>
+            <input class="form-input" type="number" name="bgl" min="0" max="999"  step=".01"/></br>
+            <label class="form-label"> Blood glucose level comment</label>
             <input type="text" name="bgl_comment" /><br/>
 
-            <label> Weight (in kg):</label>
+            <label class="form-label"> Weight (in kg):</label>
             <input type="number" placeholder="" name="weight" min="0" max="999" /></br>
-            <label> Weight comment</label>
+            <label class="form-label"> Weight comment</label>
             <input type="text" name="weight_comment" /><br/>
 
-            <label> Doses of insulin taken (number of doses)</label>
+            <label class="form-label"> Doses of insulin taken (number of doses)</label>
             <input type="number" placeholder="" name="doit" min="0" max="999" /></br>
-            <label> Doses of insulin comment</label>
+            <label class="form-label"> Doses of insulin comment</label>
             <input type="text" name="doit_comment" /><br/>
 
-            <label> Exercise (step count)</label>
+            <label class="form-label"> Exercise (step count)</label>
             <input type="number" placeholder="" name="exercise" min="0" max="99999" /></br>
-            <label> Exercise comment</label>
+            <label class="form-label"> Exercise comment</label>
             <input type="text" name="ex_comment" /><br/>
 
-            <input type="Submit"  class = "submit-button" /></br>
-        </form>
-        </br>
-        </div>
-        </div>
+            <input type="Submit" value="Submit" class="submit-button" /></br>
+        </form></br>
+    </div>
+    </div>
         <a href="/patient">
             <button class="back-button"> Back </button>
         </a>
