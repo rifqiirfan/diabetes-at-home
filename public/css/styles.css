@@ -1,6 +1,6 @@
 /* Import Google Font (IBM Plex Sans) */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 * {
     padding: 0;
     margin: 0;
@@ -42,7 +42,9 @@ html {
     --input-text: 1em;
 }
 
+
 /* Header */
+
 .navbar {
     display: flex;
     height: 120px;
@@ -58,7 +60,9 @@ html {
     width: 200px;
 }
 
+
 /* Footer */
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -103,12 +107,34 @@ html {
     color: var(--red);
 }
 
+.submit-button {
+    background-color: var(--green);
+    color: var(--white);
+    padding: 10px;
+    width: 100px;
+    border: 3px solid var(--green);
+    font-size: 1.125em;
+    font-weight: 700;
+    border-radius: 2em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: var(--white);
+    color: var(--green);
+}
+
+
 /* Index Homepage */
-.home-page, .home-page img {
+
+.home-page,
+.home-page img {
     display: flex;
     height: 70vh;
     width: 50vw;
 }
+
 .home-image img {
     object-fit: cover;
 }
@@ -118,11 +144,13 @@ html {
     width: 100%;
 }
 
-.home-clinician, .home-patient {
+.home-clinician,
+.home-patient {
     margin: 10%;
 }
 
-.home-clinician button, .home-patient button {
+.home-clinician button,
+.home-patient button {
     background-color: var(--blue);
     color: var(--white);
     padding: 10px;
@@ -135,12 +163,15 @@ html {
     cursor: pointer;
 }
 
-.home-clinician button:hover, .home-patient button:hover {
+.home-clinician button:hover,
+.home-patient button:hover {
     background-color: var(--white);
     color: var(--blue);
 }
 
+
 /* Patient Homepage */
+
 .patient-homepage {
     padding: var(--sec-padding);
 }
@@ -159,7 +190,8 @@ html {
     padding: var(--table-padding);
 }
 
-.patient-homepage-table tr, td {
+.patient-homepage-table tr,
+td {
     text-align: center;
     padding: var(--table-padding);
 }
@@ -227,7 +259,9 @@ html {
     color: var(--gold);
 }
 
+
 /* Patient Homepage */
+
 .patient-information {
     padding: var(--sec-padding);
 }
@@ -251,7 +285,9 @@ html {
     font-style: italic;
 }
 
+
 /* Patient Entry */
+
 .patient-entry {
     padding: var(--sec-padding);
 }
@@ -273,7 +309,9 @@ html {
     font-size: var(--input-text);
 }
 
+
 /* Patient History */
+
 .patient-history {
     padding: var(--sec-padding);
 }
@@ -295,7 +333,8 @@ html {
     padding: var(--table-padding);
 }
 
-.patient-history-table tr, td {
+.patient-history-table tr,
+td {
     text-align: center;
     padding: var(--table-padding);
 }
@@ -312,8 +351,10 @@ html {
     background-color: var(--ivory);
 }
 
+
 /* +++ Clinician Dashboard +++
    Patient 's Safety Threshold */
+
 .clinician-dashboard {
     padding: var(--sec-padding);
 }
@@ -335,7 +376,8 @@ html {
     padding: var(--table-padding);
 }
 
-.safety-threshold-table tr, td {
+.safety-threshold-table tr,
+td {
     text-align: center;
     padding: var(--table-padding);
 }
@@ -380,53 +422,45 @@ html {
         width: 100vw;
         object-fit: cover;
     }
-    
     .home-navigation {
         width: 100%;
     }
-
     /* Patient Homepage */
-	.patient-homepage-table {
-		width: 100%;
-	}
-
-	.patient-homepage-table th {
-		display: none;
-	}
-
+    .patient-homepage-table {
+        width: 100%;
+    }
+    .patient-homepage-table th {
+        display: none;
+    }
     .patient-homepage-table th[scope="row"] {
-		vertical-align: middle;
-	}
-
-	.patient-homepage-table td {
-		display: block;
+        vertical-align: middle;
+    }
+    .patient-homepage-table td {
+        display: block;
         width: auto;
-		text-align: right;
-		border-right: 1px solid #e1edff;
-	}
-
-	.patient-homepage-table td::before {
-		float: left;
+        text-align: right;
+        border-right: 1px solid #e1edff;
+    }
+    .patient-homepage-table td::before {
+        float: left;
         font-size: var(--input-text);
-		font-weight: bold;
-		content: attr(data-header);
-	}
-
-	.patient-homepage-table thead th::before {
-		text-transform: uppercase;
-		font-weight: bold;
-		content: attr(data-header);
-	}
-
-	.patient-homepage-table thead th:first-child span {
-		display: none;
-	}
-
+        font-weight: bold;
+        content: attr(data-header);
+    }
+    .patient-homepage-table thead th::before {
+        text-transform: uppercase;
+        font-weight: bold;
+        content: attr(data-header);
+    }
+    .patient-homepage-table thead th:first-child span {
+        display: none;
+    }
     .patient-homepage-table td:first-child p {
-		margin-left: 50%;
-	}
-
-    .table-information-button, .table-entry-button, .table-view-button {
+        margin-left: 50%;
+    }
+    .table-information-button,
+    .table-entry-button,
+    .table-view-button {
         width: 50%;
     }
 }
