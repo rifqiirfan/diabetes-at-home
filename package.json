@@ -2,5 +2,8 @@
   "dependencies": {
     "alert": "^5.0.10",
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
   }
 }

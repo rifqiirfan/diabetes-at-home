@@ -9,11 +9,11 @@ const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    dbName: 'Diabetes@Home'
+    dbName: 'Diabetes@Home',
 })
 // Exit on error
-const db = mongoose.connection.on('error', err => {
-    console.error(err);
+const db = mongoose.connection.on('error', (err) => {
+    console.error(err)
     process.exit(1)
 })
 // Log to console once the database is open
