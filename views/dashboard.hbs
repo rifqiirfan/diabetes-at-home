@@ -1,17 +1,18 @@
 <section class="clinician-dashboard">
     <h1>Dashboard</h1>
-    <article class="article">All data in the dashboard is based on the last 24 hours at <strong>{{date}}</strong></article>
+    <article class="article">All data in the dashboard is based on the last 24 hours at <strong>{{date}}</strong>
+    </article>
 
     <table class="safety-threshold-table">
         <tr>
             <th>Patient Name</th>
-            <th>Blood Glocose Level <br/>(in mmol/L)</th>
-            <th>Weight <br/>(in kg)</th>
+            <th>Blood Glocose Level <br />(in mmol/L)</th>
+            <th>Weight <br />(in kg)</th>
             <th>Doses of Insulin Taken</th>
-            <th>Exercise <br/>(Step Count)</th>
+            <th>Exercise <br />(Step Count)</th>
             <th>Date</th>
         </tr>
-        
+
         {{#each data}}
         <tr>
             <td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
@@ -20,27 +21,31 @@
             {{else}}
             orange
             {{/thresholdJudge}};">
-            {{this.bgl}} </td>
+                {{this.bgl}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.weight this.weight_max this.weight_min}}
             {{else}}
             orange
             {{/thresholdJudge}};">
-            {{this.weight}} </td>
+                {{this.weight}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.doit this.doit_max this.doit_min}}
             {{else}}
             orange
             {{/thresholdJudge}};">
-            {{this.doit}} </td>
+                {{this.doit}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.exercise this.exercise_max this.exercise_min}}
             {{else}}
             orange
             {{/thresholdJudge}};">
-            {{this.exercise}} </td>
-            <td >{{../date}} </td>
+                {{this.exercise}} </td>
+            <td>{{../date}} </td>
         </tr>
         {{/each}}
     </table>
+
+    <a href="/clinician/new_patient">
+        <button> Create New Patient </button>
+    </a>
 </section>

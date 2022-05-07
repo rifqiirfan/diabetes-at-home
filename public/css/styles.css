@@ -1,6 +1,7 @@
 /* Import Google Font (IBM Plex Sans) */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -76,19 +77,19 @@ html {
     width: 50px;
 }
 
-.navbar > ul {
+.navbar>ul {
     display: flex;
     list-style: none;
     font-size: 1.25em;
 }
 
-.navbar > ul > li > a {
+.navbar>ul>li>a {
     text-decoration: none;
     margin: .75em;
     color: var(--black);
 }
 
-.navbar > ul > li > a:hover {
+.navbar>ul>li>a:hover {
     color: var(--blue);
     border-bottom: 1.5px solid var(--blue);
 }
@@ -362,7 +363,7 @@ td {
 .patient-entry {
     padding: 2rem;
     background-color: var(--orange);
-    
+
 }
 
 .form-entry {
@@ -524,48 +525,59 @@ td {
 }
 
 @media screen and (max-width: 600px) {
+
     /* Index Homepage */
     .home-image img {
         height: 30vh;
         width: 100vw;
         object-fit: cover;
     }
+
     .home-navigation {
         width: 100%;
     }
+
     /* Patient Homepage */
     .patient-homepage-table {
         width: 100%;
     }
+
     .patient-homepage-table th {
         display: none;
     }
+
     .patient-homepage-table th[scope="row"] {
         vertical-align: middle;
     }
+
     .patient-homepage-table td {
         display: block;
         width: auto;
         text-align: right;
         border-right: 1px solid #e1edff;
     }
+
     .patient-homepage-table td::before {
         float: left;
         font-size: var(--input-text);
         font-weight: bold;
         content: attr(data-header);
     }
+
     .patient-homepage-table thead th::before {
         text-transform: uppercase;
         font-weight: bold;
         content: attr(data-header);
     }
+
     .patient-homepage-table thead th:first-child span {
         display: none;
     }
+
     .patient-homepage-table td:first-child p {
         margin-left: 50%;
     }
+
     .table-information-button,
     .table-entry-button,
     .table-view-button {
