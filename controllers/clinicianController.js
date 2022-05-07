@@ -31,7 +31,6 @@ const getAllPatientData = async (req, res, next) => {
                     exer_max: allPatients[i].data.exercise.maxValue,
                 }
             } else {
-
                 sample = {
                     name: allPatients[i].firstName + " " + allPatients[i].lastName,
                     id: allPatients[i]._id,
@@ -230,7 +229,7 @@ const viewHistRec = async (req, res, next) => {
         // use the recordID to retrieve record data from record schema
         // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
-            const one_rec = await Patient
+            const one_rec = await Record
                 .findById(curr_pati.records[i].recordID)
                 .lean()
 
