@@ -1,6 +1,7 @@
 <section class="patient-comment">
 
 <h1 class = "title"> Comments</h1>
+{{#each record}}
 <table class="CurComment">
 <tr>
     <th>Attribute Name</th>
@@ -8,25 +9,26 @@
 </tr>
 
 <tr>
-<td><a href="/clinician/{{id}}">{{record.data.bgl.fullName}}</a></td>
-<td>{{record.data.bgl.comment}}</td>
+<td>this.data.bgl.fullName</td>
+<td>this.data.bgl.comment</td>
 </tr>
 
 <tr>
-<td>{{record.data.weight.fullName}}</td>
-<td>{{record.data.weight.comment}}</td>
+<td>{{this.data.weight.fullName}}</td>
+<td>{{this.data.weight.comment}}</td>
 </tr>
 
 <tr>
-<td>{{record.data.doit.fullName}}</td>
-<td>{{record.data.doit.comment}}</td>
+<td>{{this.data.doit.fullName}}</td>
+<td>{{this.data.doit.comment}}</td>
 </tr>
 
 <tr>
-<td>{{record.data.exercise.fullName}}</td>
-<td>{{record.data.exercise.comment}}</td>
+<td>{{this.data.exercise.fullName}}</td>
+<td>{{this.data.exercise.comment}}</td>
 </tr>
 </table>
+{{/each}}
 
 <a href="/clinician">
         <button class="back-button"> Back </button>

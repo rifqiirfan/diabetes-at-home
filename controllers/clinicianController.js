@@ -214,13 +214,10 @@ const postNewPatient = async (req, res, next) => {
 }
 
 const viewCurComment = async (req, res, next) => {
-    try{
-        const data = await Record.findOne({
-            patientID: req.params.id,
-            recordDate: formatDate(new Date()),
-        }).lean();
-        const rec = data;
-        return res.render('viewComment.hbs', { record : rec, id : req.params.id})
+    try{     
+        const data = await Record.find().lean()        
+
+        return res.render('viewComment.hbs',{record : data})
     }catch (err) {
         return next(err)
     }
@@ -250,7 +247,15 @@ const viewHistRec = async (req, res, next) => {
 
             all_rec.push(one_rec)
         }
-
+        const data = await Record.find().lean()
+        
+        const rec = []
+        for(var i = 0; i < data.length; i++){
+            const one_rec = data[i]
+            // console.log(one_rec)
+            rec.push(one_rec)
+        }
+        console.log(rec[0])
         return res.render('cliViewHistory.hbs', { onePatient: curr_pati, record: all_rec })
     } catch (err) {
         return next(err)
