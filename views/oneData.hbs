@@ -8,8 +8,17 @@
         <li>{{this.email}}</li>
         <li>{{this.firstName}}</li>
         <li>{{this.lastName}} </li>
+        <li>{{this.screenName}} </li>
+        <li>{{this.textBio}} </li>
     </ul>
     {{/with}}
+
+    <form action="" method="POST">
+        <label> Reset your password:</label></br>
+        <input type="text" name="new_pw" placeholder="Enter new password here." /></br>
+        <button type="submit" class="submit-button">Update Password</button>
+    </form></br>
+
     <a href="/patient">
         <button class="back-button"> Back </button>
     </a>

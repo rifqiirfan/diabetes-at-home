@@ -173,7 +173,6 @@ const insertData = async (req, res, next) => {
         } else {
             return res.redirect('../')
         }
-        // create a record
     } catch (err) {
         return next(err)
     }
@@ -189,27 +188,27 @@ const updateRecord = async (req, res) => {
 
         const data = record.data[req.body.key]
         data.value = req.body.value
-        
+
         data.status = 'recorded'
         data.createdAt = new Date().toLocaleString('en-Au', {
             timeZone: 'Australia/Melbourne',
         })
         data.comment = req.body.comment;
         await record.save()
-        
+
         var bool = true;
         const patient = await allPatientData.findById(req.params.patient_id);
-        for(i=0;i<patient.records.length;i++){
-            if(patient.records[i].recordID == recordId){
+        for (i = 0; i < patient.records.length; i++) {
+            if (patient.records[i].recordID == recordId) {
                 bool = false;
             }
         }
-        if(bool){
-            patient.records.push({recordID: recordId})
+        if (bool) {
+            patient.records.push({ recordID: recordId })
             patient.save()
         }
 
-        
+
         res.redirect('back');
     } catch (err) {
         console.log('error happens in update record: ', err)
@@ -219,12 +218,11 @@ const updateRecord = async (req, res) => {
 // entry data page
 const entryPatientData = async (req, res, next) => {
     try {
-        
         const data = await patientRecords.findOne({
             patientID: req.params.patient_id,
             recordDate: formatDate(new Date()),
         }).lean();
-        if(!data){
+        if (!data) {
             const new_rec = new patientRecords({
                 patientID: req.params.patient_id,
                 recordDate: formatDate(new Date()),
@@ -233,11 +231,11 @@ const entryPatientData = async (req, res, next) => {
             // res.render('entry.hbs', {record :  rec});
             const path = "/patient/entry/" + req.params.patient_id
             res.redirect(path)
-        }else{
+        } else {
             const rec = data;
-            return res.render('entry.hbs', {record :  rec});
+            return res.render('entry.hbs', { record: rec });
         }
-        
+
     } catch (err) {
         return next(err)
     }
@@ -248,10 +246,11 @@ const viewPatientData = async (req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const data = await allPatientData.findById(req.params.patient_id).lean()
+        if (!data) return res.sendStatus(404)
 
         // get an array of recordID from patient schema
         const all_rec_id = data.records
-        
+
         // initialize an empty array to store record data
         const all_rec = []
         // loop through the recordID array in patient schema
@@ -261,19 +260,38 @@ const viewPatientData = async (req, res, next) => {
             const one_rec = await patientRecords
                 .findById(data.records[i].recordID)
                 .lean()
-            
+
             all_rec.push(one_rec)
         }
 
-        
-        if (!data) {
-            return res.sendStatus(404)
-        }
         return res.render('view.hbs', { onePatient: data, record: all_rec })
     } catch (err) {
         return next(err)
     }
 }
+
+
+// reset password
+const resetPassword = async (req, res, next) => {
+    try {
+        const { new_pw } = req.body
+        // find the patient
+        allPatientData.findOne(
+            { _id: req.params.patient_id },
+            function (err, pati) {
+                if (!err) {
+                    // update new password
+                    pati.password = new_pw
+                    pati.save()
+                }
+            }
+        )
+        return res.redirect('./')
+    } catch (err) {
+        return next(err)
+    }
+}
+
 
 module.exports = {
     getAllPatientData,
@@ -282,4 +300,5 @@ module.exports = {
     updateRecord,
     entryPatientData,
     viewPatientData,
+    resetPassword
 }

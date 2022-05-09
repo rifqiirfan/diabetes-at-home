@@ -1,77 +1,72 @@
 <section class="clinician-safety-threshold">
   <h1 class="title">
     Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}</h1>
-  
+
   <table class="safety-threshold-table">
-      {{!-- Safety Threshold Table --}}
-      <tr>
-        {{!-- <th> Availbility</th> --}}
-        <th> Attribute </th>
-        <th> Status </th>
-        <th> Value </th>
-        <th> Attribute Lower Bound </th>
-        <th> Attribute Upper Bound </th>
-        <th> Suggestted Recorded Time </th>
-        <th> Actual Recorded Time </th>
-        <th> Comment </th>
-      </tr>
+    {{!-- Safety Threshold Table --}}
+    <tr>
+      {{!-- <th> Availbility</th> --}}
+      <th> Attribute </th>
+      <th> Status </th>
+      <th> Value </th>
+      <th> Attribute Lower Bound </th>
+      <th> Attribute Upper Bound </th>
+      <th> Suggestted Recorded Time </th>
+      <th> Actual Recorded Time </th>
+      <th> Comment </th>
+    </tr>
 
-      <tr>
-        
-        <td> {{records.data.bgl.fullName}} </td>
-        <td> {{records.data.bgl.status}} </td>
-        <td> {{records.data.bgl.value}} </td>
-        <td> {{personal.data.bgl.minValue}} </td>
-        <td> {{personal.data.bgl.maxValue}} </td>
-        <td> Suggestted Recorded Time </td>
-        <td> {{records.data.bgl.createdAt}} </td>
-        <td> {{records.data.bgl.comment}} </td>
-      </tr>
+    <tr>
+      <td> {{records.data.bgl.fullName}} </td>
+      <td> {{records.data.bgl.status}} </td>
+      <td> {{records.data.bgl.value}} </td>
+      <td> {{personal.data.bgl.minValue}} </td>
+      <td> {{personal.data.bgl.maxValue}} </td>
+      <td> Suggestted Recorded Time </td>
+      <td> {{records.data.bgl.createdAt}} </td>
+      <td> {{records.data.bgl.comment}} </td>
+    </tr>
 
-      <tr>
-        
-        <td> {{records.data.weight.fullName}} </td>
-        <td> {{records.data.weight.status}} </td>
-        <td> {{records.data.weight.value}} </td>
-        <td> {{personal.data.weight.minValue}} </td>
-        <td> {{personal.data.weight.maxValue}} </td>
-        <td> Suggestted Recorded Time </td>
-        <td> {{records.data.weight.createdAt}} </td>
-        <td> {{records.data.weight.comment}} </td>
-      </tr>
+    <tr>
+      <td> {{records.data.weight.fullName}} </td>
+      <td> {{records.data.weight.status}} </td>
+      <td> {{records.data.weight.value}} </td>
+      <td> {{personal.data.weight.minValue}} </td>
+      <td> {{personal.data.weight.maxValue}} </td>
+      <td> Suggestted Recorded Time </td>
+      <td> {{records.data.weight.createdAt}} </td>
+      <td> {{records.data.weight.comment}} </td>
+    </tr>
 
-      <tr>
-        
-        
-        <td> {{records.data.doit.fullName}} </td>
-        <td> {{records.data.doit.status}} </td>
-        <td> {{records.data.doit.value}} </td>
-        <td> {{personal.data.doit.minValue}} </td>
-        <td> {{personal.data.doit.maxValue}} </td>
-        <td> Suggestted Recorded Time </td>
-        <td> {{records.data.doit.createdAt}} </td>
-        <td> {{records.data.doit.comment}} </td>
-      </tr>
+    <tr>
+      <td> {{records.data.doit.fullName}} </td>
+      <td> {{records.data.doit.status}} </td>
+      <td> {{records.data.doit.value}} </td>
+      <td> {{personal.data.doit.minValue}} </td>
+      <td> {{personal.data.doit.maxValue}} </td>
+      <td> Suggestted Recorded Time </td>
+      <td> {{records.data.doit.createdAt}} </td>
+      <td> {{records.data.doit.comment}} </td>
+    </tr>
 
-      <tr>
-        
+    <tr>
+      <td> {{records.data.exercise.fullName}}</td>
+      <td> {{records.data.exercise.status}} </td>
+      <td> {{records.data.exercise.value}} </td>
+      <td> {{personal.data.exercise.minValue}}</td>
+      <td> {{personal.data.exercise.maxValue}}</td>
+      <td> Suggestted Recorded Time </td>
+      <td> {{records.data.exercise.createdAt}}</td>
+      <td> {{records.data.exercise.comment}}</td>
+    </tr>
 
-        
-        <td> {{records.data.exercise.fullName}}</td>
-        <td> {{records.data.exercise.status}} </td>
-        <td> {{records.data.exercise.value}} </td>
-        <td> {{personal.data.exercise.minValue}}</td>
-        <td> {{personal.data.exercise.maxValue}}</td>
-        <td> Suggestted Recorded Time </td>
-        <td> {{records.data.exercise.createdAt}}</td>
-        <td> {{records.data.exercise.comment}}</td>
-      </tr>
+  </table>
 
-      
 
-    </table>
+  <a href="/clinician/hist_rec/{{personal._id}}">
+    <button class="submit-button"> View Historical Data </button>
+  </a>
 
-     
   <a href="/clinician">
     <button class="back-button"> Back </button>
   </a>

@@ -10,32 +10,32 @@
             <th> Value </th>
             <th> Recorded Time </th>
             <th> Comment </th>
-      </tr>
+        </tr>
         {{#each record.data}}
         <form action="" method="POST">
             <tr>
-                
+
                 <input type="hidden" name="key" value="{{@key}}">
-                <td>{{this.fullName}}</td> 
+                <td>{{this.fullName}}</td>
                 <td>{{this.status}}</td>
                 {{#ifUnrecorded this.status}}
-                    <td><input type="text" name="value" placeholder="Enter your record here" required></td>
+                <td><input type="text" name="value" placeholder="Enter your record here" required></td>
                 {{else}}
                 <td>{{this.value}}</td>
                 {{/ifUnrecorded}}
                 <td>{{this.createdAt}}</td>
                 {{#ifUnrecorded this.status}}
-                    <td><input type="text" name="comment" placeholder="Enter your record here" required></td>
+                <td><input type="text" name="comment" placeholder="Enter your record here" required></td>
                 {{else}}
                 <td>{{this.comment}}</td>
                 {{/ifUnrecorded}}
-                <td><button type="submit" class = "submit-button" >Submit</button></td>
+                <td><button type="submit" class="submit-button">Submit</button></td>
             </tr>
-        
+
         </form>
         {{/each}}
     </table>
-        <a href="/patient">
-            <button class="back-button"> Back </button>
-        </a>
+    <a href="/patient">
+        <button class="back-button"> Back </button>
+    </a>
 </section>

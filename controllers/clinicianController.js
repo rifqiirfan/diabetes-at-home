@@ -13,7 +13,7 @@ const getAllPatientData = async (req, res, next) => {
                 patientID: allPatients[i]._id,
                 recordDate: formatDate(new Date()),
             })
-            if(!rec_now){
+            if (!rec_now) {
                 sample = {
                     name: allPatients[i].firstName + " " + allPatients[i].lastName,
                     id: allPatients[i]._id,
@@ -30,8 +30,7 @@ const getAllPatientData = async (req, res, next) => {
                     exer_min: allPatients[i].data.exercise.minValue,
                     exer_max: allPatients[i].data.exercise.maxValue,
                 }
-            }else{
-
+            } else {
                 sample = {
                     name: allPatients[i].firstName + " " + allPatients[i].lastName,
                     id: allPatients[i]._id,
@@ -168,8 +167,87 @@ const updateRecord = async (req, res) => {
     }
 }
 
+
+// new patient creation page
+const newPatientCreation = async (req, res, next) => {
+    try {
+        return res.render('newPatient.hbs');
+    } catch (err) {
+        return next(err)
+    }
+}
+
+
+// add a new patient to the database
+const postNewPatient = async (req, res, next) => {
+    try {
+        // PATIENT CREATION AND INSERTION:
+        // capture input value
+        const {
+            firstName,
+            lastName,
+            email,
+            yearOfBirth
+        } = req.body
+
+        const new_pati = new Patient({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            // generate a random password
+            password: (Math.random() + 1).toString(36).substring(4),
+            yearOfBirth: yearOfBirth,
+            textBio: "Here's my text bio.",
+            // generate a random screen name
+            screenName: (Math.random() + 1).toString(36).substring(4)
+        })
+
+        // insert the new patient to db
+        await new_pati.save()
+
+        return res.redirect('./')
+    } catch (err) {
+        return next(err)
+    }
+}
+
+
+
+// view history data page
+const viewHistRec = async (req, res, next) => {
+    try {
+        // get data for a specific patient from patient schema (fname, lname...)
+        const curr_pati = await Patient.findById(req.params.id).lean()
+        if (!curr_pati) return res.sendStatus(404)
+
+        // get an array of recordID from patient schema
+        const all_rec_id = curr_pati.records
+
+        // initialize an empty array to store record data
+        const all_rec = []
+        // loop through the recordID array in patient schema
+        // use the recordID to retrieve record data from record schema
+        // store the record data in all_rec[]
+        for (var i = 0; i < all_rec_id.length; i++) {
+            const one_rec = await Record
+                .findById(curr_pati.records[i].recordID)
+                .lean()
+
+            all_rec.push(one_rec)
+        }
+
+        return res.render('cliViewHistory.hbs', { onePatient: curr_pati, record: all_rec })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+
 module.exports = {
     getAllPatientData,
     renderRecordData,
     updateRecord,
+    newPatientCreation,
+    postNewPatient,
+    viewHistRec
 }
