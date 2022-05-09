@@ -10,24 +10,52 @@ const patientSchema = new mongoose.Schema({
     textBio: { type: String, required: true },
     data: {
         bgl: {
-            availability: { type: Boolean, default: true },
+            availability: { type: Boolean, default: false },
+            status: {
+                type: String,
+                enum: ['recorded', 'unrecorded', 'no need'],
+                default: 'unrecorded',
+            },
             minValue: { type: Number, default: 4 },
             maxValue: { type: Number, default: 7 },
+            minTime: { type: Number, default: 0 },
+            maxTime: { type: Number, default: 24 },
         },
         weight: {
-            availability: { type: Boolean, default: true },
+            availability: { type: Boolean, default: false },
+            status: {
+                type: String,
+                enum: ['recorded', 'unrecorded', 'no need'],
+                default: 'unrecorded',
+            },
             minValue: { type: Number, default: 55 },
             maxValue: { type: Number, default: 85 },
+            minTime: { type: Number, default: 0 },
+            maxTime: { type: Number, default: 24 },
         },
         doit: {
-            availability: { type: Boolean, default: true },
+            availability: { type: Boolean, default: false },
+            status: {
+                type: String,
+                enum: ['recorded', 'unrecorded', 'no need'],
+                default: 'unrecorded',
+            },
             minValue: { type: Number, default: 1 },
             maxValue: { type: Number, default: 3 },
+            minTime: { type: Number, default: 0 },
+            maxTime: { type: Number, default: 24 },
         },
         exercise: {
-            availability: { type: Boolean, default: true },
+            availability: { type: Boolean, default: false },
+            status: {
+                type: String,
+                enum: ['recorded', 'unrecorded', 'no need'],
+                default: 'unrecorded',
+            },
             minValue: { type: Number, default: 3000 },
             maxValue: { type: Number, default: 7200 },
+            minTime: { type: Number, default: 0 },
+            maxTime: { type: Number, default: 24 },
         },
     },
     records: [

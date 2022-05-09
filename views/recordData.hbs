@@ -5,60 +5,182 @@
   <table class="safety-threshold-table">
     {{!-- Safety Threshold Table --}}
     <tr>
-      {{!-- <th> Availbility</th> --}}
+      <th> Availbility</th>
       <th> Attribute </th>
       <th> Status </th>
       <th> Value </th>
       <th> Attribute Lower Bound </th>
       <th> Attribute Upper Bound </th>
-      <th> Suggestted Recorded Time </th>
+      <th> Suggestted Recorded min Time </th>
+      <th> Suggestted Recorded max Time </th>
       <th> Actual Recorded Time </th>
       <th> Comment </th>
     </tr>
 
+    {{!-- bgl --}}
+    <form action="" method="POST">
     <tr>
+      <input type="hidden" name="key" value="bgl">
+      {{#ifUnrecorded personal.data.bgl.status}}
+      <td><input type="checkbox" name="availability" value="true"></td>
+      {{else}}
+      <td>{{personal.data.bgl.availability}}</td>
+      {{/ifUnrecorded}}
       <td> {{records.data.bgl.fullName}} </td>
       <td> {{records.data.bgl.status}} </td>
       <td> {{records.data.bgl.value}} </td>
-      <td> {{personal.data.bgl.minValue}} </td>
-      <td> {{personal.data.bgl.maxValue}} </td>
-      <td> Suggestted Recorded Time </td>
+      {{#ifUnrecorded personal.data.bgl.status}}
+      <td><input type="text" name="minvalue" placeholder="Enter min value here" required></td>
+      {{else}}
+      <td>{{personal.data.bgl.minValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.bgl.status}}
+      <td><input type="text" name="maxvalue" placeholder="Enter max value here" required></td>
+      {{else}}
+      <td>{{personal.data.bgl.maxValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.bgl.status}}
+      <td><input type="text" name="mintime" placeholder="Enter min time here" required></td>
+      {{else}}
+      <td>{{personal.data.bgl.minTime}}</td>
+      {{/ifUnrecorded}}
+
+      {{#ifUnrecorded personal.data.bgl.status}}
+      <td><input type="text" name="maxtime" placeholder="Enter max time here" required></td>
+      {{else}}
+      <td>{{personal.data.bgl.maxTime}}</td>
+      {{/ifUnrecorded}}
+      
       <td> {{records.data.bgl.createdAt}} </td>
       <td> {{records.data.bgl.comment}} </td>
+      {{#ifUnrecorded personal.data.bgl.status}}
+      <td><button type="submit" class="submit-button">Submit</button></td>
+      {{/ifUnrecorded}}
     </tr>
+    </form>
 
+    <form action="" method="POST">
     <tr>
+      <input type="hidden" name="key" value="weight">
+      {{#ifUnrecorded personal.data.weight.status}}
+      <td><input type="checkbox" name="availability" value="true"></td>
+      {{else}}
+      <td>{{personal.data.weight.availability}}</td>
+      {{/ifUnrecorded}}
       <td> {{records.data.weight.fullName}} </td>
       <td> {{records.data.weight.status}} </td>
       <td> {{records.data.weight.value}} </td>
-      <td> {{personal.data.weight.minValue}} </td>
-      <td> {{personal.data.weight.maxValue}} </td>
-      <td> Suggestted Recorded Time </td>
+      {{#ifUnrecorded personal.data.weight.status}}
+      <td><input type="text" name="minvalue" placeholder="Enter min value here" required></td>
+      {{else}}
+      <td>{{personal.data.weight.minValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.weight.status}}
+      <td><input type="text" name="maxvalue" placeholder="Enter max value here" required></td>
+      {{else}}
+      <td>{{personal.data.weight.maxValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.weight.status}}
+      <td><input type="text" name="mintime" placeholder="Enter min time here" required></td>
+      {{else}}
+      <td>{{personal.data.weight.minTime}}</td>
+      {{/ifUnrecorded}}
+
+      {{#ifUnrecorded personal.data.weight.status}}
+      <td><input type="text" name="maxtime" placeholder="Enter max time here" required></td>
+      {{else}}
+      <td>{{personal.data.weight.maxTime}}</td>
+      {{/ifUnrecorded}}
+      
       <td> {{records.data.weight.createdAt}} </td>
       <td> {{records.data.weight.comment}} </td>
+      {{#ifUnrecorded personal.data.weight.status}}
+      <td><button type="submit" class="submit-button">Submit</button></td>
+      {{/ifUnrecorded}}
     </tr>
+    </form>
 
+     <form action="" method="POST">
     <tr>
+      <input type="hidden" name="key" value="doit">
+      {{#ifUnrecorded personal.data.doit.status}}
+      <td><input type="checkbox" name="availability" value="true"></td>
+      {{else}}
+      <td>{{personal.data.doit.availability}}</td>
+      {{/ifUnrecorded}}
       <td> {{records.data.doit.fullName}} </td>
       <td> {{records.data.doit.status}} </td>
       <td> {{records.data.doit.value}} </td>
-      <td> {{personal.data.doit.minValue}} </td>
-      <td> {{personal.data.doit.maxValue}} </td>
-      <td> Suggestted Recorded Time </td>
+      {{#ifUnrecorded personal.data.doit.status}}
+      <td><input type="text" name="minvalue" placeholder="Enter min value here" required></td>
+      {{else}}
+      <td>{{personal.data.doit.minValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.doit.status}}
+      <td><input type="text" name="maxvalue" placeholder="Enter max value here" required></td>
+      {{else}}
+      <td>{{personal.data.doit.maxValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.doit.status}}
+      <td><input type="text" name="mintime" placeholder="Enter min time here" required></td>
+      {{else}}
+      <td>{{personal.data.doit.minTime}}</td>
+      {{/ifUnrecorded}}
+
+      {{#ifUnrecorded personal.data.doit.status}}
+      <td><input type="text" name="maxtime" placeholder="Enter max time here" required></td>
+      {{else}}
+      <td>{{personal.data.doit.maxTime}}</td>
+      {{/ifUnrecorded}}
+      
       <td> {{records.data.doit.createdAt}} </td>
       <td> {{records.data.doit.comment}} </td>
+      {{#ifUnrecorded personal.data.doit.status}}
+      <td><button type="submit" class="submit-button">Submit</button></td>
+      {{/ifUnrecorded}}
     </tr>
+    </form>
 
+     <form action="" method="POST">
     <tr>
-      <td> {{records.data.exercise.fullName}}</td>
+      <input type="hidden" name="key" value="exercise">
+      {{#ifUnrecorded personal.data.exercise.status}}
+      <td><input type="checkbox" name="availability" value="true"></td>
+      {{else}}
+      <td>{{personal.data.exercise.availability}}</td>
+      {{/ifUnrecorded}}
+      <td> {{records.data.exercise.fullName}} </td>
       <td> {{records.data.exercise.status}} </td>
       <td> {{records.data.exercise.value}} </td>
-      <td> {{personal.data.exercise.minValue}}</td>
-      <td> {{personal.data.exercise.maxValue}}</td>
-      <td> Suggestted Recorded Time </td>
-      <td> {{records.data.exercise.createdAt}}</td>
-      <td> {{records.data.exercise.comment}}</td>
+      {{#ifUnrecorded personal.data.exercise.status}}
+      <td><input type="text" name="minvalue" placeholder="Enter min value here" required></td>
+      {{else}}
+      <td>{{personal.data.exercise.minValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.exercise.status}}
+      <td><input type="text" name="maxvalue" placeholder="Enter max value here" required></td>
+      {{else}}
+      <td>{{personal.data.exercise.maxValue}}</td>
+      {{/ifUnrecorded}}
+      {{#ifUnrecorded personal.data.exercise.status}}
+      <td><input type="text" name="mintime" placeholder="Enter min time here" required></td>
+      {{else}}
+      <td>{{personal.data.exercise.minTime}}</td>
+      {{/ifUnrecorded}}
+
+      {{#ifUnrecorded personal.data.exercise.status}}
+      <td><input type="text" name="maxtime" placeholder="Enter max time here" required></td>
+      {{else}}
+      <td>{{personal.data.exercise.maxTime}}</td>
+      {{/ifUnrecorded}}
+      
+      <td> {{records.data.exercise.createdAt}} </td>
+      <td> {{records.data.exercise.comment}} </td>
+      {{#ifUnrecorded personal.data.exercise.status}}
+      <td><button type="submit" class="submit-button">Submit</button></td>
+      {{/ifUnrecorded}}
     </tr>
+    </form>
 
   </table>
 

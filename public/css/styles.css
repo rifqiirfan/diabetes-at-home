@@ -241,9 +241,9 @@ td {
     padding: var(--table-padding);
 }
 
-.patient-homepage-table td:nth-child(1) {
-    text-align: left;
-}
+/* .patient-homepage-table td:nth-child(1) {
+    text-align:center;
+} */
 
 .patient-homepage-table tr:nth-child(odd) {
     background-color: #e3e3e3;

@@ -29,6 +29,7 @@ const getAllPatientData = async (req, res, next) => {
                     doit_max: allPatients[i].data.doit.maxValue,
                     exer_min: allPatients[i].data.exercise.minValue,
                     exer_max: allPatients[i].data.exercise.maxValue,
+                    
                 }
             } else {
                 sample = {
@@ -46,6 +47,7 @@ const getAllPatientData = async (req, res, next) => {
                     doit_max: allPatients[i].data.doit.maxValue,
                     exer_min: allPatients[i].data.exercise.minValue,
                     exer_max: allPatients[i].data.exercise.maxValue,
+                    
                 }
             }
             a.push(sample)
@@ -148,18 +150,18 @@ const updateRecord = async (req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.id)
-        const recordId = await findRecord(patientId)
-        const record = await Record.findById(recordId)
+        // const recordId = await findRecord(patientId)
+        const record = await Patient.findById(patientId)
         // const record = await Record.findOne({ _id :recordId });
 
         const data = record.data[req.body.key]
-        data.value = req.body.value
-        data.maxValue = req.body.max
-        data.minValue = req.body.min
+        data.availability = req.body.availability
+        data.maxValue = req.body.maxvalue
+        data.minValue = req.body.minvalue
+        data.minTime = req.body.mintime
+        data.maxTime = req.body.maxtime
         data.status = 'recorded'
-        data.createdAt = new Date().toLocaleString('en-Au', {
-            timeZone: 'Australia/Melbourne',
-        })
+        
         record.save()
         res.redirect('back')
     } catch (err) {
@@ -211,6 +213,19 @@ const postNewPatient = async (req, res, next) => {
     }
 }
 
+const viewCurComment = async (req, res, next) => {
+    try{
+        const data = await Record.findOne({
+            patientID: req.params.id,
+            recordDate: formatDate(new Date()),
+        }).lean();
+        const rec = data;
+        return res.render('viewComment.hbs', { record : rec, id : req.params.id})
+    }catch (err) {
+        return next(err)
+    }
+}
+
 
 
 // view history data page
@@ -249,5 +264,6 @@ module.exports = {
     updateRecord,
     newPatientCreation,
     postNewPatient,
-    viewHistRec
+    viewHistRec,
+    viewCurComment
 }

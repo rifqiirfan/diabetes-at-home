@@ -18,29 +18,50 @@
             <td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
             <td style="background-color:   
             {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+
+            {{else}}
+            {{#ifMissing this.bgl}}
+            grey  
             {{else}}
             orange
+            {{/ifMissing}}
             {{/thresholdJudge}};">
-                {{this.bgl}} </td>
+            {{this.bgl}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.weight this.weight_max this.weight_min}}
+
+            {{else}}
+            {{#ifMissing this.weight}}
+            grey  
             {{else}}
             orange
+            {{/ifMissing}}
             {{/thresholdJudge}};">
-                {{this.weight}} </td>
+            {{this.weight}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.doit this.doit_max this.doit_min}}
+
+            {{else}}
+            {{#ifMissing this.doit}}
+            grey  
             {{else}}
             orange
+            {{/ifMissing}}
             {{/thresholdJudge}};">
-                {{this.doit}} </td>
+            {{this.doit}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.exercise this.exercise_max this.exercise_min}}
+
+            {{else}}
+            {{#ifMissing this.exercise}}
+            grey  
             {{else}}
             orange
+            {{/ifMissing}}
             {{/thresholdJudge}};">
-                {{this.exercise}} </td>
+            {{this.exercise}} </td>
             <td>{{../date}} </td>
+            <td><a href="/clinician/viewComment/{{this.id}}"><button class="Comment-button">comment</button></a> </td>
         </tr>
         {{/each}}
     </table>

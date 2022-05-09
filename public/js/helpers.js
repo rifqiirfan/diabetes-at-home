@@ -20,6 +20,13 @@ const helpers = {
             return options.inverse(this)
         }
     },
+    ifMissing: function (status, options){
+        if ( status == 0){
+            return options.fn(this)
+        } else{
+            return options.inverse(this)
+        }
+    }
 }
 
 module.exports.helpers = helpers

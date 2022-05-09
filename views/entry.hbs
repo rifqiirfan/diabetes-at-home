@@ -29,7 +29,9 @@
                 {{else}}
                 <td>{{this.comment}}</td>
                 {{/ifUnrecorded}}
+                {{#ifUnrecorded this.status}}
                 <td><button type="submit" class="submit-button">Submit</button></td>
+                {{/ifUnrecorded}}
             </tr>
 
         </form>
