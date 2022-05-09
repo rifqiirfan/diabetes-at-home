@@ -1,0 +1,36 @@
+<section class="patient-comment">
+{{#each record}}
+<h1 class = "title"> Comments</h1>
+ <h1 class="title">
+        Patient {{onePatient.firstName}} {{onePatient.lastName}}'s Data in {{this.recordDate}}</h1>
+<tr>
+    <th>Attribute Name</th>
+    <th>Comment Text</th>
+</tr>
+
+<tr>
+<td>{{this.data.bgl.fullName}}</td>
+<td>{{this.data.bgl.comment}}</td>
+</tr>
+
+<tr>
+<td>{{this.data.weight.fullName}}</td>
+<td>{{this.data.weight.comment}}</td>
+</tr>
+
+<tr>
+<td>{{this.data.doit.fullName}}</td>
+<td>{{this.data.doit.comment}}</td>
+</tr>
+
+<tr>
+<td>{{this.data.exercise.fullName}}</td>
+<td>{{this.data.exercise.comment}}</td>
+</tr>
+{{/each}}
+
+<a href="/clinician">
+        <button class="back-button"> Back </button>
+    </a>
+
+</section>
