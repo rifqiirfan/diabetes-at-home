@@ -2,7 +2,7 @@
 const Patient = require('../models/patient.js')
 const Record = require('../models/record.js')
 
-const getAllPatientData = async (req, res, next) => {
+const getAllPatientData = async(req, res, next) => {
     try {
         const allPatients = await Patient.find().lean()
 
@@ -29,7 +29,7 @@ const getAllPatientData = async (req, res, next) => {
                     doit_max: allPatients[i].data.doit.maxValue,
                     exer_min: allPatients[i].data.exercise.minValue,
                     exer_max: allPatients[i].data.exercise.maxValue,
-                    
+
                 }
             } else {
                 sample = {
@@ -47,7 +47,7 @@ const getAllPatientData = async (req, res, next) => {
                     doit_max: allPatients[i].data.doit.maxValue,
                     exer_min: allPatients[i].data.exercise.minValue,
                     exer_max: allPatients[i].data.exercise.maxValue,
-                    
+
                 }
             }
             a.push(sample)
@@ -126,7 +126,7 @@ function formatDate(date) {
     return [day, month, year].join('/')
 }
 
-const renderRecordData = async (req, res) => {
+const renderRecordData = async(req, res) => {
     try {
         const patientId = await findPatient(req.params.id)
         const patientData = await Patient.findById(patientId).lean()
@@ -137,7 +137,7 @@ const renderRecordData = async (req, res) => {
                 options: { lean: true },
             })
             .lean()
-        // console.log(record);
+            // console.log(record);
 
         res.render('recordData.hbs', { records: record, personal: patientData })
     } catch (e) {
@@ -146,13 +146,13 @@ const renderRecordData = async (req, res) => {
     }
 }
 
-const updateRecord = async (req, res) => {
+const updateRecord = async(req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.id)
-        // const recordId = await findRecord(patientId)
+            // const recordId = await findRecord(patientId)
         const record = await Patient.findById(patientId)
-        // const record = await Record.findOne({ _id :recordId });
+            // const record = await Record.findOne({ _id :recordId });
 
         const data = record.data[req.body.key]
         data.availability = req.body.availability
@@ -161,7 +161,7 @@ const updateRecord = async (req, res) => {
         data.minTime = req.body.mintime
         data.maxTime = req.body.maxtime
         data.status = 'recorded'
-        
+
         record.save()
         res.redirect('back')
     } catch (err) {
@@ -171,7 +171,7 @@ const updateRecord = async (req, res) => {
 
 
 // new patient creation page
-const newPatientCreation = async (req, res, next) => {
+const newPatientCreation = async(req, res, next) => {
     try {
         return res.render('newPatient.hbs');
     } catch (err) {
@@ -181,7 +181,7 @@ const newPatientCreation = async (req, res, next) => {
 
 
 // add a new patient to the database
-const postNewPatient = async (req, res, next) => {
+const postNewPatient = async(req, res, next) => {
     try {
         // PATIENT CREATION AND INSERTION:
         // capture input value
@@ -213,12 +213,12 @@ const postNewPatient = async (req, res, next) => {
     }
 }
 
-const viewCurComment = async (req, res, next) => {
-    try{     
-        const data = await Record.find().lean()        
+const viewCurComment = async(req, res, next) => {
+    try {
+        const data = await Record.find().lean()
 
-        return res.render('viewComment.hbs',{record : data})
-    }catch (err) {
+        return res.render('viewComment.hbs', { record: data })
+    } catch (err) {
         return next(err)
     }
 }
@@ -226,7 +226,7 @@ const viewCurComment = async (req, res, next) => {
 
 
 // view history data page
-const viewHistRec = async (req, res, next) => {
+const viewHistRec = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const curr_pati = await Patient.findById(req.params.id).lean()
@@ -237,9 +237,9 @@ const viewHistRec = async (req, res, next) => {
 
         // initialize an empty array to store record data
         const all_rec = []
-        // loop through the recordID array in patient schema
-        // use the recordID to retrieve record data from record schema
-        // store the record data in all_rec[]
+            // loop through the recordID array in patient schema
+            // use the recordID to retrieve record data from record schema
+            // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
             const one_rec = await Record
                 .findById(curr_pati.records[i].recordID)
@@ -248,11 +248,11 @@ const viewHistRec = async (req, res, next) => {
             all_rec.push(one_rec)
         }
         const data = await Record.find().lean()
-        
+
         const rec = []
-        for(var i = 0; i < data.length; i++){
+        for (var i = 0; i < data.length; i++) {
             const one_rec = data[i]
-            // console.log(one_rec)
+                // console.log(one_rec)
             rec.push(one_rec)
         }
         console.log(rec[0])
@@ -262,6 +262,8 @@ const viewHistRec = async (req, res, next) => {
     }
 }
 
+const supportmessage = async(req, res, next) => {}
+
 
 module.exports = {
     getAllPatientData,
@@ -270,5 +272,6 @@ module.exports = {
     newPatientCreation,
     postNewPatient,
     viewHistRec,
-    viewCurComment
+    viewCurComment,
+    supportmessage
 }
