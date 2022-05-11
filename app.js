@@ -25,11 +25,19 @@ app.engine(
 // root
 app.get('/', (req, res) => {
     res.render('index.hbs')
-})
+});
+//simple page
+app.get('/what-is-diabete', (req, res) => {
+    res.render('what-is-diabetes.hbs');
+});
+app.get('/aboutus', (req, res) => {
+    res.render('about-us.hbs')
+});
 
 // link to our router
 const ClinicianRouter = require('./routes/clinicianRouter.js')
 const patientRouter = require('./routes/patientRouter')
+
 
 // the demo routes are added to the end of the '/patient' path
 app.use('/clinician', ClinicianRouter)
