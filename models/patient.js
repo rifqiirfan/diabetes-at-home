@@ -7,7 +7,8 @@ const patientSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     yearOfBirth: { type: String, required: true },
-    message: { type: String, required: true },
+    textBio: { type: String, required: true },
+    supportMessage: { type: String, required: true },
     data: {
         bgl: {
             availability: { type: Boolean, default: false },
