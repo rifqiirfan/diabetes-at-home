@@ -199,7 +199,8 @@ const postNewPatient = async(req, res, next) => {
             // generate a random password
             password: (Math.random() + 1).toString(36).substring(4),
             yearOfBirth: yearOfBirth,
-            message: "Here's my text bio.",
+            textBio: "Here's my text bio.",
+            supportMessage: "Here's the support message.",
             // generate a random screen name
             screenName: (Math.random() + 1).toString(36).substring(4)
         })
