@@ -262,7 +262,10 @@ const viewHistRec = async(req, res, next) => {
     }
 }
 
-const supportmessage = async(req, res, next) => {}
+//
+const supportMessage = async(req, res, next) => {
+    const { message } = req.body
+}
 
 
 module.exports = {
@@ -273,5 +276,5 @@ module.exports = {
     postNewPatient,
     viewHistRec,
     viewCurComment,
-    supportmessage
+    supportMessage
 }

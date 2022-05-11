@@ -1,7 +1,11 @@
 <section class="clinician-safety-threshold">
   <h1 class="title">
-    Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}</h1>
-
+    Patient {{records.patientId}}'s Safety Threshold in {{records.recordDate}}
+  </h1>
+  <form action="" method="POST">
+  <h3> Supporting message</h3>
+    <input type="text" name="username" />
+  </form>
   <table class="safety-threshold-table">
     {{!-- Safety Threshold Table --}}
     <tr>
@@ -58,7 +62,7 @@
       {{/ifUnrecorded}}
     </tr>
     </form>
-
+    {{!-- weight --}}
     <form action="" method="POST">
     <tr>
       <input type="hidden" name="key" value="weight">
@@ -99,8 +103,8 @@
       {{/ifUnrecorded}}
     </tr>
     </form>
-
-     <form action="" method="POST">
+    {{!-- doit --}}
+    <form action="" method="POST">
     <tr>
       <input type="hidden" name="key" value="doit">
       {{#ifUnrecorded personal.data.doit.status}}
@@ -140,7 +144,7 @@
       {{/ifUnrecorded}}
     </tr>
     </form>
-
+    {{!-- exercise --}}
      <form action="" method="POST">
     <tr>
       <input type="hidden" name="key" value="exercise">

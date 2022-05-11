@@ -3,6 +3,7 @@
   <table class="patient-homepage-table">
     <tr>
       <th>Patient Name</th>
+      <th>Support message</th>
       <th>Information</th>
       <th>Entry</th>
       <th>View</th>
@@ -11,6 +12,9 @@
     <tr>
       <td data-header="Patient Name">
         <p>{{this.firstName}} {{this.lastName}}</p>
+      </td>
+      <td data-header="Suppoting message">
+        <p>{{this.message}}</p>
       </td>
       <td data-header="Information">
         <a href="/patient/{{this._id}}">
