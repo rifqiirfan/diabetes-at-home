@@ -153,7 +153,6 @@ const updateRecord = async(req, res) => {
             // const recordId = await findRecord(patientId)
         const record = await Patient.findById(patientId)
             // const record = await Record.findOne({ _id :recordId });
-
         const data = record.data[req.body.key]
         data.availability = req.body.availability
         data.maxValue = req.body.maxvalue
@@ -263,16 +262,22 @@ const viewHistRec = async(req, res, next) => {
     }
 }
 
-//
-const supportMessage = async(req, res, next) => {
+
+const supportMessage = async(req, res) => {
+    console.log('-- req form to update support message -- ', req.body)
     try {
-        const message = req.body()
-        patient.message.update({ message: message })
+        // find the patient
+        const patientId = await findPatient(req.params.id)
+            // const recordId = await findRecord(patientId)
+        const patient = await Patient.findById(patientId)
+        patient.supportMessage = req.body.message
         patient.save()
-        res.redirect('back');
+        res.redirect('./')
+
     } catch (err) {
-        return next(err)
+        return (err)
     }
+    console.log('-- req form to update successfully')
 }
 
 

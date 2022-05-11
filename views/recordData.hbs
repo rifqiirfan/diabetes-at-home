@@ -184,25 +184,11 @@
 
   </table>
   <!-- supporting message -->
-  <form action="/:id/message" method="POST">
+  <form action="/clinician/{{personal._id}}/message" method="POST">
   <h3> Supporting message</h3>
     <input class="message-box" type="text" name="message" />
     <button type="submit" class="submit-button">OK</button>
   </form>
-
-  <button onclick = "myfunction()" class="message-button"> Supporting message </button>
-  <p id ="demo"></p>
-  <script>
-    function myfunction(){
-      var x;
-      var message = prompt("Type the supporting message");
-      if (message != null){
-        x = message;
-        document.getElementById("demo").innerHTML=x;
-      }
-    }
-  </script>
-
 
   <a href="/clinician/hist_rec/{{personal._id}}">
     <button class="submit-button"> View Historical Data </button>
