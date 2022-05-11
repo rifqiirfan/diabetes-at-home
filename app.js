@@ -27,10 +27,10 @@ app.get('/', (req, res) => {
     res.render('index.hbs')
 });
 //simple page
-app.get('/what-is-diabete', (req, res) => {
+app.get('/what-is-diabetes', (req, res) => {
     res.render('what-is-diabetes.hbs');
 });
-app.get('/aboutus', (req, res) => {
+app.get('/about-us', (req, res) => {
     res.render('about-us.hbs')
 });
 
