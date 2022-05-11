@@ -1,7 +1,6 @@
 /* Import Google Font (IBM Plex Sans) */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
 * {
     padding: 0;
     margin: 0;
@@ -241,6 +240,7 @@ td {
     padding: var(--table-padding);
 }
 
+
 /* .patient-homepage-table td:nth-child(1) {
     text-align:center;
 } */
@@ -363,7 +363,6 @@ td {
 .patient-entry {
     padding: 2rem;
     background-color: var(--orange);
-
 }
 
 .form-entry {
@@ -376,6 +375,7 @@ td {
     display: inline-block;
     width: 300px;
 }
+
 
 /* Patient History */
 
@@ -482,7 +482,31 @@ td {
     font-size: 1em;
 }
 
+.message-box {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 20pt;
+}
+
+.message-button {
+    background-color: var(--green);
+    color: var(--white);
+    padding: 10px;
+    width: 120px;
+    border: 3px solid var(--green);
+    font-size: 1.125em;
+    font-weight: 700;
+    border-radius: 2em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+
 /* Responsive Navigation Menu */
+
 @media only screen and (max-width: 968px) {
     .nav-menu {
         position: absolute;
@@ -495,29 +519,23 @@ td {
         text-align: center;
         transition: 0.3s;
     }
-
     .nav-menu.active {
         left: 0;
     }
-
     .nav-item {
         margin: 2rem 0;
     }
-
     .hamburger {
         display: block;
         cursor: pointer;
     }
-
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
-
     .hamburger.active .bar:nth-child(1) {
         -webkit-transform: translateY(8px) rotate(45deg);
         transform: translateY(8px) rotate(45deg);
     }
-
     .hamburger.active .bar:nth-child(3) {
         -webkit-transform: translateY(-8px) rotate(-45deg);
         transform: translateY(-8px) rotate(-45deg);
@@ -525,70 +543,57 @@ td {
 }
 
 @media screen and (max-width: 600px) {
-
     /* Index Homepage */
     .home-image img {
         height: 30vh;
         width: 100vw;
         object-fit: cover;
     }
-
     .home-navigation {
         width: 100%;
     }
-
     /* Patient Homepage */
     .patient-homepage-table {
         width: 100%;
     }
-
     .patient-homepage-table th {
         display: none;
     }
-
     .patient-homepage-table th[scope="row"] {
         vertical-align: middle;
     }
-
     .patient-homepage-table td {
         display: block;
         width: auto;
         text-align: right;
         border-right: 1px solid #e1edff;
     }
-
     .patient-homepage-table td::before {
         float: left;
         font-size: var(--input-text);
         font-weight: bold;
         content: attr(data-header);
     }
-
     .patient-homepage-table thead th::before {
         text-transform: uppercase;
         font-weight: bold;
         content: attr(data-header);
     }
-
     .patient-homepage-table thead th:first-child span {
         display: none;
     }
-
     .patient-homepage-table td:first-child p {
         margin-left: 50%;
     }
-
     .table-information-button,
     .table-entry-button,
     .table-view-button {
         width: 50%;
     }
-
     /* Patient Entry */
     .form-input {
         width: 100%;
     }
-
     .patient-entry-form {
         margin: 10%;
     }

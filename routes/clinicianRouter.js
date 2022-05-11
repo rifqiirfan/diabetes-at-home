@@ -12,5 +12,6 @@ clinicRouter.get('/:id', controller.renderRecordData)
 
 clinicRouter.post('/new_patient', controller.postNewPatient)
 clinicRouter.post('/:id', controller.updateRecord)
+    //clinicRouter.post('/:id', controller.supportMessage)
 
 module.exports = clinicRouter

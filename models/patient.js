@@ -7,7 +7,7 @@ const patientSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     yearOfBirth: { type: String, required: true },
-    textBio: { type: String, required: true },
+    message: { type: String, required: true },
     data: {
         bgl: {
             availability: { type: Boolean, default: false },
@@ -58,15 +58,13 @@ const patientSchema = new mongoose.Schema({
             maxTime: { type: Number, default: 24 },
         },
     },
-    records: [
-        {
-            recordID: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Record',
-                required: true,
-            },
+    records: [{
+        recordID: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Record',
+            required: true,
         },
-    ],
+    }, ],
 })
 
 // create collection patients in mongodb

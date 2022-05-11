@@ -199,7 +199,7 @@ const postNewPatient = async(req, res, next) => {
             // generate a random password
             password: (Math.random() + 1).toString(36).substring(4),
             yearOfBirth: yearOfBirth,
-            textBio: "Here's my text bio.",
+            message: "Here's my text bio.",
             // generate a random screen name
             screenName: (Math.random() + 1).toString(36).substring(4)
         })
@@ -264,7 +264,14 @@ const viewHistRec = async(req, res, next) => {
 
 //
 const supportMessage = async(req, res, next) => {
-    const { message } = req.body
+    try {
+        const message = req.body()
+        patient.message.update({ message: message })
+        patient.save()
+        res.redirect('back');
+    } catch (err) {
+        return next(err)
+    }
 }
 
 
