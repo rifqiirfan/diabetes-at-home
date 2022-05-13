@@ -26,12 +26,16 @@ app.engine(
 app.get('/', (req, res) => {
     res.render('index.hbs')
 });
-//simple page
+// simple page
 app.get('/what-is-diabetes', (req, res) => {
     res.render('what-is-diabetes.hbs');
 });
 app.get('/about-us', (req, res) => {
     res.render('about-us.hbs')
+});
+// login
+app.get('/login', (req, res) => {
+    res.render('login.hbs')
 });
 
 // link to our router
