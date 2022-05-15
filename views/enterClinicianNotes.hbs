@@ -1,0 +1,38 @@
+<table class = "Patient-general-form">
+<tr>
+    <th> Patient Name</th>
+    <th> Gender </th>
+    <th> Age </th>
+</tr>
+
+{{#each record}}
+<tr>
+    <td>{{this.firstName}}{{this.lastName}}</td>
+    <td>{{this.gender}}</td>
+    <td>{{this.age}}</td>
+</tr>
+</table>
+{{/each}}
+<p>Subjective Data</p>
+<textarea id="subjectiveData" name="subjectiveData" rows="5", cols="50"> Placeholder for subjective data</textarea>
+<br>
+<p>Objective Data</p>
+<textarea id="objectiveData" name="objectiveData" rows="5", cols="50"> Placeholder for objective data</textarea>
+<br>
+<p>Assessment Data</p>
+<textarea id="assessmentData" name="assessmentData" rows="5", cols="50"> Placeholder for assessment data</textarea>
+<br>
+<p>Plan</p>
+<textarea id="Plan" name="Plan" rows="5", cols="50"> Placeholder for Plan data</textarea>
+<br>
+<p>Additional Notes</p>
+<textarea id="additionalNotes" name="additionalNotes" rows="5", cols="50"> Placeholder for additionalNotes</textarea>
+<br>
+
+<label for="signature">Clinician signature</label>
+<input type="text" id= "signature" name="signature">
+
+<label for="Date">Notes Date</label>
+<input type="text" id="Date" name="Date">
+
+<input type = "submit" value = "Submit">

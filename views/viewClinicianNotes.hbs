@@ -1,0 +1,26 @@
+<table class = "Patient-general-form">
+<tr>
+    <th> Patient Name</th>
+    <th> Gender </th>
+    <th> Age </th>
+    <th> Signature </th>
+    <th> Date </th>
+</tr>
+
+{{#each record}}
+<tr>
+    <td>{{this.firstName}}{{this.lastName}}</td>
+    {{!-- patient's full name --}}
+    <td>{{this.gender}}</td>
+    <td>{{this.age}}</td>
+    <td>{{this.firstName}}{{this.lastName}}</td>
+    {{!-- clinician's full name --}}
+</tr>
+</table>
+{{/each}}
+<p>Subjective Data</p>
+
+<p>Objective Data</p>
+<p>Assessment Data</p>
+<p>Plan</p>
+<p>Additional Notes</p>
