@@ -50,13 +50,13 @@
 
   </table>
   <!-- supporting message -->
-  <form action="/clinician/{{records.patientID}}/message" method="POST">
+  <form action="/clinician/{{patient._id}}/message" method="POST">
   <h3> Supporting message</h3>
     <input class="message-box" type="text" name="message" />
     <button type="submit" class="submit-button">OK</button>
   </form>
 
-  <a href="/clinician/hist_rec/{{record.patientID}}">
+  <a href="/clinician/hist_rec/{{patient._id}}">
     <button class="submit-button"> View Historical Data </button>
   </a>
 

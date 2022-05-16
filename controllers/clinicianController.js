@@ -2,7 +2,7 @@
 const Patient = require('../models/patient.js')
 const Record = require('../models/record.js')
 
-const getAllPatientData = async (req, res, next) => {
+const getAllPatientData = async(req, res, next) => {
     try {
         const allPatients = await Patient.find().lean()
 
@@ -130,7 +130,7 @@ function formatDate(date) {
     return [day, month, year].join('/')
 }
 
-const renderRecordData = async (req, res) => {
+const renderRecordData = async(req, res) => {
     try {
         const patientId = await findPatient(req.params.id)
         const patient = await Patient.findById(patientId).lean()
@@ -141,16 +141,16 @@ const renderRecordData = async (req, res) => {
                 options: { lean: true },
             })
             .lean()
-        // console.log(record);
+            // console.log(record);
 
-        res.render('recordData.hbs', { records: record , patient: patient})
+        res.render('recordData.hbs', { records: record, patient: patient })
     } catch (e) {
         res.status(400)
         res.send('error happens when render record data')
     }
 }
 
-const updateRecord = async (req, res) => {
+const updateRecord = async(req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.id)
@@ -173,7 +173,7 @@ const updateRecord = async (req, res) => {
 
 
 // new patient creation page
-const newPatientCreation = async (req, res, next) => {
+const newPatientCreation = async(req, res, next) => {
     try {
         return res.render('newPatient.hbs');
     } catch (err) {
@@ -183,7 +183,7 @@ const newPatientCreation = async (req, res, next) => {
 
 
 // add a new patient to the database
-const postNewPatient = async (req, res, next) => {
+const postNewPatient = async(req, res, next) => {
     try {
         // PATIENT CREATION AND INSERTION:
         // capture input value
@@ -222,7 +222,7 @@ const postNewPatient = async (req, res, next) => {
     }
 }
 
-const viewCurComment = async (req, res, next) => {
+const viewCurComment = async(req, res, next) => {
     try {
         const data = await Record.find().lean()
 
@@ -235,7 +235,7 @@ const viewCurComment = async (req, res, next) => {
 
 
 // view history data page
-const viewHistRec = async (req, res, next) => {
+const viewHistRec = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const curr_pati = await Patient.findById(req.params.id).lean()
@@ -246,9 +246,9 @@ const viewHistRec = async (req, res, next) => {
 
         // initialize an empty array to store record data
         const all_rec = []
-        // loop through the recordID array in patient schema
-        // use the recordID to retrieve record data from record schema
-        // store the record data in all_rec[]
+            // loop through the recordID array in patient schema
+            // use the recordID to retrieve record data from record schema
+            // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
             const one_rec = await Record
                 .findById(curr_pati.records[i].recordID)
@@ -261,10 +261,9 @@ const viewHistRec = async (req, res, next) => {
         const rec = []
         for (var i = 0; i < data.length; i++) {
             const one_rec = data[i]
-            // console.log(one_rec)
+                // console.log(one_rec)
             rec.push(one_rec)
         }
-        console.log(rec[0])
         return res.render('cliViewHistory.hbs', { onePatient: curr_pati, record: all_rec })
     } catch (err) {
         return next(err)
@@ -272,12 +271,12 @@ const viewHistRec = async (req, res, next) => {
 }
 
 
-const supportMessage = async (req, res) => {
+const supportMessage = async(req, res) => {
     console.log('-- req form to update support message -- ', req.body)
     try {
         // find the patient
         const patientId = await findPatient(req.params.id)
-        // const recordId = await findRecord(patientId)
+            // const recordId = await findRecord(patientId)
         const patient = await Patient.findById(patientId)
         patient.supportMessage = req.body.message
         patient.save()
