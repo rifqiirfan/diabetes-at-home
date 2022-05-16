@@ -21,14 +21,14 @@ const getAllPatientData = async(req, res, next) => {
                     weight: 0,
                     doit: 0,
                     exercise: 0,
-                    bgl_min: allPatients[i].data.bgl.minValue,
-                    bgl_max: allPatients[i].data.bgl.maxValue,
-                    weight_min: allPatients[i].data.weight.minValue,
-                    weight_max: allPatients[i].data.weight.maxValue,
-                    doit_min: allPatients[i].data.doit.minValue,
-                    doit_max: allPatients[i].data.doit.maxValue,
-                    exer_min: allPatients[i].data.exercise.minValue,
-                    exer_max: allPatients[i].data.exercise.maxValue,
+                    bgl_min: 4,
+                    bgl_max: 7,
+                    weight_min: 55,
+                    weight_max: 85,
+                    doit_min: 1,
+                    doit_max: 3,
+                    exer_min: 3000,
+                    exer_max: 7200,
 
                 }
             } else {
@@ -39,14 +39,14 @@ const getAllPatientData = async(req, res, next) => {
                     weight: rec_now.data.weight.value,
                     doit: rec_now.data.doit.value,
                     exercise: rec_now.data.exercise.value,
-                    bgl_min: allPatients[i].data.bgl.minValue,
-                    bgl_max: allPatients[i].data.bgl.maxValue,
-                    weight_min: allPatients[i].data.weight.minValue,
-                    weight_max: allPatients[i].data.weight.maxValue,
-                    doit_min: allPatients[i].data.doit.minValue,
-                    doit_max: allPatients[i].data.doit.maxValue,
-                    exer_min: allPatients[i].data.exercise.minValue,
-                    exer_max: allPatients[i].data.exercise.maxValue,
+                    bgl_min: rec_now.data.bgl.minValue,
+                    bgl_max: rec_now.data.bgl.maxValue,
+                    weight_min: rec_now.data.weight.minValue,
+                    weight_max: rec_now.data.weight.maxValue,
+                    doit_min: rec_now.data.doit.minValue,
+                    doit_max: rec_now.data.doit.maxValue,
+                    exer_min: rec_now.data.exercise.minValue,
+                    exer_max: rec_now.data.exercise.maxValue,
 
                 }
             }
@@ -72,6 +72,10 @@ async function findPatient(pid) {
                 screenName: 'AW',
                 email: 'AW@gmail.com',
                 password: '12345678',
+                secret: 'secret',
+                eRate: 0,
+                age: 0,
+                gender: 'unisex',
                 yearOfBirth: '1999',
                 textBio: "I'm good",
                 supportMessage: 'go for it!',
@@ -129,7 +133,7 @@ function formatDate(date) {
 const renderRecordData = async(req, res) => {
     try {
         const patientId = await findPatient(req.params.id)
-        const patientData = await Patient.findById(patientId).lean()
+        const patient = await Patient.findById(patientId).lean()
         const recordId = await findRecord(patientId)
         const record = await Record.findOne({ _id: recordId })
             .populate({
@@ -139,7 +143,7 @@ const renderRecordData = async(req, res) => {
             .lean()
             // console.log(record);
 
-        res.render('recordData.hbs', { records: record, personal: patientData })
+        res.render('recordData.hbs', { records: record, patient: patient })
     } catch (e) {
         res.status(400)
         res.send('error happens when render record data')
@@ -150,16 +154,15 @@ const updateRecord = async(req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.id)
-            // const recordId = await findRecord(patientId)
-        const record = await Patient.findById(patientId)
-            // const record = await Record.findOne({ _id :recordId });
+        const recordId = await findRecord(patientId)
+
+        const record = await Record.findOne({ _id: recordId });
         const data = record.data[req.body.key]
         data.availability = req.body.availability
         data.maxValue = req.body.maxvalue
         data.minValue = req.body.minvalue
-        data.minTime = req.body.mintime
-        data.maxTime = req.body.maxtime
-        data.status = 'recorded'
+
+        data.thresholdStatus = 'recorded'
 
         record.save()
         res.redirect('back')
@@ -188,15 +191,21 @@ const postNewPatient = async(req, res, next) => {
             firstName,
             lastName,
             email,
-            yearOfBirth
+            yearOfBirth,
+            age,
+            gender,
         } = req.body
 
         const new_pati = new Patient({
             firstName: firstName,
             lastName: lastName,
             email: email,
-            // generate a random password
-            password: (Math.random() + 1).toString(36).substring(4),
+            // generate a random password and secret
+            password: 'password',
+            secret: (Math.random() + 1).toString(36).substring(8),
+            eRate: 0,
+            age: age,
+            gender: gender,
             yearOfBirth: yearOfBirth,
             textBio: "Here's my text bio.",
             supportMessage: "Here's the support message.",
@@ -255,7 +264,6 @@ const viewHistRec = async(req, res, next) => {
                 // console.log(one_rec)
             rec.push(one_rec)
         }
-        console.log(rec[0])
         return res.render('cliViewHistory.hbs', { onePatient: curr_pati, record: all_rec })
     } catch (err) {
         return next(err)
