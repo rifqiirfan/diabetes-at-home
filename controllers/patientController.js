@@ -83,6 +83,7 @@ const getPatientDataById = async (req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const data = await allPatientData.findById(req.params.patient_id).lean()
+        console.log(data)
         if (!data) return res.sendStatus(404)
         return res.render('oneData.hbs', { onePatient: data })
     } catch (err) {
@@ -232,8 +233,10 @@ const entryPatientData = async (req, res, next) => {
             const path = "/patient/entry/" + req.params.patient_id
             res.redirect(path)
         } else {
-            const rec = data;
-            return res.render('entry.hbs', { record: rec });
+            const rec = data
+            const pat = await allPatientData.findById(req.params.patient_id).lean()
+            console.log(pat)
+            return res.render('entry.hbs', { record: rec});
         }
 
     } catch (err) {
