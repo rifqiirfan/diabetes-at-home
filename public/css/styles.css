@@ -14,6 +14,10 @@ html {
     background-color: var(--bg);
 }
 
+body {
+    position: relative;
+    min-height: 100vh;
+}
 :root, :root.light {
     /* Colours */
     --white: #fff;
@@ -75,7 +79,7 @@ html {
 
 /* Header */
 
-.navbar {
+header {
     display: flex;
     height: 120px;
     width: 100%;
@@ -88,6 +92,7 @@ html {
 
 .header img {
     width: 200px;
+    margin-right: auto;
 }
 
 /* Change Theme */
@@ -106,6 +111,12 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
     padding: 20px 10%;
     background-color: var(--footer);
     color: var(--footer-text);
@@ -131,7 +142,7 @@ html {
 
 .navbar>ul>li>a:hover {
     color: var(--header-text-hover);
-    border-bottom: 1.5px solid var(--header-text-hover);
+    /* border-bottom: 1.5px solid var(--header-text-hover); */
 }
 
 .hamburger {
@@ -216,7 +227,7 @@ html {
 .home-page,
 .home-page img {
     display: flex;
-    height: 70vh;
+    height: 75vh;
     width: 50vw;
 }
 
@@ -256,7 +267,6 @@ html {
 
 /* What is Diabetes */
 
-/* - Title */
 .page-title {
     padding: 30px 10%;
     background-color: var(--pg-title);
@@ -277,7 +287,6 @@ html {
     color: var(--pg-title-hover);
 }
 
-/* - Description */
 .description {
     padding: 30px 10%;
     line-height: 2;
@@ -308,7 +317,6 @@ html {
     height: 100%;
 }
 
-/* Key Facts */
 .key-facts {
     padding: 30px 10%;
     background-color: var(--blue);
@@ -338,7 +346,6 @@ html {
     font-weight: 700;
 }
 
-/* Source */
 .source {
     padding: 30px 10%;
     background-color: var(--white);
@@ -348,6 +355,22 @@ html {
 .source a {
     text-decoration: none;
     color: var(--blue);
+}
+
+/* Login Page */
+
+.login-page {
+    background-color: var(--white);
+}
+.login-page-box {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 20px;
+    background-color: var(--dark-green);
+    color: var(--white);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Patient Homepage */
