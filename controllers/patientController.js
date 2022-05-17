@@ -327,6 +327,15 @@ const showLeaderboard = async(req, res) => {
 
 }
 
+const renderLogin = (req, res) => { 
+    res.render("login.hbs", req.session.flash);
+};
+
+const logout = (req, res) => {
+    req.logout();
+    res.redirect("/patient/login");
+};
+
 module.exports = {
     getAllPatientData,
     getPatientDataById,
@@ -335,5 +344,7 @@ module.exports = {
     entryPatientData,
     viewPatientData,
     resetPassword,
-    showLeaderboard
+    showLeaderboard,
+    renderLogin,
+    logout
 }
