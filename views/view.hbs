@@ -1,0 +1,30 @@
+<section class="patient-history">
+    <div class="breadcrumbs-navigation">
+        <p><a href="/patient">Home</a> > History</p>
+    </div>
+    <h1 class="title">History</h1>
+    <div class="responsive-table">
+        <table class="patient-history-table">
+            <tr>
+                <th>Date</th>
+                <th>Blood Glucose Level <br />(mmol\L)</th>
+                <th>Weight <br />(kg)</th>
+                <th>Insulin Count</th>
+                <th>Exercise <br />(step count)</th>
+            </tr>
+
+            {{#each record}}
+            <tr>
+                <td> {{this.recordDate}}</td>
+                <td> {{this.data.bgl.value}}</td>
+                <td> {{this.data.weight.value}}</td>
+                <td> {{this.data.doit.value}}</td>
+                <td> {{this.data.exercise.value}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <a href="/patient">
+        <button class="back-button"> Back </button>
+    </a>
+</section>

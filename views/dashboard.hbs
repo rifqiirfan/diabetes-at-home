@@ -1,0 +1,73 @@
+<section class="clinician-dashboard">
+    <h1>Dashboard</h1>
+    <article class="article">All data in the dashboard is based on the last 24 hours at <strong>{{date}}</strong>
+    </article>
+
+    <table class="safety-threshold-table">
+        <tr>
+            <th>Patient Name</th>
+            <th>Blood Glocose Level <br />(in mmol/L)</th>
+            <th>Weight <br />(in kg)</th>
+            <th>Doses of Insulin Taken</th>
+            <th>Exercise <br />(Step Count)</th>
+            <th>Date</th>
+        </tr>
+
+        {{#each data}}
+        <tr>
+            <td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+
+            {{else}}
+            {{#ifMissing this.bgl}}
+            grey  
+            {{else}}
+            orange
+            {{/ifMissing}}
+            {{/thresholdJudge}};">
+            {{this.bgl}} </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.weight this.weight_max this.weight_min}}
+
+            {{else}}
+            {{#ifMissing this.weight}}
+            grey  
+            {{else}}
+            orange
+            {{/ifMissing}}
+            {{/thresholdJudge}};">
+            {{this.weight}} </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.doit this.doit_max this.doit_min}}
+
+            {{else}}
+            {{#ifMissing this.doit}}
+            grey  
+            {{else}}
+            orange
+            {{/ifMissing}}
+            {{/thresholdJudge}};">
+            {{this.doit}} </td>
+            <td style="background-color:   
+            {{#thresholdJudge this.exercise this.exercise_max this.exercise_min}}
+
+            {{else}}
+            {{#ifMissing this.exercise}}
+            grey  
+            {{else}}
+            orange
+            {{/ifMissing}}
+            {{/thresholdJudge}};">
+            {{this.exercise}} </td>
+            <td>{{../date}} </td>
+            
+        </tr>
+        {{/each}}
+    </table>
+
+    <a href="/clinician/new_patient">
+        <button> Create New Patient </button>
+    </a>
+    <a href="/clinician/view"><button>comment</button></a> 
+</section>

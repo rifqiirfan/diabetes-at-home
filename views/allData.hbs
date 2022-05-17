@@ -1,0 +1,43 @@
+<section class="patient-homepage">
+  <h1 class="title">Patient Homepage</h1>
+  <table class="patient-homepage-table">
+    <tr>
+      <th>Patient Name</th>
+      <th>Support message</th>
+      <th>Information</th>
+      <th>Entry</th>
+      <th>View</th>
+      <th>Leaderboard</th>
+    </tr>
+    {{#each data}}
+    <tr>
+      <td data-header="Patient Name">
+        <p>{{this.firstName}} {{this.lastName}}</p>
+      </td>
+      <td data-header="Suppoting message">
+        <p>{{this.supportMessage}}</p>
+      </td>
+      <td data-header="Information">
+        <a href="/patient/{{this._id}}">
+          <button class="table-information-button"> Information </button>
+        </a>
+      </td>
+      <td data-header="Entry">
+        <a href="/patient/entry/{{this._id}}">
+          <button class="table-entry-button"> Entry </button>
+        </a>
+      </td>
+      <td data-header="View">
+        <a href="/patient/view/{{this._id}}">
+          <button class="table-view-button"> View </button>
+        </a>
+      </td>
+      <td data-header="Leaderboard">
+        <a href="/patient/leaderboard/{{this._id}}">
+          <button> leaderboard</button>
+        </a>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
+</section>
