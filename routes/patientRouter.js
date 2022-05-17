@@ -12,6 +12,7 @@ patientRouter.get('/', patientController.getAllPatientData)
 patientRouter.get('/entry/:patient_id', patientController.entryPatientData)
 
 patientRouter.get('/view/:patient_id', patientController.viewPatientData)
+patientRouter.get('/leaderboard/:patient_id', patientController.showLeaderboard)
 
 // add a route to handle the GET request for one data instance
 patientRouter.get('/:patient_id', patientController.getPatientDataById)

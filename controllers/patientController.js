@@ -16,7 +16,10 @@ async function findPatient(pid) {
                 password: '12345678',
                 yearOfBirth: '1999',
                 textBio: "I'm good",
+                eRate: 0,
+                createAt: '05/09/2022',
                 supportMessage: 'go for it!',
+                clinician: 'Chris Andrew',
             })
 
             // save new patient Pat to database
@@ -66,10 +69,10 @@ function formatDate(date) {
     if (month.length < 2) month = '0' + month
     if (day.length < 2) day = '0' + day
 
-    return [day, month, year].join('/')
+    return [month, day, year].join('/')
 }
 
-const getAllPatientData = async (req, res, next) => {
+const getAllPatientData = async(req, res, next) => {
     try {
         const allPatients = await allPatientData.find().lean()
         return res.render('allData', { data: allPatients })
@@ -79,7 +82,7 @@ const getAllPatientData = async (req, res, next) => {
 }
 
 // get info for one patient
-const getPatientDataById = async (req, res, next) => {
+const getPatientDataById = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const data = await allPatientData.findById(req.params.patient_id).lean()
@@ -92,7 +95,7 @@ const getPatientDataById = async (req, res, next) => {
 }
 
 // add an object to the database
-const insertData = async (req, res, next) => {
+const insertData = async(req, res, next) => {
     try {
         // RECORD CREATION AND INSERTION:
         // capture input value
@@ -113,56 +116,55 @@ const insertData = async (req, res, next) => {
         })
         if (!checkRec) {
             const new_rec = new patientRecords({
-                patientID: patient.id,
-                recordDate: formatDate(new Date()),
-                data: {
-                    bgl: {
-                        fullName: 'blood glocose level',
-                        status: 'recorded',
-                        value: bgl,
-                        comment: bgl_comment,
-                        createdAt: new Date().toLocaleString('en-Au', {
-                            timeZone: 'Australia/Melbourne',
-                        }),
+                    patientID: patient.id,
+                    recordDate: formatDate(new Date()),
+                    data: {
+                        bgl: {
+                            fullName: 'blood glocose level',
+                            status: 'recorded',
+                            value: bgl,
+                            comment: bgl_comment,
+                            createdAt: new Date().toLocaleString('en-Au', {
+                                timeZone: 'Australia/Melbourne',
+                            }),
+                        },
+                        weight: {
+                            fullName: 'weight',
+                            status: 'recorded',
+                            value: weight,
+                            comment: weight_comment,
+                            createdAt: new Date().toLocaleString('en-Au', {
+                                timeZone: 'Australia/Melbourne',
+                            }),
+                        },
+                        doit: {
+                            fullName: 'doses of insulin taken',
+                            status: 'recorded',
+                            value: doit,
+                            comment: doit_comment,
+                            createdAt: new Date().toLocaleString('en-Au', {
+                                timeZone: 'Australia/Melbourne',
+                            }),
+                        },
+                        exercise: {
+                            fullName: 'exercise',
+                            status: 'recorded',
+                            value: exercise,
+                            comment: ex_comment,
+                            createdAt: new Date().toLocaleString('en-Au', {
+                                timeZone: 'Australia/Melbourne',
+                            }),
+                        },
                     },
-                    weight: {
-                        fullName: 'weight',
-                        status: 'recorded',
-                        value: weight,
-                        comment: weight_comment,
-                        createdAt: new Date().toLocaleString('en-Au', {
-                            timeZone: 'Australia/Melbourne',
-                        }),
-                    },
-                    doit: {
-                        fullName: 'doses of insulin taken',
-                        status: 'recorded',
-                        value: doit,
-                        comment: doit_comment,
-                        createdAt: new Date().toLocaleString('en-Au', {
-                            timeZone: 'Australia/Melbourne',
-                        }),
-                    },
-                    exercise: {
-                        fullName: 'exercise',
-                        status: 'recorded',
-                        value: exercise,
-                        comment: ex_comment,
-                        createdAt: new Date().toLocaleString('en-Au', {
-                            timeZone: 'Australia/Melbourne',
-                        }),
-                    },
-                },
-            })
-            // insert the new record to db
+                })
+                // insert the new record to db
             await new_rec.save()
 
             // RECORD UPDATING FOR PATIENT:
             //console.log("patient id: " + req.params.patient_id)
             //console.log("new rec id: " + new_rec._id)
-            allPatientData.findOne(
-                { _id: req.params.patient_id },
-                function (err, pati) {
+            allPatientData.findOne({ _id: req.params.patient_id },
+                function(err, pati) {
                     if (!err) {
                         pati.records.push({ recordID: new_rec._id })
                         pati.save()
@@ -179,13 +181,13 @@ const insertData = async (req, res, next) => {
     }
 }
 
-const updateRecord = async (req, res) => {
+const updateRecord = async(req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.patient_id)
         const recordId = await findRecord(patientId)
         const record = await patientRecords.findById(recordId)
-        // const record = await Record.findOne({ _id :recordId });
+            // const record = await Record.findOne({ _id :recordId });
 
         const data = record.data[req.body.key]
         data.value = req.body.value
@@ -217,7 +219,7 @@ const updateRecord = async (req, res) => {
 }
 
 // entry data page
-const entryPatientData = async (req, res, next) => {
+const entryPatientData = async(req, res, next) => {
     try {
         const data = await patientRecords.findOne({
             patientID: req.params.patient_id,
@@ -229,14 +231,14 @@ const entryPatientData = async (req, res, next) => {
                 recordDate: formatDate(new Date()),
             })
             new_rec.save()
-            // res.render('entry.hbs', {record :  rec});
+                // res.render('entry.hbs', {record :  rec});
             const path = "/patient/entry/" + req.params.patient_id
             res.redirect(path)
         } else {
             const rec = data
             const pat = await allPatientData.findById(req.params.patient_id).lean()
             console.log(pat)
-            return res.render('entry.hbs', { record: rec});
+            return res.render('entry.hbs', { record: rec });
         }
 
     } catch (err) {
@@ -245,7 +247,7 @@ const entryPatientData = async (req, res, next) => {
 }
 
 // view history data page
-const viewPatientData = async (req, res, next) => {
+const viewPatientData = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const data = await allPatientData.findById(req.params.patient_id).lean()
@@ -256,9 +258,9 @@ const viewPatientData = async (req, res, next) => {
 
         // initialize an empty array to store record data
         const all_rec = []
-        // loop through the recordID array in patient schema
-        // use the recordID to retrieve record data from record schema
-        // store the record data in all_rec[]
+            // loop through the recordID array in patient schema
+            // use the recordID to retrieve record data from record schema
+            // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
             const one_rec = await patientRecords
                 .findById(data.records[i].recordID)
@@ -275,13 +277,12 @@ const viewPatientData = async (req, res, next) => {
 
 
 // reset password
-const resetPassword = async (req, res, next) => {
+const resetPassword = async(req, res, next) => {
     try {
         const { new_pw } = req.body
-        // find the patient
-        allPatientData.findOne(
-            { _id: req.params.patient_id },
-            function (err, pati) {
+            // find the patient
+        allPatientData.findOne({ _id: req.params.patient_id },
+            function(err, pati) {
                 if (!err) {
                     // update new password
                     pati.password = new_pw
@@ -295,6 +296,36 @@ const resetPassword = async (req, res, next) => {
     }
 }
 
+//show the top5 leaderboard
+async function calEngageRate(patient) {
+
+    const startday = patient.createAt;
+    const today = formatDate(new Date());
+    date1 = new Date(startday);
+    date2 = new Date(today);
+    Diff_between = date2.getTime() - date1.getTime();
+    totalDays = Diff_between / (1000 * 3600 * 24) + 1;
+    Eday = patient.records.length;
+    patient.eRate = (Eday / totalDays).toFixed(3);
+    await patient.save();
+    console.log("find data:", patient.firstName, patient.eRate);
+}
+
+const showLeaderboard = async(req, res) => {
+    const patients = await allPatientData.find({}, {});
+    for (patient of patients) {
+        await calEngageRate(patient);
+    }
+
+    var patList = await allPatientData.find({}, {}).lean();
+    patList = patList
+        .sort((a, b) => {
+            return b.eRate - a.eRate;
+        })
+        .slice(0, 5);
+    res.render("leaderboard.hbs", { pats: patList });
+
+}
 
 module.exports = {
     getAllPatientData,
@@ -303,5 +334,6 @@ module.exports = {
     updateRecord,
     entryPatientData,
     viewPatientData,
-    resetPassword
+    resetPassword,
+    showLeaderboard
 }

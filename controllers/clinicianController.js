@@ -74,11 +74,13 @@ async function findPatient(pid) {
                 password: '12345678',
                 secret: 'secret',
                 eRate: 0,
+                createAt: '05/09/2022',
                 age: 0,
                 gender: 'unisex',
                 yearOfBirth: '1999',
                 textBio: "I'm good",
                 supportMessage: 'go for it!',
+                clinician: 'Chris Andrew',
             })
 
             // save new patient Pat to database
@@ -127,7 +129,7 @@ function formatDate(date) {
     if (month.length < 2) month = '0' + month
     if (day.length < 2) day = '0' + day
 
-    return [day, month, year].join('/')
+    return [month, day, year].join('/')
 }
 
 const renderRecordData = async(req, res) => {
@@ -194,6 +196,7 @@ const postNewPatient = async(req, res, next) => {
             yearOfBirth,
             age,
             gender,
+            clinician,
         } = req.body
 
         const new_pati = new Patient({
@@ -204,9 +207,11 @@ const postNewPatient = async(req, res, next) => {
             password: 'password',
             secret: (Math.random() + 1).toString(36).substring(8),
             eRate: 0,
+            createAt: formatDate(new Date()),
             age: age,
             gender: gender,
             yearOfBirth: yearOfBirth,
+            clinician: clinician,
             textBio: "Here's my text bio.",
             supportMessage: "Here's the support message.",
             // generate a random screen name
