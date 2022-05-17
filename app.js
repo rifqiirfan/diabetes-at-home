@@ -49,9 +49,9 @@ app.get('/about-us', (req, res) => {
     res.render('about-us.hbs')
 });
 // login
-app.get('/login', (req, res) => {
-    res.render('login.hbs')
-});
+// app.get('/login', (req, res) => {
+//     res.render('login.hbs')
+// });
 
 // link to our router
 const ClinicianRouter = require('./routes/clinicianRouter.js')

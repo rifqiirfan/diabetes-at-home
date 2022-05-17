@@ -1,10 +1,12 @@
 // link to model
 const Patient = require('../models/patient.js')
 const Record = require('../models/record.js')
+const Clinician = require('../models/clinician.js')
 
 const getAllPatientData = async(req, res, next) => {
     try {
-        const allPatients = await Patient.find().lean()
+        const clinicianId = req.user._id
+        const allPatients = await Patient.find({cid: clinicianId})
 
         const a = []
         var sample = {};
@@ -199,6 +201,8 @@ const postNewPatient = async(req, res, next) => {
             clinician,
         } = req.body
 
+
+        const cid = req.user._id
         const new_pati = new Patient({
             firstName: firstName,
             lastName: lastName,
@@ -212,6 +216,7 @@ const postNewPatient = async(req, res, next) => {
             gender: gender,
             yearOfBirth: yearOfBirth,
             clinician: clinician,
+            cid: cid,
             textBio: "Here's my text bio.",
             supportMessage: "Here's the support message.",
             // generate a random screen name
@@ -221,6 +226,17 @@ const postNewPatient = async(req, res, next) => {
         // insert the new patient to db
         await new_pati.save()
 
+        var bool = true;
+        const doctor = await Clinician.findById(cid);
+        for (i = 0; i < doctor.patients.length; i++) {
+            if (doctor.patients[i].patientID == new_pati._id) {
+                bool = false;
+            }
+        }
+        if (bool) {
+            doctor.patients.push({ patientID: new_pati._id })
+            doctor.save()
+        }
         return res.redirect('./')
     } catch (err) {
         return next(err)
@@ -229,7 +245,7 @@ const postNewPatient = async(req, res, next) => {
 
 const viewCurComment = async(req, res, next) => {
     try {
-        const data = await Record.find().lean()
+        const data = await Clinician.find().lean()
 
         return res.render('viewComment.hbs', { record: data })
     } catch (err) {
@@ -293,6 +309,24 @@ const supportMessage = async(req, res) => {
     console.log('-- req form to update successfully')
 }
 
+const viewClinicianNotes = async(req, res, next) =>{
+    try {
+        const data = await Clinician.find.lean()
+
+        return res.render('viewComment.hbs', { record: data })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const renderLogin = (req, res) => { 
+    res.render("clinicianLogin.hbs", req.session.flash);
+};
+
+const logout = (req, res) => {
+    req.logout();
+    res.redirect("/clinician/login");
+};
 
 module.exports = {
     getAllPatientData,
@@ -302,5 +336,7 @@ module.exports = {
     postNewPatient,
     viewHistRec,
     viewCurComment,
-    supportMessage
+    supportMessage,
+    renderLogin,
+    logout
 }
