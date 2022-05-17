@@ -7,6 +7,7 @@
       <th>Information</th>
       <th>Entry</th>
       <th>View</th>
+      <th>Leaderboard</th>
     </tr>
     {{#each data}}
     <tr>
@@ -29,6 +30,11 @@
       <td data-header="View">
         <a href="/patient/view/{{this._id}}">
           <button class="table-view-button"> View </button>
+        </a>
+      </td>
+      <td data-header="Leaderboard">
+        <a href="/patient/leaderboard/{{this._id}}">
+          <button> leaderboard</button>
         </a>
       </td>
     </tr>
