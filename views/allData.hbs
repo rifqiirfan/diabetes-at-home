@@ -1,5 +1,8 @@
 <section class="patient-homepage">
   <h1 class="title">Patient Homepage</h1>
+  <form id="logout" action="/patient/logout" method="POST"></form>
+  <a href="/patient/updatePwd"><button> Change Password </button> </a>
+  <button form="logout">Logout</button>
   <table class="patient-homepage-table">
     <tr>
       <th>Patient Name</th>
@@ -9,35 +12,36 @@
       <th>View</th>
       <th>Leaderboard</th>
     </tr>
-    {{#each data}}
+    
     <tr>
       <td data-header="Patient Name">
-        <p>{{this.firstName}} {{this.lastName}}</p>
+        <p>{{data.firstName}} {{data.lastName}}</p>
       </td>
       <td data-header="Suppoting message">
-        <p>{{this.supportMessage}}</p>
+        <p>{{data.supportMessage}}</p>
       </td>
       <td data-header="Information">
-        <a href="/patient/{{this._id}}">
+        <a href="/patient/{{data._id}}">
           <button class="table-information-button"> Information </button>
         </a>
       </td>
       <td data-header="Entry">
-        <a href="/patient/entry/{{this._id}}">
+        <a href="/patient/entry/{{data._id}}">
           <button class="table-entry-button"> Entry </button>
         </a>
       </td>
       <td data-header="View">
-        <a href="/patient/view/{{this._id}}">
+        <a href="/patient/view/{{data._id}}">
           <button class="table-view-button"> View </button>
         </a>
       </td>
       <td data-header="Leaderboard">
-        <a href="/patient/leaderboard/{{this._id}}">
+        <a href="/patient/leaderboard/{{data._id}}">
           <button> leaderboard</button>
         </a>
       </td>
     </tr>
-    {{/each}}
+    
   </table>
+  
 </section>

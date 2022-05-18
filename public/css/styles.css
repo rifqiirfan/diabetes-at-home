@@ -52,6 +52,10 @@ body {
     --pg-title-text: var(--white);
     --pg-title-hover: var(--orange);
 
+    --nav-menu: var(--ivory);
+    --bar-color: var(--black);
+    --home-nav: var(--black);
+
     /* Attributes */
     --heading-title: 2em;
     --additional-title-1: 1.5em;
@@ -75,6 +79,10 @@ body {
     --header-text-hover: var(--brown);
     --footer: var(--dark-blue);
     --footer-text: var(--white);
+
+    --nav-menu: var(--dark-blue);
+    --bar-color: var(--white);
+    --home-nav: var(--white);
 }
 
 /* Header */
@@ -111,12 +119,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
     bottom: 0;
-    width: 100%;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    position: sticky;
+    top: 100vh;
     padding: 20px 10%;
     background-color: var(--footer);
     color: var(--footer-text);
@@ -156,7 +161,7 @@ header {
     margin: 5px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: #101010;
+    background-color: var(--bar-color);
 }
 
 .nav-menu {
@@ -237,6 +242,7 @@ header {
 
 .home-navigation {
     padding: var(--sec-padding);
+    color: var(--home-nav);
     width: 100%;
 }
 
@@ -362,6 +368,11 @@ header {
 .login-page {
     background-color: var(--white);
 }
+
+.logo-login-page img{
+    width: 120px;
+}
+
 .login-page-box {
     width: 500px;
     margin-left: auto;
@@ -671,7 +682,7 @@ td {
         top: 7.5rem;
         z-index: 1;
         flex-direction: column;
-        background-color: var(--ivory);
+        background-color: var(--nav-menu);
         width: 100%;
         text-align: center;
         transition: 0.3s;

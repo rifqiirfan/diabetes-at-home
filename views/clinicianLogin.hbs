@@ -1,0 +1,19 @@
+<section class="login-page">
+    <div class="logo-login-page">
+        <img src="/media/diabetes-at-home_fav.png">
+    </div>
+    <div class="login-page-form">
+        <h1>Login</h1>
+        {{#if loginMessage}} <p>{{loginMessage}}</p > {{/if}}
+        <form class="loginForm" action="/clinician/login" method="POST">
+        <label for="username">Email:</label>
+        <input type="text" name="email" placeholder="Enter your email" required/> 
+
+       
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Enter your password" required/> <br/>
+        <input type="submit" value="Submit" />
+        </form>
+    </div>
+</section>

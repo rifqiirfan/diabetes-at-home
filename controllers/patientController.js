@@ -1,6 +1,7 @@
 // link to model
 const allPatientData = require('../models/patient')
 const patientRecords = require('../models/record')
+const bcrypt = require("bcrypt");
 let alert = require('alert')
 
 async function findPatient(pid) {
@@ -74,8 +75,10 @@ function formatDate(date) {
 
 const getAllPatientData = async(req, res, next) => {
     try {
-        const allPatients = await allPatientData.find().lean()
+        
+        const allPatients = await allPatientData.findById(req.user._id).lean()
         return res.render('allData', { data: allPatients })
+        
     } catch (err) {
         return next(err)
     }
@@ -85,8 +88,9 @@ const getAllPatientData = async(req, res, next) => {
 const getPatientDataById = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
-        const data = await allPatientData.findById(req.params.patient_id).lean()
-        console.log(data)
+       
+        const data = await allPatientData.findById(req.params.patient_id)
+        
         if (!data) return res.sendStatus(404)
         return res.render('oneData.hbs', { onePatient: data })
     } catch (err) {
@@ -95,92 +99,6 @@ const getPatientDataById = async(req, res, next) => {
 }
 
 // add an object to the database
-const insertData = async(req, res, next) => {
-    try {
-        // RECORD CREATION AND INSERTION:
-        // capture input value
-        const {
-            bgl,
-            weight,
-            doit,
-            exercise,
-            bgl_comment,
-            weight_comment,
-            doit_comment,
-            ex_comment,
-        } = req.body
-        const patient = await allPatientData.findById(req.params.patient_id)
-        const checkRec = await patientRecords.findOne({
-            patientID: patient.id,
-            recordDate: formatDate(new Date()),
-        })
-        if (!checkRec) {
-            const new_rec = new patientRecords({
-                    patientID: patient.id,
-                    recordDate: formatDate(new Date()),
-                    data: {
-                        bgl: {
-                            fullName: 'blood glocose level',
-                            status: 'recorded',
-                            value: bgl,
-                            comment: bgl_comment,
-                            createdAt: new Date().toLocaleString('en-Au', {
-                                timeZone: 'Australia/Melbourne',
-                            }),
-                        },
-                        weight: {
-                            fullName: 'weight',
-                            status: 'recorded',
-                            value: weight,
-                            comment: weight_comment,
-                            createdAt: new Date().toLocaleString('en-Au', {
-                                timeZone: 'Australia/Melbourne',
-                            }),
-                        },
-                        doit: {
-                            fullName: 'doses of insulin taken',
-                            status: 'recorded',
-                            value: doit,
-                            comment: doit_comment,
-                            createdAt: new Date().toLocaleString('en-Au', {
-                                timeZone: 'Australia/Melbourne',
-                            }),
-                        },
-                        exercise: {
-                            fullName: 'exercise',
-                            status: 'recorded',
-                            value: exercise,
-                            comment: ex_comment,
-                            createdAt: new Date().toLocaleString('en-Au', {
-                                timeZone: 'Australia/Melbourne',
-                            }),
-                        },
-                    },
-                })
-                // insert the new record to db
-            await new_rec.save()
-
-            // RECORD UPDATING FOR PATIENT:
-            //console.log("patient id: " + req.params.patient_id)
-            //console.log("new rec id: " + new_rec._id)
-            allPatientData.findOne({ _id: req.params.patient_id },
-                function(err, pati) {
-                    if (!err) {
-                        pati.records.push({ recordID: new_rec._id })
-                        pati.save()
-                    }
-                }
-            )
-
-            return res.redirect('../')
-        } else {
-            return res.redirect('../')
-        }
-    } catch (err) {
-        return next(err)
-    }
-}
-
 const updateRecord = async(req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
@@ -237,7 +155,6 @@ const entryPatientData = async(req, res, next) => {
         } else {
             const rec = data
             const pat = await allPatientData.findById(req.params.patient_id).lean()
-            console.log(pat)
             return res.render('entry.hbs', { record: rec });
         }
 
@@ -277,24 +194,39 @@ const viewPatientData = async(req, res, next) => {
 
 
 // reset password
-const resetPassword = async(req, res, next) => {
-    try {
-        const { new_pw } = req.body
-            // find the patient
-        allPatientData.findOne({ _id: req.params.patient_id },
-            function(err, pati) {
-                if (!err) {
-                    // update new password
-                    pati.password = new_pw
-                    pati.save()
-                }
-            }
-        )
-        return res.redirect('./')
-    } catch (err) {
-        return next(err)
+const renderChangePwd = (req, res) => {
+    res.render("changePwd.hbs");
+  };
+  
+const updatePwd = async (req, res) => {
+try {
+    console.log("-- req form to update password -- ", req.body);
+    const patient = await allPatientData.findById(req.user._id);
+    if (!(req.body.newPwd == req.body.confirm)) {
+        return res.render("changePwd", {
+            message: "Please enter the new Password again!",
+        });
     }
+    if (req.body.oldPwd == req.body.newPwd) {
+        return res.render("changePwd", {
+            message: "New Password CAN NOT Be The Same with Previous one!",
+        });
+    }
+    if (!(await bcrypt.compare(req.body.oldPwd, patient.password))) {
+        return res.render("changePwd", {
+            message: "Please Enter the Correct Current Password!",
+        });
+    }
+    
+    
+    patient.password = await bcrypt.hash(req.body.confirm, 9);
+    await patient.save();
+    res.render("changePwd", { message: "Successfully change password!" });
+} catch (err) {
+    console.log(err);
+    res.send("error happens on change password");
 }
+};
 
 //show the top5 leaderboard
 async function calEngageRate(patient) {
@@ -327,13 +259,24 @@ const showLeaderboard = async(req, res) => {
 
 }
 
+const renderLogin = (req, res) => { 
+    res.render("patientLogin.hbs", req.session.flash);
+};
+
+const logout = (req, res) => {
+    req.logout();
+    res.redirect("/patient/login");
+};
+
 module.exports = {
     getAllPatientData,
     getPatientDataById,
-    insertData,
     updateRecord,
     entryPatientData,
     viewPatientData,
-    resetPassword,
-    showLeaderboard
+    renderChangePwd,
+    updatePwd,
+    showLeaderboard,
+    renderLogin,
+    logout
 }

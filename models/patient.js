@@ -15,6 +15,12 @@ const patientSchema = new mongoose.Schema({
     age: { type: Number, required: true },
     createAt: { type: String, required: true },
     clinician: { type: String, required: true },
+    cid: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'clinician',
+        required: true,
+    },
+    role: {type: String, default: "patient"},
     records: [{
         recordID: {
             type: mongoose.Schema.Types.ObjectId,

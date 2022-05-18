@@ -1,8 +1,9 @@
 <section class="clinician-dashboard">
     <h1>Dashboard</h1>
+    <a href="/clinician/updatePwd"><button> Change Password </button> </a>
     <article class="article">All data in the dashboard is based on the last 24 hours at <strong>{{date}}</strong>
     </article>
-
+    
     <table class="safety-threshold-table">
         <tr>
             <th>Patient Name</th>
@@ -70,4 +71,8 @@
         <button> Create New Patient </button>
     </a>
     <a href="/clinician/view"><button>comment</button></a> 
+    <form id="logout" action="/clinician/logout" method="POST"></form>
+    <button form="logout">Logout</button>
+    <form id="encrypt" action="/clinician/encrypt" method="POST"></form>
+    <button form="encrypt">Encrypt</button>
 </section>
