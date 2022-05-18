@@ -268,6 +268,50 @@ const logout = (req, res) => {
     res.redirect("/patient/login");
 };
 
+
+function getDateList(timespan) {
+    const oneDay = 86400000;
+    const today = Date.now();
+    const dateList = [];
+    for (let i = 0; i < timespan; i++) {
+      dateList.unshift(formatDate(today - i * oneDay));
+    }
+    return dateList;
+  }
+
+const viewData = async (req, res) => {
+    try {
+      const records = await patientRecords.find({ patientId: req.user._id }).lean();
+      const dateList = getDateList(15);
+  
+      const dataList = { bgl: [], weight: [], doit: [], exercise: [] };
+      for (date of dateList) {
+        // find is javscript Array.prototype function
+        let record = records.find((record) => {
+          return record.recordDate == date;
+        });
+       
+        if (record) {
+          for (key in dataList) {
+            dataList[key].push(record.data[key].value);
+          }
+        } else {
+          for (key in dataList) {
+            dataList[key].push(0);
+          }
+        }
+      }
+      res.render("viewData.hbs", {
+        
+        dates: JSON.stringify(dateList),
+        datas: JSON.stringify(dataList),
+      });
+    } catch (err) {
+      console.log(err);
+      res.send("error happens in rendering history data");
+    }
+  };
+
 module.exports = {
     getAllPatientData,
     getPatientDataById,
@@ -275,6 +319,7 @@ module.exports = {
     entryPatientData,
     viewPatientData,
     renderChangePwd,
+    viewData,
     updatePwd,
     showLeaderboard,
     renderLogin,

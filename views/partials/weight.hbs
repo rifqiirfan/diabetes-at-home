@@ -1,0 +1,39 @@
+<div style="width: 45%; background-color:aliceblue; margin-bottom: 20px">
+  <canvas id="canvas2" style="width: 100%;">
+
+  </canvas>
+</div>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<script>
+  const weight = document.getElementById('canvas2').getContext('2d');
+  const weightChart = new Chart(weight, {
+    // display type is line
+    type: 'line',
+    data: {
+      // label list
+      labels: {{{dates}}},
+      datasets: [{
+        label: 'Weight',
+        // data list 
+        data: {{{datas}}}.weight,
+        backgroundColor: "transparent",
+        borderColor: "purple",
+        borderWidth: 2
+      }]
+    },
+    options: {
+      elements: {
+        line: {
+          tension: 0.5
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
