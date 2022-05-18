@@ -15,6 +15,18 @@ patientRouter.get('/entry/:patient_id', utility.isLoggedIn, patientController.en
 patientRouter.get('/view/:patient_id', utility.isLoggedIn, patientController.viewPatientData)
 patientRouter.get('/leaderboard/:patient_id', utility.isLoggedIn,  patientController.showLeaderboard)
 
+// change password part
+patientRouter.get(
+  "/updatePwd",
+  utility.isLoggedIn,
+  patientController.renderChangePwd
+);
+patientRouter.post(
+  "/updatePwd",
+  utility.isLoggedIn,
+  patientController.updatePwd
+);
+
 //login
 patientRouter.get("/login", utility.unLoggedIn, patientController.renderLogin);
 patientRouter.post(
@@ -33,7 +45,6 @@ patientRouter.get('/:patient_id', utility.isLoggedIn, patientController.getPatie
 
 // add a new JSON object to the database
 patientRouter.post('/entry/:patient_id', utility.isLoggedIn, patientController.updateRecord)
-patientRouter.post('/:patient_id', utility.isLoggedIn, patientController.resetPassword)
 
 
 // export the router

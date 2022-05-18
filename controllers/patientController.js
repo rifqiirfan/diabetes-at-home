@@ -1,6 +1,7 @@
 // link to model
 const allPatientData = require('../models/patient')
 const patientRecords = require('../models/record')
+const bcrypt = require("bcrypt");
 let alert = require('alert')
 
 async function findPatient(pid) {
@@ -193,24 +194,39 @@ const viewPatientData = async(req, res, next) => {
 
 
 // reset password
-const resetPassword = async(req, res, next) => {
-    try {
-        const { new_pw } = req.body
-            // find the patient
-        allPatientData.findOne({ _id: req.params.patient_id },
-            function(err, pati) {
-                if (!err) {
-                    // update new password
-                    pati.password = new_pw
-                    pati.save()
-                }
-            }
-        )
-        return res.redirect('./')
-    } catch (err) {
-        return next(err)
+const renderChangePwd = (req, res) => {
+    res.render("changePwd.hbs");
+  };
+  
+const updatePwd = async (req, res) => {
+try {
+    console.log("-- req form to update password -- ", req.body);
+    const patient = await allPatientData.findById(req.user._id);
+    if (!(req.body.newPwd == req.body.confirm)) {
+        return res.render("changePwd", {
+            message: "Please enter the new Password again!",
+        });
     }
+    if (req.body.oldPwd == req.body.newPwd) {
+        return res.render("changePwd", {
+            message: "New Password CAN NOT Be The Same with Previous one!",
+        });
+    }
+    if (!(await bcrypt.compare(req.body.oldPwd, patient.password))) {
+        return res.render("changePwd", {
+            message: "Please Enter the Correct Current Password!",
+        });
+    }
+    
+    
+    patient.password = await bcrypt.hash(req.body.confirm, 9);
+    await patient.save();
+    res.render("changePwd", { message: "Successfully change password!" });
+} catch (err) {
+    console.log(err);
+    res.send("error happens on change password");
 }
+};
 
 //show the top5 leaderboard
 async function calEngageRate(patient) {
@@ -258,7 +274,8 @@ module.exports = {
     updateRecord,
     entryPatientData,
     viewPatientData,
-    resetPassword,
+    renderChangePwd,
+    updatePwd,
     showLeaderboard,
     renderLogin,
     logout

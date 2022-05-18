@@ -1,0 +1,23 @@
+<h1> Change Password </h1>
+{{#if message}} <p> {{message}} </p> {{/if}}
+<form id="pwdForm" action="/patient/updatePwd" method="POST">
+  <div>
+    <label> Current Password: </label>
+    <input type="password" name="oldPwd" placeholder="Enter current password" required>
+  </div> <br />
+  <div>
+    <label> New Password: </label>
+    <input type="password" name="newPwd" placeholder="Enter new password" required>
+  </div> <br />
+  <div>
+    <label> Confirm Password: </label>
+    <input type="password" name="confirm" placeholder="Confirm new password" required>
+  </div>
+</form> <br />
+
+<div>
+  <button type="submit" form="pwdForm"> Change </button> <br />
+  <a href="/patient">
+    <button> Back </button>
+  </a>
+</div>

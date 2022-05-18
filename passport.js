@@ -1,5 +1,5 @@
 const LocalStrategy = require("passport-local").Strategy;
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 
 const Patient = require("./models/patient.js");
 const Clinician = require("./models/clinician.js");
@@ -37,14 +37,14 @@ module.exports = (passport) => {
         (req, email, password, done) => {
             process.nextTick(() => {
                 // Find the user associated with the email provided by the user
-                // 邮箱地址是不分大小写的, 所以存的时候如果全部转成小写了, 找的时候也要全部转成小写
+                
                 Patient.findOne({'email': email.toLowerCase()}, async(err, patient) => {
                   if (err) {
                     return done(err);
                   } else if (!patient) {
                     return done(null, false, req.flash('loginMessage', 'No user found.'));
-                //   } else if (!await bcrypt.compare(password, patient.password)) {
-                  } else if (!(password == patient.password)) {
+                  } else if (!await bcrypt.compare(password, patient.password)) {
+                  // } else if (!(password == patient.password)) {
                     return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
                   } else {
                     return done(null, patient, req.flash('loginMessage', 'Login successful'));
@@ -69,8 +69,8 @@ module.exports = (passport) => {
                   return done(err);
                 } else if (!clinician) {
                   return done(null, false, req.flash('loginMessage', 'No user found.'));
-              //   } else if (!await bcrypt.compare(password, patient.password)) {
-                } else if (!(password == clinician.password)) {
+                } else if (!await bcrypt.compare(password, clinician.password)) {
+                // } else if (!(password == clinician.password)) {
                   return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
                 } else {
                   return done(null, clinician, req.flash('loginMessage', 'Login successful'));
