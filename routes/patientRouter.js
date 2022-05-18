@@ -12,7 +12,9 @@ const patientController = require('../controllers/patientController')
 patientRouter.get('/', utility.isLoggedIn, patientController.getAllPatientData)
 patientRouter.get('/entry/:patient_id', utility.isLoggedIn, patientController.entryPatientData)
 
-patientRouter.get('/view/:patient_id', utility.isLoggedIn, patientController.viewPatientData)
+// view history data
+patientRouter.get("/viewData", utility.isLoggedIn, patientController.viewData);
+// patientRouter.get('/view/:patient_id', utility.isLoggedIn, patientController.viewPatientData)
 patientRouter.get('/leaderboard/:patient_id', utility.isLoggedIn,  patientController.showLeaderboard)
 
 // change password part
