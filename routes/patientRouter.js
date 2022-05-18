@@ -1,21 +1,29 @@
-const express = require('express')
+const express = require("express");
 const passport = require("passport");
 const utility = require("./patientUtility.js");
 // create our Router object
-const patientRouter = express.Router()
+const patientRouter = express.Router();
 
 // require our controller
-const patientController = require('../controllers/patientController')
+const patientController = require("../controllers/patientController");
 
 // add a route to handle the GET request for all demo data
 
-patientRouter.get('/', utility.isLoggedIn, patientController.getAllPatientData)
-patientRouter.get('/entry/:patient_id', utility.isLoggedIn, patientController.entryPatientData)
+patientRouter.get("/", utility.isLoggedIn, patientController.getAllPatientData);
+patientRouter.get(
+  "/entry/:patient_id",
+  utility.isLoggedIn,
+  patientController.entryPatientData
+);
 
 // view history data
 patientRouter.get("/viewData", utility.isLoggedIn, patientController.viewData);
 // patientRouter.get('/view/:patient_id', utility.isLoggedIn, patientController.viewPatientData)
-patientRouter.get('/leaderboard/:patient_id', utility.isLoggedIn,  patientController.showLeaderboard)
+patientRouter.get(
+  "/leaderboard/:patient_id",
+  utility.isLoggedIn,
+  patientController.showLeaderboard
+);
 
 // change password part
 patientRouter.get(
@@ -43,11 +51,32 @@ patientRouter.post(
 patientRouter.post("/logout", utility.isLoggedIn, patientController.logout);
 
 // add a route to handle the GET request for one data instance
-patientRouter.get('/:patient_id', utility.isLoggedIn, patientController.getPatientDataById)
+patientRouter.get(
+  "/:patient_id",
+  utility.isLoggedIn,
+  patientController.getPatientDataById
+);
 
 // add a new JSON object to the database
-patientRouter.post('/entry/:patient_id', utility.isLoggedIn, patientController.updateRecord)
+patientRouter.post(
+  "/entry/:patient_id",
+  utility.isLoggedIn,
+  patientController.updateRecord
+);
 
+patientRouter.get("/", function (req, res, next) {
+  res.render("index", {
+    title: "Form Validation",
+    success: false,
+    error: re.session.errors,
+  });
+  req.session.errors = null;
+});
+
+patientRouter.post("/submit", function (req, res, next) {
+  //check validation
+  req.check("value", "Invalid value received").isNumber();
+});
 
 // export the router
-module.exports = patientRouter
+module.exports = patientRouter;

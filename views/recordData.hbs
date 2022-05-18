@@ -1,9 +1,12 @@
 <section class="clinician-safety-threshold">
   <h1 class="title">
-    Patient {{patient.firstName}} {{patient.lastName}}'s Safety Threshold in {{records.recordDate}}
+    Patient
+    {{patient.firstName}}
+    {{patient.lastName}}'s Safety Threshold in
+    {{records.recordDate}}
   </h1>
   <table class="safety-threshold-table">
-    
+
     <tr>
       <th> Availbility</th>
       <th> Attribute </th>
@@ -11,47 +14,56 @@
       <th> Value </th>
       <th> Attribute Lower Bound </th>
       <th> Attribute Upper Bound </th>
-      
+
       <th> Actual Recorded Time </th>
       <th> Comment </th>
     </tr>
     {{#each records.data}}
-    <form action="" method="POST">
-    <tr>
-      <input type="hidden" name="key" value="{{@key}}">
-      {{#ifUnrecorded this.thresholdStatus}}
-      <td><input type="checkbox" name="availability" value=true></td>
-      {{else}}
-      <td>{{this.availability}}</td>
-      {{/ifUnrecorded}}
-      <td> {{this.fullName}} </td>
-      <td> {{this.thresholdStatus}} </td>
-      <td> {{this.value}} </td>
-      {{#ifUnrecorded this.thresholdStatus}}
-      <td><input type="text" name="minvalue" placeholder="Enter min value here" required></td>
-      {{else}}
-      <td>{{this.minValue}}</td>
-      {{/ifUnrecorded}}
-      {{#ifUnrecorded this.thresholdStatus}}
-      <td><input type="text" name="maxvalue" placeholder="Enter max value here" required></td>
-      {{else}}
-      <td>{{this.maxValue}}</td>
-      {{/ifUnrecorded}}
-      
-      <td> {{this.createdAt}} </td>
-      <td> {{this.comment}} </td>
-      {{#ifUnrecorded this.thresholdStatus}}
-      <td><button type="submit" class="submit-button">Submit</button></td>
-      {{/ifUnrecorded}}
-    </tr>
-    </form>
+      <form action="/submit" method="POST">
+        <tr>
+          <input type="hidden" name="key" value="{{@key}}" />
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><input type="checkbox" name="availability" value="true" /></td>
+          {{else}}
+            <td>{{this.availability}}</td>
+          {{/ifUnrecorded}}
+          <td> {{this.fullName}} </td>
+          <td> {{this.thresholdStatus}} </td>
+          <td> {{this.value}} </td>
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><input
+                type="text"
+                name="minvalue"
+                placeholder="Enter min value here"
+                required
+              /></td>
+          {{else}}
+            <td>{{this.minValue}}</td>
+          {{/ifUnrecorded}}
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><input
+                type="text"
+                name="maxvalue"
+                placeholder="Enter max value here"
+                required
+              /></td>
+          {{else}}
+            <td>{{this.maxValue}}</td>
+          {{/ifUnrecorded}}
+
+          <td> {{this.createdAt}} </td>
+          <td> {{this.comment}} </td>
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><button type="submit" class="submit-button">Submit</button></td>
+          {{/ifUnrecorded}}
+        </tr>
+      </form>
     {{/each}}
-    
 
   </table>
   <!-- supporting message -->
   <form action="/clinician/{{patient._id}}/message" method="POST">
-  <h3> Supporting message</h3>
+    <h3> Supporting message</h3>
     <input class="message-box" type="text" name="message" />
     <button type="submit" class="submit-button">OK</button>
   </form>
