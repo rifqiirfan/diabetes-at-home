@@ -203,13 +203,13 @@ const postNewPatient = async (req, res, next) => {
 
 
         const cid = req.user._id
-        const pwd = await bcrypt.hash('password', 10)
+        // const pwd = await bcrypt.hash('password', 10)
         const new_pati = new Patient({
             firstName: firstName,
             lastName: lastName,
             email: email,
             // generate a random password and secret
-            password: pwd,
+            password: 'password',
             secret: (Math.random() + 1).toString(36).substring(8),
             eRate: 0,
             createAt: formatDate(new Date()),
@@ -399,6 +399,11 @@ const updatePwd = async (req, res) => {
     try {
         console.log("-- req form to update password -- ", req.body);
         const doctor = await Clinician.findById(req.user._id);
+        if (req.body.newPwd.length < 8) {
+            return res.render("changePwd", {
+              message: "Password is less than 8 characters",
+            });
+          }
         if (!(req.body.newPwd == req.body.confirm)) {
             return res.render("changePwd", {
                 message: "Please enter the new Password again!",

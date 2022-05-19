@@ -202,6 +202,11 @@ const updatePwd = async (req, res) => {
     try {
         console.log("-- req form to update password -- ", req.body);
         const patient = await allPatientData.findById(req.user._id);
+        if (req.body.newPwd.length < 8) {
+            return res.render("changePwd", {
+              message: "Password is less than 8 characters",
+            });
+          }
         if (!(req.body.newPwd == req.body.confirm)) {
             return res.render("changePwd", {
                 message: "Please enter the new Password again!",

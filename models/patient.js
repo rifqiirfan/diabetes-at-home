@@ -5,7 +5,7 @@ const patientSchema = new mongoose.Schema({
     lastName: { type: String, required: true, trim: true },
     screenName: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String, required: true , set:(val)=>{return require('bcrypt').hashSync(val, 10)}},
     secret: { type: String, required: true },
     yearOfBirth: { type: String, required: true },
     textBio: { type: String, required: true },
