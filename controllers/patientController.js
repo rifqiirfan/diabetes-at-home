@@ -286,9 +286,9 @@ function getDateList(timespan) {
 
 const viewData = async (req, res) => {
     try {
-        const records = await patientRecords.find({ patientId: req.user._id }).lean();
+        const records = await patientRecords.find({ patientID: req.user._id });
         const dateList = getDateList(15);
-
+        
         const dataList = { bgl: [], weight: [], doit: [], exercise: [] };
         for (date of dateList) {
             // find is javscript Array.prototype function
@@ -306,6 +306,7 @@ const viewData = async (req, res) => {
                 }
             }
         }
+        
         res.render("viewData.hbs", {
 
             dates: JSON.stringify(dateList),
