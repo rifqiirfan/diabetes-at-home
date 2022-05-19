@@ -4,10 +4,10 @@ const Record = require('../models/record.js')
 const Clinician = require('../models/clinician.js')
 const bcrypt = require("bcrypt")
 
-const getAllPatientData = async(req, res, next) => {
+const getAllPatientData = async (req, res, next) => {
     try {
         const clinicianId = req.user._id
-        const allPatients = await Patient.find({cid: clinicianId})
+        const allPatients = await Patient.find({ cid: clinicianId })
         const a = []
         var sample = {};
         for (i = 0; i < allPatients.length; i++) {
@@ -134,7 +134,7 @@ function formatDate(date) {
     return [month, day, year].join('/')
 }
 
-const renderRecordData = async(req, res) => {
+const renderRecordData = async (req, res) => {
     try {
         const patientId = await findPatient(req.params.id)
         const patient = await Patient.findById(patientId).lean()
@@ -145,7 +145,7 @@ const renderRecordData = async(req, res) => {
                 options: { lean: true },
             })
             .lean()
-            // console.log(record);
+        // console.log(record);
 
         res.render('recordData.hbs', { records: record, patient: patient })
     } catch (e) {
@@ -154,7 +154,7 @@ const renderRecordData = async(req, res) => {
     }
 }
 
-const updateRecord = async(req, res) => {
+const updateRecord = async (req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.id)
@@ -177,7 +177,7 @@ const updateRecord = async(req, res) => {
 
 
 // new patient creation page
-const newPatientCreation = async(req, res, next) => {
+const newPatientCreation = async (req, res, next) => {
     try {
         return res.render('newPatient.hbs');
     } catch (err) {
@@ -187,7 +187,7 @@ const newPatientCreation = async(req, res, next) => {
 
 
 // add a new patient to the database
-const postNewPatient = async(req, res, next) => {
+const postNewPatient = async (req, res, next) => {
     try {
         // PATIENT CREATION AND INSERTION:
         // capture input value
@@ -244,7 +244,7 @@ const postNewPatient = async(req, res, next) => {
     }
 }
 
-const viewCurComment = async(req, res, next) => {
+const viewCurComment = async (req, res, next) => {
     try {
         const data = await Clinician.find().lean()
 
@@ -257,7 +257,7 @@ const viewCurComment = async(req, res, next) => {
 
 
 // view history data page
-const viewHistRec = async(req, res, next) => {
+const viewHistRec = async (req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const curr_pati = await Patient.findById(req.params.id).lean()
@@ -268,9 +268,9 @@ const viewHistRec = async(req, res, next) => {
 
         // initialize an empty array to store record data
         const all_rec = []
-            // loop through the recordID array in patient schema
-            // use the recordID to retrieve record data from record schema
-            // store the record data in all_rec[]
+        // loop through the recordID array in patient schema
+        // use the recordID to retrieve record data from record schema
+        // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
             const one_rec = await Record
                 .findById(curr_pati.records[i].recordID)
@@ -283,7 +283,7 @@ const viewHistRec = async(req, res, next) => {
         const rec = []
         for (var i = 0; i < data.length; i++) {
             const one_rec = data[i]
-                // console.log(one_rec)
+            // console.log(one_rec)
             rec.push(one_rec)
         }
         return res.render('cliViewHistory.hbs', { onePatient: curr_pati, record: all_rec })
@@ -293,12 +293,11 @@ const viewHistRec = async(req, res, next) => {
 }
 
 
-const supportMessage = async(req, res) => {
+const supportMessage = async (req, res) => {
     console.log('-- req form to update support message -- ', req.body)
     try {
         // find the patient
         const patientId = await findPatient(req.params.id)
-            // const recordId = await findRecord(patientId)
         const patient = await Patient.findById(patientId)
         patient.supportMessage = req.body.message
         patient.save()
@@ -310,17 +309,79 @@ const supportMessage = async(req, res) => {
     console.log('-- req form to update successfully')
 }
 
-const viewClinicianNotes = async(req, res, next) =>{
-    try {
-        const data = await Clinician.find.lean()
 
-        return res.render('viewComment.hbs', { record: data })
+// new clinician note creation page
+const newCliNoteCreation = async (req, res, next) => {
+    try {
+        const data = await Patient.findById(req.params.id).lean()
+        return res.render('enterClinicianNotes.hbs', { patientInfo: data });
     } catch (err) {
         return next(err)
     }
 }
 
-const renderLogin = (req, res) => { 
+// add a new clinician note to the database
+const postCliNote = async (req, res, next) => {
+    try {
+        // NOTE CREATION AND INSERTION:
+        // capture input value
+        const {
+            subjectiveData,
+            objectiveData,
+            assessmentData,
+            plan,
+            additionalNotes,
+            signature,
+            date
+        } = req.body
+
+        // an object in the clinicalNotes array
+        const new_note = {
+            createdAt: date,
+            createdBy: signature,
+            subjectiveData: subjectiveData,
+            objectiveData: objectiveData,
+            assessmentData: assessmentData,
+            plan: plan,
+            additionalNotes: additionalNotes
+        }
+
+        // find the patient
+        const cid = req.user._id
+        const doctor = await Clinician.findById(cid);
+        for (var i = 0; i < doctor.patients.length; i++) {
+            if (doctor.patients[i].patientID == req.params.id) {
+                // insert the new note to the array
+                doctor.patients[i].clinicalNotes.push(new_note)
+                doctor.save()
+                break
+            }
+        }
+        return res.redirect('../')
+
+    } catch (err) {
+        return next(err)
+    }
+}
+
+// view the clinician note for one patient
+const viewCliNote = async (req, res, next) => {
+    try {
+        data = null
+        const cid = req.user._id
+        const doctor = await Clinician.findById(cid).lean();
+        for (var i = 0; i < doctor.patients.length; i++) {
+            if (doctor.patients[i].patientID == req.params.id) {
+                data = doctor.patients[i].clinicalNotes
+            }
+        }
+        return res.render('viewClinicianNotes.hbs', { note: data })
+    } catch (err) {
+        return next(err)
+    }
+}
+
+const renderLogin = (req, res) => {
     res.render("clinicianLogin.hbs", req.session.flash);
 };
 
@@ -332,51 +393,51 @@ const logout = (req, res) => {
 // reset password
 const renderChangePwd = (req, res) => {
     res.render("changePwd.hbs");
-  };
-  
+};
+
 const updatePwd = async (req, res) => {
-try {
-    console.log("-- req form to update password -- ", req.body);
-    const doctor = await Clinician.findById(req.user._id);
-    if (!(req.body.newPwd == req.body.confirm)) {
-        return res.render("changePwd", {
-            message: "Please enter the new Password again!",
-        });
+    try {
+        console.log("-- req form to update password -- ", req.body);
+        const doctor = await Clinician.findById(req.user._id);
+        if (!(req.body.newPwd == req.body.confirm)) {
+            return res.render("changePwd", {
+                message: "Please enter the new Password again!",
+            });
+        }
+        if (req.body.oldPwd == req.body.newPwd) {
+            return res.render("changePwd", {
+                message: "New Password CAN NOT Be The Same with Previous one!",
+            });
+        }
+        if (!(await bcrypt.compare(req.body.oldPwd, doctor.password))) {
+            return res.render("changePwd", {
+                message: "Please Enter the Correct Current Password!",
+            });
+        }
+
+
+        doctor.password = await bcrypt.hash(req.body.confirm, 9);
+        await doctor.save();
+        res.render("changePwd", { message: "Successfully change password!" });
+    } catch (err) {
+        console.log(err);
+        res.send("error happens on change password");
     }
-    if (req.body.oldPwd == req.body.newPwd) {
-        return res.render("changePwd", {
-            message: "New Password CAN NOT Be The Same with Previous one!",
-        });
-    }
-    if (!(await bcrypt.compare(req.body.oldPwd, doctor.password))) {
-        return res.render("changePwd", {
-            message: "Please Enter the Correct Current Password!",
-        });
-    }
-    
-    
-    doctor.password = await bcrypt.hash(req.body.confirm, 9);
-    await doctor.save();
-    res.render("changePwd", { message: "Successfully change password!" });
-} catch (err) {
-    console.log(err);
-    res.send("error happens on change password");
-}
 };
 
 const encrypt = async (req, res) => {
     try {
-      const cid = req.user._id
-      const doctor = await Clinician.findById(cid)
-      doctor.password = await bcrypt.hash(doctor.password, 10)
-      await doctor.save()
-      res.redirect('/')
-      
+        const cid = req.user._id
+        const doctor = await Clinician.findById(cid)
+        doctor.password = await bcrypt.hash(doctor.password, 10)
+        await doctor.save()
+        res.redirect('/')
+
     } catch (err) {
-      console.log(err)
-      res.send("error")
+        console.log(err)
+        res.send("error")
     }
-  };
+};
 
 module.exports = {
     getAllPatientData,
@@ -391,5 +452,8 @@ module.exports = {
     updatePwd,
     renderLogin,
     logout,
-    encrypt
+    encrypt,
+    newCliNoteCreation,
+    postCliNote,
+    viewCliNote
 }

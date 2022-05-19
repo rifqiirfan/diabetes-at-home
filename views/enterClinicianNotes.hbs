@@ -1,38 +1,48 @@
-<table class = "Patient-general-form">
-<tr>
-    <th> Patient Name</th>
-    <th> Gender </th>
-    <th> Age </th>
-</tr>
+<table class="Patient-general-form">
+    <tr>
+        <th> Patient Name</th>
+        <th> Gender </th>
+        <th> Age </th>
+    </tr>
 
-{{#each record}}
-<tr>
-    <td>{{this.firstName}}{{this.lastName}}</td>
-    <td>{{this.gender}}</td>
-    <td>{{this.age}}</td>
-</tr>
+    <tr>
+        {{#with patientInfo}}
+        <td>{{this.firstName}} {{this.lastName}}</td>
+        <td>{{this.gender}}</td>
+        <td>{{this.age}}</td>
+        {{/with}}
+    </tr>
 </table>
-{{/each}}
-<p>Subjective Data</p>
-<textarea id="subjectiveData" name="subjectiveData" rows="5", cols="50"> Placeholder for subjective data</textarea>
-<br>
-<p>Objective Data</p>
-<textarea id="objectiveData" name="objectiveData" rows="5", cols="50"> Placeholder for objective data</textarea>
-<br>
-<p>Assessment Data</p>
-<textarea id="assessmentData" name="assessmentData" rows="5", cols="50"> Placeholder for assessment data</textarea>
-<br>
-<p>Plan</p>
-<textarea id="Plan" name="Plan" rows="5", cols="50"> Placeholder for Plan data</textarea>
-<br>
-<p>Additional Notes</p>
-<textarea id="additionalNotes" name="additionalNotes" rows="5", cols="50"> Placeholder for additionalNotes</textarea>
-<br>
 
-<label for="signature">Clinician signature</label>
-<input type="text" id= "signature" name="signature">
+<form action="" method="POST">
+    <div>
+        <label> Subjective Data: </label>
+        <input type="text" name="subjectiveData" required><br />
+    </div>
+    <div>
+        <label> Objective Data: </label>
+        <input type="text" name="objectiveData" required><br />
+    </div>
+    <div>
+        <label> Assessment Data: </label>
+        <input type="text" name="assessmentData" required><br />
+    </div>
+    <div>
+        <label> Plan: </label>
+        <input type="text" name="plan" required><br />
+    </div>
+    <div>
+        <label> Additional Notes: </label>
+        <input type="text" name="additionalNotes" required><br />
+    </div>
+    <div>
+        <label> Clinician signature: </label>
+        <input type="text" name="signature" required><br />
+    </div>
+    <div>
+        <label> Notes Date: </label>
+        <input type="text" name="date" required><br />
+    </div>
 
-<label for="Date">Notes Date</label>
-<input type="text" id="Date" name="Date">
-
-<input type = "submit" value = "Submit">
+    <button type="submit" class="submit-button">Submit</button>
+</form> <br />

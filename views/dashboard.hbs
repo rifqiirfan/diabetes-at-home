@@ -3,7 +3,7 @@
     <a href="/clinician/updatePwd"><button> Change Password </button> </a>
     <article class="article">All data in the dashboard is based on the last 24 hours at <strong>{{date}}</strong>
     </article>
-    
+
     <table class="safety-threshold-table">
         <tr>
             <th>Patient Name</th>
@@ -27,7 +27,7 @@
             orange
             {{/ifMissing}}
             {{/thresholdJudge}};">
-            {{this.bgl}} </td>
+                {{this.bgl}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.weight this.weight_max this.weight_min}}
 
@@ -38,7 +38,7 @@
             orange
             {{/ifMissing}}
             {{/thresholdJudge}};">
-            {{this.weight}} </td>
+                {{this.weight}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.doit this.doit_max this.doit_min}}
 
@@ -49,7 +49,7 @@
             orange
             {{/ifMissing}}
             {{/thresholdJudge}};">
-            {{this.doit}} </td>
+                {{this.doit}} </td>
             <td style="background-color:   
             {{#thresholdJudge this.exercise this.exercise_max this.exercise_min}}
 
@@ -60,9 +60,9 @@
             orange
             {{/ifMissing}}
             {{/thresholdJudge}};">
-            {{this.exercise}} </td>
+                {{this.exercise}} </td>
             <td>{{../date}} </td>
-            
+
         </tr>
         {{/each}}
     </table>
@@ -70,7 +70,7 @@
     <a href="/clinician/new_patient">
         <button> Create New Patient </button>
     </a>
-    <a href="/clinician/view"><button>comment</button></a> 
+    <a href="/clinician/view"><button>comment</button></a>
     <form id="logout" action="/clinician/logout" method="POST"></form>
     <button form="logout">Logout</button>
     <form id="encrypt" action="/clinician/encrypt" method="POST"></form>

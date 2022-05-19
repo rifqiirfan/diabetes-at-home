@@ -73,24 +73,24 @@ function formatDate(date) {
     return [month, day, year].join('/')
 }
 
-const getAllPatientData = async(req, res, next) => {
+const getAllPatientData = async (req, res, next) => {
     try {
-        
+
         const allPatients = await allPatientData.findById(req.user._id).lean()
         return res.render('allData', { data: allPatients })
-        
+
     } catch (err) {
         return next(err)
     }
 }
 
 // get info for one patient
-const getPatientDataById = async(req, res, next) => {
+const getPatientDataById = async (req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
-       
+
         const data = await allPatientData.findById(req.params.patient_id)
-        
+
         if (!data) return res.sendStatus(404)
         return res.render('oneData.hbs', { onePatient: data })
     } catch (err) {
@@ -99,13 +99,13 @@ const getPatientDataById = async(req, res, next) => {
 }
 
 // add an object to the database
-const updateRecord = async(req, res) => {
+const updateRecord = async (req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.patient_id)
         const recordId = await findRecord(patientId)
         const record = await patientRecords.findById(recordId)
-            // const record = await Record.findOne({ _id :recordId });
+        // const record = await Record.findOne({ _id :recordId });
 
         const data = record.data[req.body.key]
         data.value = req.body.value
@@ -137,7 +137,7 @@ const updateRecord = async(req, res) => {
 }
 
 // entry data page
-const entryPatientData = async(req, res, next) => {
+const entryPatientData = async (req, res, next) => {
     try {
         const data = await patientRecords.findOne({
             patientID: req.params.patient_id,
@@ -149,7 +149,7 @@ const entryPatientData = async(req, res, next) => {
                 recordDate: formatDate(new Date()),
             })
             new_rec.save()
-                // res.render('entry.hbs', {record :  rec});
+            // res.render('entry.hbs', {record :  rec});
             const path = "/patient/entry/" + req.params.patient_id
             res.redirect(path)
         } else {
@@ -164,7 +164,7 @@ const entryPatientData = async(req, res, next) => {
 }
 
 // view history data page
-const viewPatientData = async(req, res, next) => {
+const viewPatientData = async (req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const data = await allPatientData.findById(req.params.patient_id).lean()
@@ -175,9 +175,9 @@ const viewPatientData = async(req, res, next) => {
 
         // initialize an empty array to store record data
         const all_rec = []
-            // loop through the recordID array in patient schema
-            // use the recordID to retrieve record data from record schema
-            // store the record data in all_rec[]
+        // loop through the recordID array in patient schema
+        // use the recordID to retrieve record data from record schema
+        // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
             const one_rec = await patientRecords
                 .findById(data.records[i].recordID)
@@ -196,36 +196,36 @@ const viewPatientData = async(req, res, next) => {
 // reset password
 const renderChangePwd = (req, res) => {
     res.render("changePwd.hbs");
-  };
-  
+};
+
 const updatePwd = async (req, res) => {
-try {
-    console.log("-- req form to update password -- ", req.body);
-    const patient = await allPatientData.findById(req.user._id);
-    if (!(req.body.newPwd == req.body.confirm)) {
-        return res.render("changePwd", {
-            message: "Please enter the new Password again!",
-        });
+    try {
+        console.log("-- req form to update password -- ", req.body);
+        const patient = await allPatientData.findById(req.user._id);
+        if (!(req.body.newPwd == req.body.confirm)) {
+            return res.render("changePwd", {
+                message: "Please enter the new Password again!",
+            });
+        }
+        if (req.body.oldPwd == req.body.newPwd) {
+            return res.render("changePwd", {
+                message: "New Password CAN NOT Be The Same with Previous one!",
+            });
+        }
+        if (!(await bcrypt.compare(req.body.oldPwd, patient.password))) {
+            return res.render("changePwd", {
+                message: "Please Enter the Correct Current Password!",
+            });
+        }
+
+
+        patient.password = await bcrypt.hash(req.body.confirm, 9);
+        await patient.save();
+        res.render("changePwd", { message: "Successfully change password!" });
+    } catch (err) {
+        console.log(err);
+        res.send("error happens on change password");
     }
-    if (req.body.oldPwd == req.body.newPwd) {
-        return res.render("changePwd", {
-            message: "New Password CAN NOT Be The Same with Previous one!",
-        });
-    }
-    if (!(await bcrypt.compare(req.body.oldPwd, patient.password))) {
-        return res.render("changePwd", {
-            message: "Please Enter the Correct Current Password!",
-        });
-    }
-    
-    
-    patient.password = await bcrypt.hash(req.body.confirm, 9);
-    await patient.save();
-    res.render("changePwd", { message: "Successfully change password!" });
-} catch (err) {
-    console.log(err);
-    res.send("error happens on change password");
-}
 };
 
 //show the top5 leaderboard
@@ -243,7 +243,7 @@ async function calEngageRate(patient) {
     console.log("find data:", patient.firstName, patient.eRate);
 }
 
-const showLeaderboard = async(req, res) => {
+const showLeaderboard = async (req, res) => {
     const patients = await allPatientData.find({}, {});
     for (patient of patients) {
         await calEngageRate(patient);
@@ -259,7 +259,7 @@ const showLeaderboard = async(req, res) => {
 
 }
 
-const renderLogin = (req, res) => { 
+const renderLogin = (req, res) => {
     res.render("patientLogin.hbs", req.session.flash);
 };
 
@@ -274,43 +274,43 @@ function getDateList(timespan) {
     const today = Date.now();
     const dateList = [];
     for (let i = 0; i < timespan; i++) {
-      dateList.unshift(formatDate(today - i * oneDay));
+        dateList.unshift(formatDate(today - i * oneDay));
     }
     return dateList;
-  }
+}
 
 const viewData = async (req, res) => {
     try {
-      const records = await patientRecords.find({ patientId: req.user._id }).lean();
-      const dateList = getDateList(15);
-  
-      const dataList = { bgl: [], weight: [], doit: [], exercise: [] };
-      for (date of dateList) {
-        // find is javscript Array.prototype function
-        let record = records.find((record) => {
-          return record.recordDate == date;
-        });
-       
-        if (record) {
-          for (key in dataList) {
-            dataList[key].push(record.data[key].value);
-          }
-        } else {
-          for (key in dataList) {
-            dataList[key].push(0);
-          }
+        const records = await patientRecords.find({ patientId: req.user._id }).lean();
+        const dateList = getDateList(15);
+
+        const dataList = { bgl: [], weight: [], doit: [], exercise: [] };
+        for (date of dateList) {
+            // find is javscript Array.prototype function
+            let record = records.find((record) => {
+                return record.recordDate == date;
+            });
+
+            if (record) {
+                for (key in dataList) {
+                    dataList[key].push(record.data[key].value);
+                }
+            } else {
+                for (key in dataList) {
+                    dataList[key].push(0);
+                }
+            }
         }
-      }
-      res.render("viewData.hbs", {
-        
-        dates: JSON.stringify(dateList),
-        datas: JSON.stringify(dataList),
-      });
+        res.render("viewData.hbs", {
+
+            dates: JSON.stringify(dateList),
+            datas: JSON.stringify(dataList),
+        });
     } catch (err) {
-      console.log(err);
-      res.send("error happens in rendering history data");
+        console.log(err);
+        res.send("error happens in rendering history data");
     }
-  };
+};
 
 module.exports = {
     getAllPatientData,

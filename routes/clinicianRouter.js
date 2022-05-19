@@ -9,6 +9,9 @@ clinicRouter.get('/', utility.isLoggedIn, controller.getAllPatientData)
 clinicRouter.get('/new_patient', utility.isLoggedIn, controller.newPatientCreation)
 clinicRouter.get('/hist_rec/:id', utility.isLoggedIn, controller.viewHistRec)
 clinicRouter.get('/view', utility.isLoggedIn, controller.viewCurComment)
+clinicRouter.get('/new_cli_note/:id', utility.isLoggedIn, controller.newCliNoteCreation)
+clinicRouter.get('/view_cli_note/:id', utility.isLoggedIn, controller.viewCliNote)
+
 
 // change password part
 clinicRouter.get(
@@ -40,4 +43,5 @@ clinicRouter.post("/encrypt", controller.encrypt);
 clinicRouter.post('/new_patient', utility.isLoggedIn, controller.postNewPatient)
 clinicRouter.post('/:id', utility.isLoggedIn, controller.updateRecord)
 clinicRouter.post('/:id/message', utility.isLoggedIn, controller.supportMessage)
+clinicRouter.post('/new_cli_note/:id', utility.isLoggedIn, controller.postCliNote)
 module.exports = clinicRouter

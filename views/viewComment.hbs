@@ -2,44 +2,36 @@
 
   <h1 class="title"> Comments</h1>
   {{#each record}}
-    <table class="CurComment">
-      <h3 class="username">Patient
-        {{this.patientID}}
-        in
-        {{this.recordDate}}</h3>
-      <tr>
-        <th>Attribute Name</th>
-        <th>Comment Text</th>
-      </tr>
+  <table class="CurComment">
+    <h3 class="username">Patient
+      {{this.patientID}}
+      in
+      {{this.recordDate}}</h3>
+    <tr>
+      <th>Attribute Name</th>
+      <th>Comment Text</th>
+    </tr>
 
-      <tr>
-        <td>{{this.data.bgl.fullName}}</td>
-        <td><a
-            href="/clinician/{{this.patientID}}"
-          >{{this.data.bgl.comment}}</a></td>
-      </tr>
+    <tr>
+      <td>{{this.data.bgl.fullName}}</td>
+      <td><a href="/clinician/{{this.patientID}}">{{this.data.bgl.comment}}</a></td>
+    </tr>
 
-      <tr>
-        <td>{{this.data.weight.fullName}}</td>
-        <td><a
-            href="/clinician/{{this.patientID}}"
-          >{{this.data.weight.comment}}</a></td>
-      </tr>
+    <tr>
+      <td>{{this.data.weight.fullName}}</td>
+      <td><a href="/clinician/{{this.patientID}}">{{this.data.weight.comment}}</a></td>
+    </tr>
 
-      <tr>
-        <td>{{this.data.doit.fullName}}</td>
-        <td><a
-            href="/clinician/{{this.patientID}}"
-          >{{this.data.doit.comment}}</a></td>
-      </tr>
+    <tr>
+      <td>{{this.data.doit.fullName}}</td>
+      <td><a href="/clinician/{{this.patientID}}">{{this.data.doit.comment}}</a></td>
+    </tr>
 
-      <tr>
-        <td>{{this.data.exercise.fullName}}</td>
-        <td><a
-            href="/clinician/{{this.patientID}}"
-          >{{this.data.exercise.comment}}</a></td>
-      </tr>
-    </table>
+    <tr>
+      <td>{{this.data.exercise.fullName}}</td>
+      <td><a href="/clinician/{{this.patientID}}">{{this.data.exercise.comment}}</a></td>
+    </tr>
+  </table>
   {{/each}}
 
   <a href="/clinician">

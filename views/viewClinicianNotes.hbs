@@ -1,26 +1,26 @@
-<table class = "Patient-general-form">
-<tr>
-    <th> Patient Name</th>
-    <th> Gender </th>
-    <th> Age </th>
-    <th> Signature </th>
-    <th> Date </th>
-</tr>
+<h1 class="title">History</h1>
+<div class="responsive-table">
+    <table class="patient-history-table">
+        <tr>
+            <th> Created At </th>
+            <th> Created By </th>
+            <th> Subjective Data</th>
+            <th> Objective Data </th>
+            <th> Assessment Data </th>
+            <th> Plan </th>
+            <th> Additional Notes </th>
+        </tr>
 
-{{#each record}}
-<tr>
-    <td>{{this.firstName}}{{this.lastName}}</td>
-    {{!-- patient's full name --}}
-    <td>{{this.gender}}</td>
-    <td>{{this.age}}</td>
-    <td>{{this.firstName}}{{this.lastName}}</td>
-    {{!-- clinician's full name --}}
-</tr>
-</table>
-{{/each}}
-<p>Subjective Data</p>
-
-<p>Objective Data</p>
-<p>Assessment Data</p>
-<p>Plan</p>
-<p>Additional Notes</p>
+        {{#each note}}
+        <tr>
+            <td>{{this.createdAt}}</td>
+            <td>{{this.createdBy}}</td>
+            <td>{{this.subjectiveData}}</td>
+            <td>{{this.objectiveData}}</td>
+            <td>{{this.assessmentData}}</td>
+            <td>{{this.plan}}</td>
+            <td>{{this.additionalNotes}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>

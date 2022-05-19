@@ -4,16 +4,14 @@
     </div>
     <div class="login-page-form">
         <h1>Login</h1>
-        {{#if loginMessage}} <p>{{loginMessage}}</p > {{/if}}
+        {{#if loginMessage}} <p>{{loginMessage}}</p> {{/if}}
         <form class="loginForm" action="/patient/login" method="POST">
-        <label for="username">Email:</label>
-        <input type="text" name="email" placeholder="Enter your email" required/> 
+            <label for="username">Email:</label>
+            <input type="text" name="email" placeholder="Enter your email" required />
 
-       
-
-        <label for="password">Password:</label>
-        <input type="password" name="password" placeholder="Enter your password" required/> <br/>
-        <input type="submit" value="Submit" />
+            <label for="password">Password:</label>
+            <input type="password" name="password" placeholder="Enter your password" required /> <br />
+            <input type="submit" value="Submit" />
         </form>
     </div>
 </section>

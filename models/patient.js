@@ -20,14 +20,14 @@ const patientSchema = new mongoose.Schema({
         ref: 'clinician',
         required: true,
     },
-    role: {type: String, default: "patient"},
+    role: { type: String, default: "patient" },
     records: [{
         recordID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Record",
             required: true,
         },
-    }, ],
+    }],
 });
 
 // create collection patients in mongodb
