@@ -246,9 +246,16 @@ const postNewPatient = async (req, res, next) => {
 
 const viewCurComment = async (req, res, next) => {
     try {
-        const data = await Clinician.find().lean()
-
-        return res.render('viewComment.hbs', { record: data })
+        const patient = await Patient.find({cid: req.user._id})
+        var a = []
+        for(i=0;i<patient.length;i++){
+            const data = await Record.find({patientID: patient[i]._id}).lean()
+            for(j=0; j<data.length;j++){                  
+                a.push(data[j])
+            }
+        }
+        console.log(a)
+        return res.render('viewComment.hbs', { record: a })
     } catch (err) {
         return next(err)
     }

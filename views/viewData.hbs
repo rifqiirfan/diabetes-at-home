@@ -38,16 +38,18 @@
     </li>
   </ul>
 
+  <form id="logout" action="/patient/logout" method="POST">
   <ul class="logout">
     <li>
-      <a href="/patient/logout">
+      <a onclick="document.getElementById('logout').submit()">
         <i class="fa fa-power-off"></i>
         <span class="nav-text">
-          Logout
+        Logout
         </span>
       </a>
     </li>
   </ul>
+  </form>
 </nav>
 
 <section class="view-data">
