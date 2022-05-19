@@ -7,7 +7,7 @@ const recordSchema = new mongoose.Schema({
         required: true,
     },
     recordDate: { type: String, required: true },
-
+    patientName: { type: String },
     data: {
         bgl: {
             availability: { type: Boolean, default: false },

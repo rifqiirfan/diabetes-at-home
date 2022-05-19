@@ -107,8 +107,12 @@ async function findRecord(patientId) {
             recordDate: formatDate(new Date()),
         })
         if (!result) {
+            const pat = await Patient.findById(patientId).lean()
+            const fullName = pat.firstName + pat.lastName
+            
             const newRecord = new Record({
                 patientID: patientId,
+                patientName: fullName,
                 recordDate: formatDate(new Date()),
             })
 

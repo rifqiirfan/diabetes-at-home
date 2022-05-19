@@ -45,8 +45,10 @@ async function findRecord(patientId) {
             recordDate: formatDate(new Date()),
         })
         if (!result) {
+            
             const newRecord = new patientRecords({
                 patientID: patientId,
+                
                 recordDate: formatDate(new Date()),
             })
 
@@ -144,8 +146,12 @@ const entryPatientData = async (req, res, next) => {
             recordDate: formatDate(new Date()),
         }).lean();
         if (!data) {
+            const pat = await allPatientData.findById(req.params.patient_id).lean()
+            const fullName = pat.firstName + pat.lastName
+            
             const new_rec = new patientRecords({
                 patientID: req.params.patient_id,
+                patientName: fullName,
                 recordDate: formatDate(new Date()),
             })
             new_rec.save()
