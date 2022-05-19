@@ -1,6 +1,9 @@
 <section class="clinician-safety-threshold">
   <h1 class="title">
-    Patient {{patient.firstName}} {{patient.lastName}}'s Safety Threshold in {{records.recordDate}}
+    Patient
+    {{patient.firstName}}
+    {{patient.lastName}}'s Safety Threshold in
+    {{records.recordDate}}
   </h1>
   <table class="safety-threshold-table">
 
@@ -16,37 +19,50 @@
       <th> Comment </th>
     </tr>
     {{#each records.data}}
-    <form action="" method="POST">
-      <tr>
-        <input type="hidden" name="key" value="{{@key}}">
-        {{#ifUnrecorded this.thresholdStatus}}
-        <td><input type="checkbox" name="availability" value=true></td>
-        {{else}}
-        <td>{{this.availability}}</td>
-        {{/ifUnrecorded}}
-        <td> {{this.fullName}} </td>
-        <td> {{this.thresholdStatus}} </td>
-        <td> {{this.value}} </td>
-        {{#ifUnrecorded this.thresholdStatus}}
-        <td><input type="text" name="minvalue" placeholder="Enter min value here" required></td>
-        {{else}}
-        <td>{{this.minValue}}</td>
-        {{/ifUnrecorded}}
-        {{#ifUnrecorded this.thresholdStatus}}
-        <td><input type="text" name="maxvalue" placeholder="Enter max value here" required></td>
-        {{else}}
-        <td>{{this.maxValue}}</td>
-        {{/ifUnrecorded}}
+      <form action="" method="POST">
+        <tr>
+          <input type="hidden" name="key" value="{{@key}}" />
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><input type="checkbox" name="availability" value="true" /></td>
+          {{else}}
+            <td>{{this.availability}}</td>
+          {{/ifUnrecorded}}
+          <td> {{this.fullName}} </td>
+          <td> {{this.thresholdStatus}} </td>
+          <td> {{this.value}} </td>
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><input
+                type="number"
+                min="0"
+                max="9999"
+                name="minvalue"
+                placeholder="Enter min value here"
+                required
+              /></td>
+          {{else}}
+            <td>{{this.minValue}}</td>
+          {{/ifUnrecorded}}
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><input
+                type="number"
+                min="0"
+                max="9999"
+                name="maxvalue"
+                placeholder="Enter max value here"
+                required
+              /></td>
+          {{else}}
+            <td>{{this.maxValue}}</td>
+          {{/ifUnrecorded}}
 
-        <td> {{this.createdAt}} </td>
-        <td> {{this.comment}} </td>
-        {{#ifUnrecorded this.thresholdStatus}}
-        <td><button type="submit" class="submit-button">Submit</button></td>
-        {{/ifUnrecorded}}
-      </tr>
-    </form>
+          <td> {{this.createdAt}} </td>
+          <td> {{this.comment}} </td>
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><button type="submit" class="submit-button">Submit</button></td>
+          {{/ifUnrecorded}}
+        </tr>
+      </form>
     {{/each}}
-
 
   </table>
   <!-- supporting message -->

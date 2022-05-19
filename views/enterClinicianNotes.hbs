@@ -1,48 +1,49 @@
 <table class="Patient-general-form">
-    <tr>
-        <th> Patient Name</th>
-        <th> Gender </th>
-        <th> Age </th>
-    </tr>
+  <tr>
+    <th> Patient Name</th>
+    <th> Gender </th>
+    <th> Age </th>
+  </tr>
 
-    <tr>
-        {{#with patientInfo}}
-        <td>{{this.firstName}} {{this.lastName}}</td>
-        <td>{{this.gender}}</td>
-        <td>{{this.age}}</td>
-        {{/with}}
-    </tr>
+  <tr>
+    {{#with patientInfo}}
+      <td>{{this.firstName}} {{this.lastName}}</td>
+      <td>{{this.gender}}</td>
+      <td>{{this.age}}</td>
+    {{/with}}
+  </tr>
 </table>
 
 <form action="" method="POST">
-    <div>
-        <label> Subjective Data: </label>
-        <input type="text" name="subjectiveData" required><br />
-    </div>
-    <div>
-        <label> Objective Data: </label>
-        <input type="text" name="objectiveData" required><br />
-    </div>
-    <div>
-        <label> Assessment Data: </label>
-        <input type="text" name="assessmentData" required><br />
-    </div>
-    <div>
-        <label> Plan: </label>
-        <input type="text" name="plan" required><br />
-    </div>
-    <div>
-        <label> Additional Notes: </label>
-        <input type="text" name="additionalNotes" required><br />
-    </div>
-    <div>
-        <label> Clinician signature: </label>
-        <input type="text" name="signature" required><br />
-    </div>
-    <div>
-        <label> Notes Date: </label>
-        <input type="text" name="date" required><br />
-    </div>
+  <div>
+    <label> Subjective Data: </label>
+    <input type="string" length="120" name="subjectiveData" required /><br />
+  </div>
+  <div>
+    <label> Objective Data: </label>
+    <input type="string" length="120" name="objectiveData" required /><br />
+  </div>
+  <div>
+    <label> Assessment Data: </label>
+    <input type="string" length="120" name="assessmentData" required /><br />
+  </div>
+  <div>
+    <label> Plan: </label>
+    <input type="string" length="120" name="plan" required /><br />
+  </div>
+  <div>
+    <label> Additional Notes: </label>
+    <input type="string" length="120" name="additionalNotes" required /><br />
+  </div>
+  <div>
+    <label> Clinician signature: </label>
+    <input type="string" name="signature" required /><br />
+  </div>
+  <div>
+    <label> Notes Date: </label>
+    <input type="text" name="date" required /><br />
+  </div>
 
-    <button type="submit" class="submit-button">Submit</button>
-</form> <br />
+  <button type="submit" class="submit-button">Submit</button>
+</form>
+<br />
