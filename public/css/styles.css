@@ -1,6 +1,7 @@
 /* Import Google Font (IBM Plex Sans) */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -18,7 +19,9 @@ body {
     position: relative;
     min-height: 100vh;
 }
-:root, :root.light {
+
+:root,
+:root.light {
     /* Colours */
     --white: #fff;
     --black: #000;
@@ -369,7 +372,7 @@ header {
     background-color: var(--white);
 }
 
-.logo-login-page img{
+.logo-login-page img {
     width: 120px;
 }
 
@@ -385,6 +388,69 @@ header {
 }
 
 /* Patient Homepage */
+.fa {
+    position: relative;
+    display: table-cell;
+    width: 60px;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+.main-menu:hover {
+    width: 250px;
+    overflow: visible;
+}
+
+.main-menu {
+    position: absolute;
+    top: 120px;
+    left: 0;
+    bottom: 96px;
+    width: 75px;
+
+    overflow: hidden;
+    background-color: var(--blue);
+
+    -webkit-transition: width .05s linear;
+    transition: width .05s linear;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    z-index: 100;
+}
+
+.main-menu>ul {
+    margin: 10px 0;
+}
+
+.main-menu li {
+    position: relative;
+    display: block;
+    width: 250px;
+    padding: 11px;
+}
+
+.main-menu li>a {
+    position: relative;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: var(--white);
+    text-decoration: none;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    -webkit-transition: all .1s linear;
+    transition: all .1s linear;
+
+}
+
+.main-menu>ul.logout {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.nav-text {
+    font-size: 1em;
+}
 
 .patient-homepage {
     padding: var(--sec-padding);
@@ -437,7 +503,7 @@ td {
 
 .table-entry-button {
     background-color: var(--bt-green);
-    color:var(--bt-text);
+    color: var(--bt-text);
     padding: 10px;
     border: 3px solid var(--green);
     font-size: 1.125em;
@@ -495,6 +561,9 @@ td {
     font-style: italic;
 }
 
+.patient-information input {
+    padding: 10px;
+}
 
 /* Patient Entry */
 
@@ -583,6 +652,11 @@ td {
     background-color: var(--ivory);
 }
 
+/* View Patient Data */
+.view-data {
+    padding: var(--sec-padding);
+}
+
 
 /* +++ Clinician Dashboard +++
    Patient 's Safety Threshold */
@@ -608,7 +682,8 @@ td {
     padding: var(--table-padding);
 }
 
-.safety-threshold-table tr, td {
+.safety-threshold-table tr,
+td {
     text-align: center;
     padding: var(--table-padding);
 }
@@ -673,6 +748,12 @@ td {
     color: var(--bt-green-hover-text);
 }
 
+/* Change Password */
+
+.change-password {
+    padding: var(--sec-padding);
+}
+
 /* Responsive Navigation Menu */
 
 @media only screen and (max-width: 968px) {
@@ -687,23 +768,29 @@ td {
         text-align: center;
         transition: 0.3s;
     }
+
     .nav-menu.active {
         left: 0;
     }
+
     .nav-item {
         margin: 2rem 0;
     }
+
     .hamburger {
         display: block;
         cursor: pointer;
     }
+
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
+
     .hamburger.active .bar:nth-child(1) {
         -webkit-transform: translateY(8px) rotate(45deg);
         transform: translateY(8px) rotate(45deg);
     }
+
     .hamburger.active .bar:nth-child(3) {
         -webkit-transform: translateY(-8px) rotate(-45deg);
         transform: translateY(-8px) rotate(-45deg);
@@ -711,57 +798,70 @@ td {
 }
 
 @media screen and (max-width: 600px) {
+
     /* Index Homepage */
     .home-image img {
         height: 30vh;
         width: 100vw;
         object-fit: cover;
     }
+
     .home-navigation {
         width: 100%;
     }
+
     /* Patient Homepage */
     .patient-homepage-table {
         width: 100%;
     }
+
     .patient-homepage-table th {
         display: none;
     }
+
     .patient-homepage-table th[scope="row"] {
         vertical-align: middle;
     }
+
     .patient-homepage-table td {
         display: block;
         width: auto;
         text-align: right;
         border-right: 1px solid #e1edff;
     }
+
     .patient-homepage-table td::before {
         float: left;
         font-size: var(--input-text);
         font-weight: bold;
         content: attr(data-header);
     }
+
     .patient-homepage-table thead th::before {
         text-transform: uppercase;
         font-weight: bold;
         content: attr(data-header);
     }
+
     .patient-homepage-table thead th:first-child span {
         display: none;
     }
+
     .patient-homepage-table td:first-child p {
         margin-left: 50%;
     }
+
     .table-information-button,
     .table-entry-button,
     .table-view-button {
         width: 50%;
     }
+
     /* Patient Entry */
     .form-input {
         width: 100%;
     }
+
     .patient-entry-form {
         margin: 10%;
     }

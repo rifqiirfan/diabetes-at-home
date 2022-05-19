@@ -1,8 +1,58 @@
+<nav class="main-menu">
+  <ul>
+    <li>
+      <a href="/patient">
+        <i class="fa fa-solid fa-house"></i>
+        <span class="nav-text">
+          Dashboard
+        </span>
+      </a>
+
+    </li>
+
+    <li>
+      <a href="/patient/updatePwd">
+        <i class="fa fa-solid fa-key"></i>
+        <span class="nav-text">
+          Change Password
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/patient/leaderboard">
+        <i class="fa fa-solid fa-trophy"></i>
+        <span class="nav-text">
+          Leaderboard
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#">
+        <i class="fa fa-solid fa-life-ring"></i>
+        <span class="nav-text">
+          Support
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="logout">
+    <li>
+      <a href="/patient/logout">
+        <i class="fa fa-power-off"></i>
+        <span class="nav-text">
+          Logout
+        </span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
 <section class="patient-homepage">
   <h1 class="title">Patient Homepage</h1>
   <form id="logout" action="/patient/logout" method="POST"></form>
-  <a href="/patient/updatePwd"><button> Change Password </button> </a>
-  <button form="logout">Logout</button>
   <table class="patient-homepage-table">
     <tr>
       <th>Patient Name</th>
@@ -10,9 +60,8 @@
       <th>Information</th>
       <th>Entry</th>
       <th>View</th>
-      <th>Leaderboard</th>
     </tr>
-    
+
     <tr>
       <td data-header="Patient Name">
         <p>{{data.firstName}} {{data.lastName}}</p>
@@ -35,13 +84,8 @@
           <button class="table-view-button"> View </button>
         </a>
       </td>
-      <td data-header="Leaderboard">
-        <a href="/patient/leaderboard/{{data._id}}">
-          <button> leaderboard</button>
-        </a>
-      </td>
     </tr>
-    
+
   </table>
-  
+
 </section>

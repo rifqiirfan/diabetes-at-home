@@ -1,7 +1,61 @@
-<h1> View Last 15 Days History Data </h1>
-<div>
-  {{> bgl dates=dates datas=datas}}
-  {{> weight dates=dates datas=datas}}
-  {{> doit dates=dates datas=datas}}
-  {{> exercise dates=dates datas=datas}}
-</div>
+<nav class="main-menu">
+  <ul>
+    <li>
+      <a href="/patient">
+        <i class="fa fa-solid fa-house"></i>
+        <span class="nav-text">
+          Dashboard
+        </span>
+      </a>
+
+    </li>
+
+    <li>
+      <a href="/patient/updatePwd">
+        <i class="fa fa-solid fa-key"></i>
+        <span class="nav-text">
+          Change Password
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/patient/leaderboard">
+        <i class="fa fa-solid fa-trophy"></i>
+        <span class="nav-text">
+          Leaderboard
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#">
+        <i class="fa fa-solid fa-life-ring"></i>
+        <span class="nav-text">
+          Support
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="logout">
+    <li>
+      <a href="/patient/logout">
+        <i class="fa fa-power-off"></i>
+        <span class="nav-text">
+          Logout
+        </span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<section class="view-data">
+  <h1> View Last 15 Days History Data </h1>
+  <div>
+    {{> bgl dates=dates datas=datas}}
+    {{> weight dates=dates datas=datas}}
+    {{> doit dates=dates datas=datas}}
+    {{> exercise dates=dates datas=datas}}
+  </div>
+</section>

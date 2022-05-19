@@ -1,8 +1,61 @@
+<nav class="main-menu">
+  <ul>
+    <li>
+      <a href="/patient">
+        <i class="fa fa-solid fa-house"></i>
+        <span class="nav-text">
+          Dashboard
+        </span>
+      </a>
+
+    </li>
+
+    <li>
+      <a href="/patient/updatePwd">
+        <i class="fa fa-solid fa-key"></i>
+        <span class="nav-text">
+          Change Password
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/patient/leaderboard">
+        <i class="fa fa-solid fa-trophy"></i>
+        <span class="nav-text">
+          Leaderboard
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#">
+        <i class="fa fa-solid fa-life-ring"></i>
+        <span class="nav-text">
+          Support
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <ul class="logout">
+    <li>
+      <a href="/patient/logout">
+        <i class="fa fa-power-off"></i>
+        <span class="nav-text">
+          Logout
+        </span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
 <section class="patient-entry">
     <div class="breadcrumbs-navigation">
-        <p><a href="/patient">Home</a> > Entry</p>
+        <p><a href="/patient">Home</a> > Patient Entry</p>
     </div>
-    <h1 class="title">Entry</h1>
+    <h1 class="title">Patient Entry</h1>
+    
     <table class="patient-entry-form">
         <tr>
             <th> Attribute </th>
@@ -46,6 +99,7 @@
 
         {{/each}}
     </table>
+
     <a href="/patient">
         <button class="back-button"> Back </button>
     </a>
