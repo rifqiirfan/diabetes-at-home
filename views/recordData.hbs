@@ -19,16 +19,16 @@
       <th> Comment </th>
     </tr>
     {{#each records.data}}
-    {{# if success}}
+    {{#if success}}
 <section class="success">
   <h2>Inputs are validated.</h2>
 </section>
 
 {{else}}
-{{# if errors}}
+{{#if errors}}
 <section class="errors">
 <ul>
-  {{# each errors}}
+  {{#each errors}}
   <li>{{this.msg}}</li>
   {{/each}}
 </ul>
