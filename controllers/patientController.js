@@ -73,7 +73,7 @@ function formatDate(date) {
     return [month, day, year].join('/')
 }
 
-const getAllPatientData = async (req, res, next) => {
+const getAllPatientData = async(req, res, next) => {
     try {
 
         const allPatients = await allPatientData.findById(req.user._id).lean()
@@ -85,7 +85,7 @@ const getAllPatientData = async (req, res, next) => {
 }
 
 // get info for one patient
-const getPatientDataById = async (req, res, next) => {
+const getPatientDataById = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
 
@@ -99,13 +99,13 @@ const getPatientDataById = async (req, res, next) => {
 }
 
 // add an object to the database
-const updateRecord = async (req, res) => {
+const updateRecord = async(req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.patient_id)
         const recordId = await findRecord(patientId)
         const record = await patientRecords.findById(recordId)
-        // const record = await Record.findOne({ _id :recordId });
+            // const record = await Record.findOne({ _id :recordId });
 
         const data = record.data[req.body.key]
         data.value = req.body.value
@@ -137,7 +137,7 @@ const updateRecord = async (req, res) => {
 }
 
 // entry data page
-const entryPatientData = async (req, res, next) => {
+const entryPatientData = async(req, res, next) => {
     try {
         const data = await patientRecords.findOne({
             patientID: req.params.patient_id,
@@ -149,7 +149,7 @@ const entryPatientData = async (req, res, next) => {
                 recordDate: formatDate(new Date()),
             })
             new_rec.save()
-            // res.render('entry.hbs', {record :  rec});
+                // res.render('entry.hbs', {record :  rec});
             const path = "/patient/entry/" + req.params.patient_id
             res.redirect(path)
         } else {
@@ -164,7 +164,7 @@ const entryPatientData = async (req, res, next) => {
 }
 
 // view history data page
-const viewPatientData = async (req, res, next) => {
+const viewPatientData = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const data = await allPatientData.findById(req.params.patient_id).lean()
@@ -175,9 +175,9 @@ const viewPatientData = async (req, res, next) => {
 
         // initialize an empty array to store record data
         const all_rec = []
-        // loop through the recordID array in patient schema
-        // use the recordID to retrieve record data from record schema
-        // store the record data in all_rec[]
+            // loop through the recordID array in patient schema
+            // use the recordID to retrieve record data from record schema
+            // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
             const one_rec = await patientRecords
                 .findById(data.records[i].recordID)
@@ -198,15 +198,15 @@ const renderChangePwd = (req, res) => {
     res.render("changePwd.hbs");
 };
 
-const updatePwd = async (req, res) => {
+const updatePwd = async(req, res) => {
     try {
         console.log("-- req form to update password -- ", req.body);
         const patient = await allPatientData.findById(req.user._id);
         if (req.body.newPwd.length < 8) {
             return res.render("changePwd", {
-              message: "Password is less than 8 characters",
+                message: "Password is less than 8 characters",
             });
-          }
+        }
         if (!(req.body.newPwd == req.body.confirm)) {
             return res.render("changePwd", {
                 message: "Please enter the new Password again!",
@@ -248,7 +248,7 @@ async function calEngageRate(patient) {
     console.log("find data:", patient.firstName, patient.eRate);
 }
 
-const showLeaderboard = async (req, res) => {
+const showLeaderboard = async(req, res) => {
     const patients = await allPatientData.find({}, {});
     for (patient of patients) {
         await calEngageRate(patient);
@@ -284,11 +284,11 @@ function getDateList(timespan) {
     return dateList;
 }
 
-const viewData = async (req, res) => {
+const viewData = async(req, res) => {
     try {
         const records = await patientRecords.find({ patientID: req.user._id });
         const dateList = getDateList(15);
-        
+
         const dataList = { bgl: [], weight: [], doit: [], exercise: [] };
         for (date of dateList) {
             // find is javscript Array.prototype function
@@ -306,7 +306,7 @@ const viewData = async (req, res) => {
                 }
             }
         }
-        
+
         res.render("viewData.hbs", {
 
             dates: JSON.stringify(dateList),

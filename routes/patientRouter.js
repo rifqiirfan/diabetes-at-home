@@ -15,30 +15,30 @@ patientRouter.get('/entry/:patient_id', utility.isLoggedIn, patientController.en
 // view history data
 patientRouter.get("/viewData", utility.isLoggedIn, patientController.viewData);
 // patientRouter.get('/view/:patient_id', utility.isLoggedIn, patientController.viewPatientData)
-patientRouter.get('/leaderboard/:patient_id', utility.isLoggedIn,  patientController.showLeaderboard)
+patientRouter.get('/leaderboard', utility.isLoggedIn, patientController.showLeaderboard)
 
 // change password part
 patientRouter.get(
-  "/updatePwd",
-  utility.isLoggedIn,
-  patientController.renderChangePwd
+    "/updatePwd",
+    utility.isLoggedIn,
+    patientController.renderChangePwd
 );
 patientRouter.post(
-  "/updatePwd",
-  utility.isLoggedIn,
-  patientController.updatePwd
+    "/updatePwd",
+    utility.isLoggedIn,
+    patientController.updatePwd
 );
 
 //login
 patientRouter.get("/login", utility.unLoggedIn, patientController.renderLogin);
 patientRouter.post(
-  "/login",
-  utility.unLoggedIn,
-  passport.authenticate("patient-login", {
-    successRedirect: "/patient",
-    failureRedirect: "/patient/login",
-    failureflash: true,
-  })
+    "/login",
+    utility.unLoggedIn,
+    passport.authenticate("patient-login", {
+        successRedirect: "/patient",
+        failureRedirect: "/patient/login",
+        failureflash: true,
+    })
 );
 patientRouter.post("/logout", utility.isLoggedIn, patientController.logout);
 
