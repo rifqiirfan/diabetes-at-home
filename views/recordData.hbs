@@ -5,7 +5,7 @@
     {{patient.lastName}}'s Safety Threshold in
     {{records.recordDate}}
   </h1>
-  <table class="safety-threshold-table">
+  < class="safety-threshold-table">
 
     <tr>
       <th> Availbility</th>
@@ -19,6 +19,22 @@
       <th> Comment </th>
     </tr>
     {{#each records.data}}
+    {{# if success}}
+<section class="success">
+  <h2>Inputs are validated.</h2>
+</section>
+
+{{else}}
+{{# if errors}}
+<section class="errors">
+<ul>
+  {{# each errors}}
+  <li>{{this.msg}}</li>
+  {{/each}}
+</ul>
+</section>
+{{/if}}
+
       <form action="/submit" method="POST">
         <tr>
           <input type="hidden" name="key" value="{{@key}}" />
@@ -75,4 +91,13 @@
   <a href="/clinician">
     <button class="back-button"> Back </button>
   </a>
+
+  <a href="/viewClinicianNotes">
+    <button class="button"> View ClinicianNotes </button>
+  </a>
+
+  <a href="/enterClinicianNotes">
+    <button class="button"> Enter ClinicianNotes </button>
+  </a>
+
 </section>

@@ -35,10 +35,11 @@ clinicRouter.post(
 clinicRouter.get("/", function (req, res, next) {
   res.render("index", {
     title: "Form Validation",
-    success: false,
-    error: re.session.errors,
+    success: req.session.success,
+    error: req.session.errors,
   });
   req.session.errors = null;
+  req.session.success = null;
 });
 
 clinicRouter.post("/submit", function (req, res, next) {
@@ -48,6 +49,9 @@ clinicRouter.post("/submit", function (req, res, next) {
   var errors = req.validationErrors();
   if (errors) {
     req.session.errors = error.errors;
+    req.session.success = false;
+  } else {
+    req.session.success = true;
   }
   res.redirect("/clinician");
 });
