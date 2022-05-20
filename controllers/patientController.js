@@ -251,7 +251,7 @@ async function calEngageRate(patient) {
     Eday = patient.records.length;
     patient.eRate = (Eday / totalDays).toFixed(3);
     await patient.save();
-    console.log("find data:", patient.firstName, patient.eRate);
+    // console.log("find data:", patient.firstName, patient.eRate);
 }
 
 const showLeaderboard = async(req, res) => {
@@ -280,7 +280,7 @@ const logout = (req, res) => {
 };
 
 
-function getDateList(timespan) {
+function DateList(timespan) {
     const oneDay = 86400000;
     const today = Date.now();
     const dateList = [];
@@ -290,10 +290,10 @@ function getDateList(timespan) {
     return dateList;
 }
 
-const viewData = async(req, res) => {
+const dataChart = async(req, res) => {
     try {
         const records = await patientRecords.find({ patientID: req.user._id });
-        const dateList = getDateList(15);
+        const dateList = DateList(15);
 
         const dataList = { bgl: [], weight: [], doit: [], exercise: [] };
         for (date of dateList) {
@@ -331,7 +331,7 @@ module.exports = {
     entryPatientData,
     viewPatientData,
     renderChangePwd,
-    viewData,
+    viewData: dataChart,
     updatePwd,
     showLeaderboard,
     renderLogin,
