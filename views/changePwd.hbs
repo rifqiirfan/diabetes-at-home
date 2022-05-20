@@ -44,11 +44,11 @@
 </nav>
 
 <section class="change-password">
-  <h1> Change Password </h1>
+  <h1 class="title"> Change Password </h1>
   {{#if message}} <p> {{message}} </p> {{/if}}
   <form id="pwdForm" action="/patient/updatePwd" method="POST">
     <div>
-      <label> Current Password: </label>
+      <label class="form-label"> Current Password: </label>
       <input
         type="password"
         name="oldPwd"
@@ -58,7 +58,7 @@
     </div>
     <br />
     <div>
-      <label> New Password: </label>
+      <label class="form-label"> New Password: </label>
       <input
         type="password"
         name="newPwd"
@@ -68,7 +68,7 @@
     </div>
     <br />
     <div>
-      <label> Confirm Password: </label>
+      <label class="form-label"> Confirm Password: </label>
       <input
         type="password"
         name="confirm"
