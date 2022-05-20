@@ -340,6 +340,10 @@ header {
     margin: 10%;
 }
 
+.home-word {
+    font-size: 30px;
+}
+
 .home-clinician button,
 .home-patient button {
     background-color: var(--bt-blue);
