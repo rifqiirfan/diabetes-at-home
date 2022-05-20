@@ -1,7 +1,6 @@
 /* Import Google Font (IBM Plex Sans) */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-
 * {
     padding: 0;
     margin: 0;
@@ -38,27 +37,22 @@ body {
     --header-text-hover: var(--blue);
     --footer: var(--ivory);
     --footer-text: var(--dark-green);
-
     --bt-red: var(--red);
     --bt-blue: var(--blue);
     --bt-gold: var(--gold);
     --bt-green: var(--green);
     --bt-text: var(--white);
-
     --bt-hover: var(--white);
     --bt-red-hover-text: var(--red);
     --bt-blue-hover-text: var(--blue);
     --bt-gold-hover-text: var(--gold);
     --bt-green-hover-text: var(--green);
-
     --pg-title: var(--blue);
     --pg-title-text: var(--white);
     --pg-title-hover: var(--orange);
-
     --nav-menu: var(--ivory);
     --bar-color: var(--black);
     --home-nav: var(--black);
-
     /* Attributes */
     --heading-title: 2em;
     --additional-title-1: 1.5em;
@@ -82,11 +76,11 @@ body {
     --header-text-hover: var(--brown);
     --footer: var(--dark-blue);
     --footer-text: var(--white);
-
     --nav-menu: var(--dark-blue);
     --bar-color: var(--white);
     --home-nav: var(--white);
 }
+
 
 /* Header */
 
@@ -106,6 +100,7 @@ header {
     margin-right: auto;
 }
 
+
 /* Change Theme */
 
 .color-theme {
@@ -115,6 +110,7 @@ header {
 #theme-select {
     font-size: 1em;
 }
+
 
 /* Footer */
 
@@ -133,6 +129,7 @@ header {
 .footer img {
     width: 50px;
 }
+
 
 /* Navigation Bar */
 
@@ -274,6 +271,7 @@ header {
     color: var(--bt-xlue-hover-text);
 }
 
+
 /* What is Diabetes */
 
 .page-title {
@@ -366,6 +364,7 @@ header {
     color: var(--blue);
 }
 
+
 /* Login Page */
 
 .login-page {
@@ -387,7 +386,9 @@ header {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+
 /* Patient Homepage */
+
 .fa {
     position: relative;
     display: table-cell;
@@ -396,39 +397,41 @@ header {
     font-size: 1.5em;
 }
 
-
-.sidebar-menu:hover, .sidebar-menu-clinician:hover {
+.sidebar-menu:hover,
+.sidebar-menu-clinician:hover {
     width: 250px;
     overflow: visible;
 }
 
-.sidebar-menu, .sidebar-menu-clinician {
+.sidebar-menu,
+.sidebar-menu-clinician {
     position: absolute;
     top: 120px;
     left: 0;
     bottom: 96px;
     width: 75px;
-
     overflow: hidden;
     background-color: var(--blue);
-
     -webkit-transition: width .05s linear;
     transition: width .05s linear;
     z-index: 1;
 }
 
-.sidebar-menu>ul, .sidebar-menu-clinician>ul  {
+.sidebar-menu>ul,
+.sidebar-menu-clinician>ul {
     margin: 10px 0;
 }
 
-.sidebar-menu li, .sidebar-menu-clinician li {
+.sidebar-menu li,
+.sidebar-menu-clinician li {
     position: relative;
     display: block;
     width: 250px;
     padding: 11px;
 }
 
-.sidebar-menu li>a, .sidebar-menu-clinician li>a {
+.sidebar-menu li>a,
+.sidebar-menu-clinician li>a {
     position: relative;
     display: table;
     border-collapse: collapse;
@@ -536,6 +539,19 @@ td {
 
 /* Patient Homepage */
 
+.badge {
+    float: left;
+    width: 20%;
+}
+
+.message {
+    float: right;
+    width: 80%;
+    border: 1px solid blue;
+    background-color: lightblue;
+    padding: 10px;
+}
+
 .patient-information {
     padding: var(--sec-padding);
 }
@@ -562,6 +578,7 @@ td {
 .patient-information input {
     padding: 10px;
 }
+
 
 /* Patient Entry */
 
@@ -651,7 +668,9 @@ td {
     background-color: var(--ivory);
 }
 
+
 /* View Patient Data */
+
 .view-data {
     padding: var(--sec-padding);
 }
@@ -731,17 +750,20 @@ td {
     color: var(--bt-green-hover-text);
 }
 
+
 /* Change Password */
 
 .change-password {
     padding: var(--sec-padding);
 }
 
+
 /* New Patient */
 
 .new-patient {
     padding: var(--sec-padding);
 }
+
 
 /* Responsive Navigation Menu */
 
@@ -757,29 +779,23 @@ td {
         text-align: center;
         transition: 0.3s;
     }
-
     .nav-menu.active {
         left: 0;
     }
-
     .nav-item {
         margin: 2rem 0;
     }
-
     .hamburger {
         display: block;
         cursor: pointer;
     }
-
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
     }
-
     .hamburger.active .bar:nth-child(1) {
         -webkit-transform: translateY(8px) rotate(45deg);
         transform: translateY(8px) rotate(45deg);
     }
-
     .hamburger.active .bar:nth-child(3) {
         -webkit-transform: translateY(-8px) rotate(-45deg);
         transform: translateY(-8px) rotate(-45deg);
@@ -787,70 +803,56 @@ td {
 }
 
 @media screen and (max-width: 600px) {
-
     /* Index Homepage */
     .home-image img {
         height: 100%;
         width: 50vw;
     }
-
     .home-navigation {
         position: initial;
-        
     }
-
     /* Patient Homepage */
     .patient-homepage-table {
         width: 100%;
     }
-
     .patient-homepage-table th {
         display: none;
     }
-
     .patient-homepage-table th[scope="row"] {
         vertical-align: middle;
     }
-
     .patient-homepage-table td {
         display: block;
         width: auto;
         text-align: right;
         border-right: 1px solid #e1edff;
     }
-
     .patient-homepage-table td::before {
         float: left;
         font-size: var(--input-text);
         font-weight: bold;
         content: attr(data-header);
     }
-
     .patient-homepage-table thead th::before {
         text-transform: uppercase;
         font-weight: bold;
         content: attr(data-header);
     }
-
     .patient-homepage-table thead th:first-child span {
         display: none;
     }
-
     .patient-homepage-table td:first-child p {
         margin-left: 50%;
     }
-
     .table-information-button,
     .table-entry-button,
     .table-view-button {
         width: 50%;
     }
-
     /* Patient Entry */
     .form-input {
         width: 100%;
     }
-
     .patient-entry-form {
         margin: 10%;
     }

@@ -45,6 +45,17 @@
 
 <section class="patient-homepage">
   <h1 class="title">Patient Homepage</h1>
+
+  {{#checkBadge data.eRate}}
+  <span> 
+    <img class = "badge" src ='/media/badge.jpeg'/>
+    <h3 class="message">Congratulations on your participation of over 80%</h3>
+  </span>
+  {{else}}
+  <span>  </span> 
+  {{/checkBadge}}
+ 
+  
   <form id="logout" action="/patient/logout" method="POST"></form>
   <table class="patient-homepage-table">
     <tr>
