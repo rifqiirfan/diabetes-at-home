@@ -19,6 +19,10 @@ body {
     min-height: 100vh;
 }
 
+main {
+    padding-top: 120px;
+}
+
 :root,
 :root.light {
     /* Colours */
@@ -76,6 +80,7 @@ body {
     --input-padding: 10px;
     --input-text: 1em;
     --button-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    --margin-left-sec: 130px;
 }
 
 :root.dark {
@@ -116,6 +121,7 @@ body {
 
 header {
     display: flex;
+    position: fixed;
     height: 120px;
     width: 100%;
     background-color: var(--header);
@@ -123,6 +129,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
+    z-index: 1;
 }
 
 .header img {
@@ -427,11 +434,11 @@ header {
     font-size: 1.5em;
 }
 
-.sidebar-menu:hover,
+/*.sidebar-menu:hover,
 .sidebar-menu-clinician:hover {
     width: 250px;
     overflow: visible;
-}
+}*/
 
 .sidebar-menu,
 .sidebar-menu-clinician {
@@ -440,11 +447,9 @@ header {
     top: 120px;
     left: 0;
     bottom: 96px;
-    width: 75px;
-    overflow: hidden;
+    /* width: 75px; */
+    width: 250px;
     background-color: var(--blue);
-    -webkit-transition: width .05s linear;
-    transition: width .05s linear;
     z-index: 1;
 }
 
@@ -486,6 +491,7 @@ header {
 
 .patient-homepage {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 .patient-homepage-table {
@@ -586,6 +592,7 @@ td {
 
 .patient-information {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 .patient-information ul {
@@ -616,6 +623,7 @@ td {
 
 .patient-entry {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 .patient-entry-form {
@@ -662,6 +670,7 @@ td {
 
 .patient-history {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 .responsive-table {
@@ -705,11 +714,13 @@ td {
 
 .view-data {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 /* Leaderboard */
 .leaderboard {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 
@@ -718,10 +729,12 @@ td {
 
 .clinician-dashboard {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 .clinician-safety-threshold {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 .safety-threshold-table {
@@ -756,9 +769,9 @@ td {
 
 .patient-comment {
     width: 100%;
-    font-family: 'Helvetica';
     font-size: 1em;
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 .message-box {
@@ -793,6 +806,7 @@ td {
 
 .change-password {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 
@@ -800,6 +814,7 @@ td {
 
 .new-patient {
     padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
 }
 
 
