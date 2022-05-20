@@ -1032,7 +1032,20 @@ td {
 .clinician-note-table tr:hover {
     background-color: var(--ivory);
 }
+.clinician-note-form 
+{
+    font-size: 30px;
+}
+.clinician-note-form div {
+    margin: 30px;
+}
 
+.box
+{
+  height: 100px;
+  width: 80%;
+  font-size:14pt;
+}
 
 /* Change Password */
 
