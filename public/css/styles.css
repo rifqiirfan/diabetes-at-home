@@ -991,6 +991,49 @@ td {
 }
 
 
+/* clinician-note */
+
+.clinician-note {
+    padding: var(--sec-padding);
+}
+
+.responsive-table {
+    overflow-x: auto;
+}
+
+.clinician-note-table {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    overflow-x: scroll;
+}
+
+.clinician-note-table th {
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: var(--table-padding);
+}
+
+.clinician-note-table tr,
+td {
+    text-align: center;
+    padding: var(--table-padding);
+}
+
+.clinician-note-table td:nth-child(1) {
+    width: 20%;
+}
+
+.clinician-note-table tr:nth-child(odd) {
+    background-color: #e3e3e3;
+}
+
+.clinician-note-table tr:hover {
+    background-color: var(--ivory);
+}
+
+
 /* Change Password */
 
 .change-password {

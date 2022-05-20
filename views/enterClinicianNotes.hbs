@@ -1,103 +1,105 @@
-<nav class="sidebar-menu">
-  <ul>
-    <li>
-      <a href="/clinician">
-        <i class="fa fa-solid fa-house"></i>
-        <span class="nav-text">
-          Dashboard
-        </span>
-      </a>
+<section class="clinician-note">
+  <nav class="sidebar-menu">
+    <ul>
+      <li>
+        <a href="/clinician">
+          <i class="fa fa-solid fa-house"></i>
+          <span class="nav-text">
+            Dashboard
+          </span>
+        </a>
 
-    </li>
+      </li>
 
-    <li>
-      <a href="/clinician/updatePwd">
-        <i class="fa fa-solid fa-key"></i>
-        <span class="nav-text">
-          Change Password
-        </span>
-      </a>
-    </li>
+      <li>
+        <a href="/clinician/updatePwd">
+          <i class="fa fa-solid fa-key"></i>
+          <span class="nav-text">
+            Change Password
+          </span>
+        </a>
+      </li>
 
-    <li>
-      <a href="/clinician/new_patient">
-        <i class="fa fa-solid fa-circle-plus"></i>
-        <span class="nav-text">
-          Create New Patient
-        </span>
-      </a>
-    </li>
+      <li>
+        <a href="/clinician/new_patient">
+          <i class="fa fa-solid fa-circle-plus"></i>
+          <span class="nav-text">
+            Create New Patient
+          </span>
+        </a>
+      </li>
 
-    <li>
-      <a href="/clinician/view">
-        <i class="fa fa-solid fa-comment"></i>
-        <span class="nav-text">
-          Comment
-        </span>
-      </a>
-    </li>
-  </ul>
+      <li>
+        <a href="/clinician/view">
+          <i class="fa fa-solid fa-comment"></i>
+          <span class="nav-text">
+            Comment
+          </span>
+        </a>
+      </li>
+    </ul>
 
-  <form id="logout" action="/clinician/logout" method="POST">
-  <ul class="logout">
-    <li>
-      <a onclick="document.getElementById('logout').submit()">
-        <i class="fa fa-power-off"></i>
-        <span class="nav-text">
-        Logout
-        </span>
-      </a>
-    </li>
-  </ul>
+    <form id="logout" action="/clinician/logout" method="POST">
+    <ul class="logout">
+      <li>
+        <a onclick="document.getElementById('logout').submit()">
+          <i class="fa fa-power-off"></i>
+          <span class="nav-text">
+          Logout
+          </span>
+        </a>
+      </li>
+    </ul>
+    </form>
+  </nav>
+
+  <table class="clinician-note-table">
+    <tr>
+      <th> Patient Name</th>
+      <th> Gender </th>
+      <th> Age </th>
+    </tr>
+
+    <tr>
+      {{#with patientInfo}}
+        <td>{{this.firstName}} {{this.lastName}}</td>
+        <td>{{this.gender}}</td>
+        <td>{{this.age}}</td>
+      {{/with}}
+    </tr>
+  </table>
+
+  <form action="" method="POST">
+    <div>
+      <label> Subjective Data: </label>
+      <input type="string" length="120" name="subjectiveData" required /><br />
+    </div>
+    <div>
+      <label> Objective Data: </label>
+      <input type="string" length="120" name="objectiveData" required /><br />
+    </div>
+    <div>
+      <label> Assessment Data: </label>
+      <input type="string" length="120" name="assessmentData" required /><br />
+    </div>
+    <div>
+      <label> Plan: </label>
+      <input type="string" length="120" name="plan" required /><br />
+    </div>
+    <div>
+      <label> Additional Notes: </label>
+      <input type="string" length="120" name="additionalNotes" required /><br />
+    </div>
+    <div>
+      <label> Clinician signature: </label>
+      <input type="string" name="signature" required /><br />
+    </div>
+    <div>
+      <label> Notes Date: </label>
+      <input type="text" name="date" required /><br />
+    </div>
+
+    <button type="submit" class="submit-button">Submit</button>
   </form>
-</nav>
-
-<table class="Patient-general-form">
-  <tr>
-    <th> Patient Name</th>
-    <th> Gender </th>
-    <th> Age </th>
-  </tr>
-
-  <tr>
-    {{#with patientInfo}}
-      <td>{{this.firstName}} {{this.lastName}}</td>
-      <td>{{this.gender}}</td>
-      <td>{{this.age}}</td>
-    {{/with}}
-  </tr>
-</table>
-
-<form action="" method="POST">
-  <div>
-    <label> Subjective Data: </label>
-    <input type="string" length="120" name="subjectiveData" required /><br />
-  </div>
-  <div>
-    <label> Objective Data: </label>
-    <input type="string" length="120" name="objectiveData" required /><br />
-  </div>
-  <div>
-    <label> Assessment Data: </label>
-    <input type="string" length="120" name="assessmentData" required /><br />
-  </div>
-  <div>
-    <label> Plan: </label>
-    <input type="string" length="120" name="plan" required /><br />
-  </div>
-  <div>
-    <label> Additional Notes: </label>
-    <input type="string" length="120" name="additionalNotes" required /><br />
-  </div>
-  <div>
-    <label> Clinician signature: </label>
-    <input type="string" name="signature" required /><br />
-  </div>
-  <div>
-    <label> Notes Date: </label>
-    <input type="text" name="date" required /><br />
-  </div>
-
-  <button type="submit" class="submit-button">Submit</button>
-</form>
-<br />
+  <br />
+</section>
