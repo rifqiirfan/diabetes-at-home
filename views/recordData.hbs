@@ -85,12 +85,12 @@
         <td> {{this.thresholdStatus}} </td>
         <td> {{this.value}} </td>
         {{#ifUnrecorded this.thresholdStatus}}
-        <td><input type="number" min="0" max="9999" name="minvalue" placeholder="Enter min value here" required /></td>
+        <td><input type="number" min="0" max="9999" name="minvalue" step="0.01" placeholder="Enter min value here" required /></td>
         {{else}}
         <td>{{this.minValue}}</td>
         {{/ifUnrecorded}}
         {{#ifUnrecorded this.thresholdStatus}}
-        <td><input type="number" min="0" max="9999" name="maxvalue" placeholder="Enter max value here" required /></td>
+        <td><input type="number" min="0" max="9999" name="maxvalue" step="0.01" placeholder="Enter max value here" required /></td>
         {{else}}
         <td>{{this.maxValue}}</td>
         {{/ifUnrecorded}}
