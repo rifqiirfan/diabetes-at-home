@@ -41,11 +41,12 @@
   </ul>
 </nav>
 
-<section class="leaderboard">
-  <h1 class="title"> Leaderboard </h1>
-  <ul>
+<div class="leaderboard" >
+  <h1 class="head"> Most Active User </h1>
+  <ul class="body">
     {{#each pats}}
-    <li> {{this.screenName}}: {{this.eRate}} </li>
+    <li> {{this.screenName}} </li>
     {{/each}}
   </ul>
-</section>
+
+</div>

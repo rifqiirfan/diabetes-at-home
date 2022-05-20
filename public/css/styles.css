@@ -34,11 +34,9 @@ main {
     --blue: #1346bf;
     --green: #13823a;
     --gold: #d16f06;
-
     /* Elements */
     background-color: var(--white);
     color: var(--black);
-    
     --bg: var(--white);
     --header: var(--ivory);
     --header-text: var(--dark-green);
@@ -61,14 +59,11 @@ main {
     --nav-menu: var(--ivory);
     --bar-color: var(--black);
     --home-nav: var(--black);
-
     --text-hover: var(--red);
     --heading-color: var(--black);
-
     --table-heading: var(--dark-green);
     --table-heading-text: var(--white);
     --table-row: var(--bg);
-
     /* Attributes */
     --heading-title: 2em;
     --additional-title-1: 1.5em;
@@ -88,29 +83,23 @@ main {
     --dark-purple: #18193b;
     --yellow: #f8e00e;
     --brown: #b48f68;
-
     /* Elements */
     background-color: var(--dark-purple);
     color: var(--white);
-
     --bg: var(--dark-purple);
     --header: var(--purple);
     --header-text: var(--ivory);
     --header-text-hover: var(--brown);
     --footer: var(--purple);
     --footer-text: var(--white);
-
     --pg-title: var(--yellow);
     --pg-title-text: var(--black);
     --pg-title-hover: var(--purple);
-
     --nav-menu: var(--purple);
     --bar-color: var(--white);
     --home-nav: var(--white);
-
     --text-hover: var(--brown);
     --heading-color: var(--white);
-
     --table-heading: var(--brown);
     --table-heading-text: var(--dark-purple);
     --table-row: var(--bg);
@@ -406,6 +395,10 @@ header {
 .login-page {
     background-color: var(--bg);
     color: var(--black);
+    position: relative;
+    z-index: 1;
+    padding: 45px;
+    text-align: center;
 }
 
 .logo-login-page img {
@@ -423,6 +416,27 @@ header {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.loginForm {
+    position: relative;
+    z-index: 1;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.loginForm input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    width: 100%;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
 
 /* Patient Homepage */
 
@@ -434,11 +448,67 @@ header {
     font-size: 1.5em;
 }
 
-/*.sidebar-menu:hover,
-.sidebar-menu-clinician:hover {
-    width: 250px;
-    overflow: visible;
-}*/
+
+/* Leaderboard */
+
+.leadboard {
+    padding: var(--sec-padding);
+    margin-left: var(--margin-left-sec);
+    text-align: center;
+    width: 60%;
+}
+
+
+/* board head */
+
+.leaderboard .head {
+    padding: 20px 16px;
+    color: #1346bf;
+    font-size: 20px;
+    text-align: center;
+}
+
+.leaderboard .head h1 {
+    display: inline-block;
+    margin-left: 4px;
+}
+
+
+/* board body */
+
+.leaderboard .body {
+    color: snow;
+    font-size: 16px;
+}
+
+.leaderboard ol {
+    counter-reset: number;
+}
+
+.leaderboard li {
+    padding: 16px;
+    display: flex;
+}
+
+.leaderboard li:nth-child(1) {
+    background: #1347bf90;
+}
+
+.learderboard li:nth-child(2) {
+    background: #1347bf9d;
+}
+
+.leaderboard li:nth-child(3) {
+    background: #1347bfc0;
+}
+
+.leaderboard li:nth-child(4) {
+    background: #1347bfe9;
+}
+
+.leaderboard li:nth-child(5) {
+    background: #1346bf;
+}
 
 .sidebar-menu,
 .sidebar-menu-clinician {
@@ -717,10 +787,66 @@ td {
     margin-left: var(--margin-left-sec);
 }
 
-/* Leaderboard */
+
+/* board */
+
 .leaderboard {
     padding: var(--sec-padding);
     margin-left: var(--margin-left-sec);
+    text-align: center;
+    width: 60%;
+}
+
+
+/* board head */
+
+.leaderboard .head {
+    padding: 20px 16px;
+    color: #1346bf;
+    font-size: 20px;
+    text-align: center;
+}
+
+.leaderboard .head h1 {
+    display: inline-block;
+    margin-left: 4px;
+}
+
+
+/* board body */
+
+.leaderboard .body {
+    color: snow;
+    font-size: 16px;
+}
+
+.leaderboard ol {
+    counter-reset: number;
+}
+
+.leaderboard li {
+    padding: 16px;
+    display: flex;
+}
+
+.leaderboard li:nth-child(1) {
+    background: #1347bf90;
+}
+
+.leaderboard li:nth-child(2) {
+    background: #1347bfa8;
+}
+
+.leaderboard li:nth-child(3) {
+    background: #1347bfc0;
+}
+
+.leaderboard li:nth-child(4) {
+    background: #1347bfe9;
+}
+
+.leaderboard li:nth-child(5) {
+    background: #1346bf;
 }
 
 
@@ -818,48 +944,40 @@ td {
 }
 
 
-
 /* View  current comments */
 
-.CurComment
-{
+.CurComment {
     padding: var(--sec-padding);
     width: 100%;
     margin-left: auto;
-    margin-right:auto;
-    border-collapse:collapse;
+    margin-right: auto;
+    border-collapse: collapse;
     overflow-x: hidden;
 }
 
-.CurComment th
-{
+.CurComment th {
     background-color: var(--dark-green);
     color: var(--white);
     padding: var(--table-padding);
 }
-.CurComment tr, td
-{
+
+.CurComment tr,
+td {
     text-align: center;
     padding: var(--table-padding);
 }
 
-.CurComment td:nth-child(1)
-{
+.CurComment td:nth-child(1) {
     width: 20%;
 }
 
-.CurComment tr:nth-child(odd)
-{
+.CurComment tr:nth-child(odd) {
     background-color: #e3e3e3;
 }
-.CurComment tr:hover
-{
+
+.CurComment tr:hover {
     background-color: var(--ivory);
 }
-
-
-
-
 
 
 /* Responsive Navigation Menu */
@@ -897,7 +1015,6 @@ td {
         -webkit-transform: translateY(-8px) rotate(-45deg);
         transform: translateY(-8px) rotate(-45deg);
     }
-
     .sidebar-menu {
         position: absolute;
         flex-direction: column;

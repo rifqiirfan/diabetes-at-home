@@ -106,8 +106,9 @@
 
   </table>
   <!-- supporting message -->
+  <h2>Current supporting message: {{patient.supportMessage}}</h2>
   <form action="/clinician/{{patient._id}}/message" method="POST">
-    <h3> Supporting message</h3>
+    <p> Change supporting message</p>
     <input class="message-box" type="text" name="message" />
     <button type="submit" class="submit-button">OK</button>
   </form>
