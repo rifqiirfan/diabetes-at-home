@@ -21,6 +21,8 @@ body {
 
 main {
     padding-top: 120px;
+    padding-bottom: 60px;
+
 }
 
 :root,
@@ -118,7 +120,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px 10%;
-    z-index: 1;
+    z-index: 2;
 }
 
 .header img {
@@ -145,11 +147,13 @@ header {
     justify-content: space-between;
     align-items: center;
     bottom: 0;
-    position: sticky;
-    top: 100vh;
-    padding: 20px 10%;
+    position: fixed;
+    width: 100%;
+    /* top: 50px; */
+    padding: 10px 10%;
     background-color: var(--footer);
     color: var(--footer-text);
+    z-index: 2;
 }
 
 .footer img {
@@ -510,18 +514,46 @@ header {
     background: #1346bf;
 }
 
+.sidebar-menu:hover,
+.sidebar-menu-clinician:hover {
+    width: 250px;
+    overflow: visible;
+}
+
 .sidebar-menu,
 .sidebar-menu-clinician {
-    position: absolute;
+    position: fixed;
     display: flex;
     top: 120px;
     left: 0;
-    bottom: 96px;
-    /* width: 75px; */
+    bottom: 80px;
+    width: 75px;
+    overflow: hidden;
+    background-color: var(--blue);
+    -webkit-transition: width .05s linear;
+    transition: width .05s linear;
+    z-index: 1;
+}
+
+
+/* .sidebar-menu:hover,
+.sidebar-menu-clinician:hover {
+    width: 250px;
+    overflow: visible;
+}
+
+.sidebar-menu,
+.sidebar-menu-clinician {
+    position: fixed;
+    display: flex;
+    top: 120px;
+    left: 0;
+    bottom: 80px;
+    width: 75px;
     width: 250px;
     background-color: var(--blue);
     z-index: 1;
-}
+} */
 
 .sidebar-menu>ul,
 .sidebar-menu-clinician>ul {
@@ -561,8 +593,7 @@ header {
 
 .patient-homepage {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 .patient-homepage-table {
     margin-left: auto;
@@ -662,8 +693,7 @@ td {
 
 .patient-information {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 .patient-information ul {
     list-style: none;
@@ -693,8 +723,7 @@ td {
 
 .patient-entry {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 .patient-entry-form {
     max-width: 800px;
@@ -740,8 +769,7 @@ td {
 
 .patient-history {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 .responsive-table {
     overflow-x: auto;
@@ -784,8 +812,7 @@ td {
 
 .view-data {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 
 /* board */
@@ -855,13 +882,11 @@ td {
 
 .clinician-dashboard {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 .clinician-safety-threshold {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 .safety-threshold-table {
     margin-left: auto;
@@ -897,8 +922,7 @@ td {
     width: 100%;
     font-size: 1em;
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 .message-box {
     width: 80%;
@@ -932,16 +956,14 @@ td {
 
 .change-password {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 
 /* New Patient */
 
 .new-patient {
     padding: var(--sec-padding);
-    margin-left: var(--margin-left-sec);
-}
+    }
 
 
 /* View  current comments */
