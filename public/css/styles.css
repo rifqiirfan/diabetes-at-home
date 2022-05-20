@@ -22,7 +22,6 @@ body {
 main {
     padding-top: 120px;
     padding-bottom: 60px;
-
 }
 
 :root,
@@ -263,25 +262,27 @@ header {
     text-align: center;
 }
 
-.about > h2 {
+.about>h2 {
     font-size: 2em;
     color: var(--blue);
 }
 
-.about > p {
+.about>p {
     color: var(--black);
     line-height: 2;
     font-size: 1.075em;
 }
 
+
 /* --- Dev Team Section --- */
+
 .dev-team {
     height: 20em;
     width: 100%;
     background-color: var(--blue);
 }
 
-.dev-team > h2 {
+.dev-team>h2 {
     font-size: 2em;
     color: var(--white);
     text-align: center;
@@ -343,7 +344,7 @@ header {
 .home-patient button {
     background-color: var(--bt-blue);
     color: var(--bt-text);
-    padding: 10px;
+    padding: 30px;
     width: 100%;
     border: 3px solid var(--blue);
     font-size: 1.125em;
@@ -594,8 +595,6 @@ header {
     z-index: 1;
 }
 
-
-
 .sidebar-menu>ul,
 .sidebar-menu-clinician>ul {
     margin: 10px 0;
@@ -634,7 +633,7 @@ header {
 
 .patient-homepage {
     padding: var(--sec-padding);
-    }
+}
 
 .patient-homepage-table {
     margin-left: auto;
@@ -734,7 +733,7 @@ td {
 
 .patient-information {
     padding: var(--sec-padding);
-    }
+}
 
 .patient-information ul {
     list-style: none;
@@ -764,7 +763,6 @@ td {
 
 .patient-entry {
     padding: var(--sec-padding);
-    
 }
 
 .patient-entry-form {
@@ -790,8 +788,6 @@ td {
     box-shadow: var(--button-box-shadow);
 }
 
-
-
 .form-entry {
     margin-left: auto;
     margin-right: auto;
@@ -808,7 +804,7 @@ td {
 
 .patient-history {
     padding: var(--sec-padding);
-    }
+}
 
 .responsive-table {
     overflow-x: auto;
@@ -851,7 +847,7 @@ td {
 
 .view-data {
     padding: var(--sec-padding);
-    }
+}
 
 
 /* board */
@@ -921,11 +917,11 @@ td {
 
 .clinician-dashboard {
     padding: var(--sec-padding);
-    }
+}
 
 .clinician-safety-threshold {
     padding: var(--sec-padding);
-    }
+}
 
 .safety-threshold-table {
     margin-left: auto;
@@ -961,7 +957,7 @@ td {
     width: 100%;
     font-size: 1em;
     padding: var(--sec-padding);
-    }
+}
 
 .message-box {
     width: 80%;
@@ -995,14 +991,14 @@ td {
 
 .change-password {
     padding: var(--sec-padding);
-    }
+}
 
 
 /* New Patient */
 
 .new-patient {
     padding: var(--sec-padding);
-    }
+}
 
 
 /* View  current comments */
