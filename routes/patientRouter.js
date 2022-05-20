@@ -47,6 +47,7 @@ patientRouter.get('/:patient_id', utility.isLoggedIn, patientController.getPatie
 
 // add a new JSON object to the database
 patientRouter.post('/entry/:patient_id', utility.isLoggedIn, patientController.updateRecord)
+patientRouter.post('/:patient_id', utility.isLoggedIn, patientController.updateTextBio)
 
 
 // export the router

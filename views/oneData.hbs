@@ -49,6 +49,8 @@
   {{#with onePatient}}
   <ul>
     <h1>{{this.firstName}} {{this.lastName}}</h1><br>
+    <h3>My ID:</h3>
+    <li>{{this._id}} </li>
     <h3>My email:</h3>
     <li>{{this.email}}</li>
     <h3>My Screen Name:</h3>
@@ -57,6 +59,13 @@
     <li>{{this.textBio}} </li>
   </ul>
   {{/with}}
+
+  <form action="" method="POST">
+    <h3> Change your Text Bio:</h3></br>
+    <input type="text" name="new_tb" placeholder="Enter new Text Bio here." />
+    <button type="submit" class="submit-button">Update</button>
+  </form></br>
+
 
   <a href="/patient">
     <button class="back-button"> Back </button>

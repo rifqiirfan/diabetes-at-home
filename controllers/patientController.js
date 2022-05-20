@@ -45,10 +45,9 @@ async function findRecord(patientId) {
             recordDate: formatDate(new Date()),
         })
         if (!result) {
-            
+
             const newRecord = new patientRecords({
                 patientID: patientId,
-                
                 recordDate: formatDate(new Date()),
             })
 
@@ -75,7 +74,7 @@ function formatDate(date) {
     return [month, day, year].join('/')
 }
 
-const getAllPatientData = async(req, res, next) => {
+const getAllPatientData = async (req, res, next) => {
     try {
 
         const allPatients = await allPatientData.findById(req.user._id).lean()
@@ -87,7 +86,7 @@ const getAllPatientData = async(req, res, next) => {
 }
 
 // get info for one patient
-const getPatientDataById = async(req, res, next) => {
+const getPatientDataById = async (req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
 
@@ -100,14 +99,26 @@ const getPatientDataById = async(req, res, next) => {
     }
 }
 
+// reset the text bio
+const updateTextBio = async (req, res, next) => {
+    try {
+        const curr_pati = await allPatientData.findById(req.params.patient_id)
+        const { new_tb } = req.body
+        curr_pati.textBio = new_tb
+        await curr_pati.save()
+        res.redirect('back')
+    } catch (err) {
+        console.log('error happens in update text bio: ', err)
+    }
+}
+
 // add an object to the database
-const updateRecord = async(req, res) => {
+const updateRecord = async (req, res) => {
     console.log('-- req form to update record -- ', req.body)
     try {
         const patientId = await findPatient(req.params.patient_id)
         const recordId = await findRecord(patientId)
         const record = await patientRecords.findById(recordId)
-            // const record = await Record.findOne({ _id :recordId });
 
         const data = record.data[req.body.key]
         data.value = req.body.value
@@ -131,7 +142,6 @@ const updateRecord = async(req, res) => {
             patient.save()
         }
 
-
         res.redirect('back');
     } catch (err) {
         console.log('error happens in update record: ', err)
@@ -139,7 +149,7 @@ const updateRecord = async(req, res) => {
 }
 
 // entry data page
-const entryPatientData = async(req, res, next) => {
+const entryPatientData = async (req, res, next) => {
     try {
         const data = await patientRecords.findOne({
             patientID: req.params.patient_id,
@@ -148,14 +158,14 @@ const entryPatientData = async(req, res, next) => {
         if (!data) {
             const pat = await allPatientData.findById(req.params.patient_id).lean()
             const fullName = pat.firstName + pat.lastName
-            
+
             const new_rec = new patientRecords({
                 patientID: req.params.patient_id,
                 patientName: fullName,
                 recordDate: formatDate(new Date()),
             })
             new_rec.save()
-                // res.render('entry.hbs', {record :  rec});
+            // res.render('entry.hbs', {record :  rec});
             const path = "/patient/entry/" + req.params.patient_id
             res.redirect(path)
         } else {
@@ -170,7 +180,7 @@ const entryPatientData = async(req, res, next) => {
 }
 
 // view history data page
-const viewPatientData = async(req, res, next) => {
+const viewPatientData = async (req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
         const data = await allPatientData.findById(req.params.patient_id).lean()
@@ -181,9 +191,9 @@ const viewPatientData = async(req, res, next) => {
 
         // initialize an empty array to store record data
         const all_rec = []
-            // loop through the recordID array in patient schema
-            // use the recordID to retrieve record data from record schema
-            // store the record data in all_rec[]
+        // loop through the recordID array in patient schema
+        // use the recordID to retrieve record data from record schema
+        // store the record data in all_rec[]
         for (var i = 0; i < all_rec_id.length; i++) {
             const one_rec = await patientRecords
                 .findById(data.records[i].recordID)
@@ -204,7 +214,7 @@ const renderChangePwd = (req, res) => {
     res.render("changePwd.hbs")
 };
 
-const updatePwd = async(req, res) => {
+const updatePwd = async (req, res) => {
     try {
         console.log("-- req form to update password -- ", req.body)
         const patient = await allPatientData.findById(req.user._id)
@@ -253,7 +263,7 @@ async function calEngageRate(patient) {
     // console.log("find data:", patient.firstName, patient.eRate);
 }
 
-const showLeaderboard = async(req, res) => {
+const showLeaderboard = async (req, res) => {
     const patients = await allPatientData.find({}, {})
     for (patient of patients) {
         await calEngageRate(patient)
@@ -289,7 +299,7 @@ function DateList(timespan) {
     return dateList
 }
 
-const dataChart = async(req, res) => {
+const dataChart = async (req, res) => {
     try {
         const records = await patientRecords.find({ patientID: req.user._id })
         const dateList = DateList(15)
@@ -326,6 +336,7 @@ const dataChart = async(req, res) => {
 module.exports = {
     getAllPatientData,
     getPatientDataById,
+    updateTextBio,
     updateRecord,
     entryPatientData,
     viewPatientData,
