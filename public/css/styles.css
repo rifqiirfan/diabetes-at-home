@@ -803,6 +803,50 @@ td {
 }
 
 
+
+/* View  current comments */
+
+.CurComment
+{
+    padding: var(--sec-padding);
+    width: 100%;
+    margin-left: auto;
+    margin-right:auto;
+    border-collapse:collapse;
+    overflow-x: hidden;
+}
+
+.CurComment th
+{
+    background-color: var(--dark-green);
+    color: var(--white);
+    padding: var(--table-padding);
+}
+.CurComment tr, td
+{
+    text-align: center;
+    padding: var(--table-padding);
+}
+
+.CurComment td:nth-child(1)
+{
+    width: 20%;
+}
+
+.CurComment tr:nth-child(odd)
+{
+    background-color: #e3e3e3;
+}
+.CurComment tr:hover
+{
+    background-color: var(--ivory);
+}
+
+
+
+
+
+
 /* Responsive Navigation Menu */
 
 @media only screen and (max-width: 968px) {
