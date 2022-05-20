@@ -30,16 +30,16 @@
   </ul>
 
   <form id="logout" action="/patient/logout" method="POST">
-  <ul class="logout">
-    <li>
-      <a onclick="document.getElementById('logout').submit()">
-        <i class="fa fa-power-off"></i>
-        <span class="nav-text">
-        Logout
-        </span>
-      </a>
-    </li>
-  </ul>
+    <ul class="logout">
+      <li>
+        <a onclick="document.getElementById('logout').submit()">
+          <i class="fa fa-power-off"></i>
+          <span class="nav-text">
+            Logout
+          </span>
+        </a>
+      </li>
+    </ul>
   </form>
 </nav>
 
@@ -49,38 +49,23 @@
   <form id="pwdForm" action="/patient/updatePwd" method="POST">
     <div>
       <label class="form-label"> Current Password: </label>
-      <input
-        type="password"
-        name="oldPwd"
-        placeholder="Enter current password"
-        required
-      />
+      <input type="password" name="oldPwd" placeholder="Enter current password" required />
     </div>
     <br />
     <div>
       <label class="form-label"> New Password: </label>
-      <input
-        type="password"
-        name="newPwd"
-        placeholder="Enter new password"
-        required
-      />
+      <input type="password" name="newPwd" placeholder="Enter new password" required />
     </div>
     <br />
     <div>
       <label class="form-label"> Confirm Password: </label>
-      <input
-        type="password"
-        name="confirm"
-        placeholder="Confirm new password"
-        required
-      />
+      <input type="password" name="confirm" placeholder="Confirm new password" required />
     </div>
   </form>
   <br />
 
   <div>
-    <button type="submit" form="pwdForm"> Change </button><br/>
+    <button type="submit" form="pwdForm"> Change </button><br />
     <button onclick="history.back()"> Back </button>
     </a>
   </div>

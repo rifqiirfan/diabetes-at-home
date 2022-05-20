@@ -42,27 +42,23 @@
 </nav>
 
 <section class="patient-information">
-    <div class="breadcrumbs-navigation">
-        <p><a href="/patient">Home</a> > Patient Information</p>
-    </div>
-    <h1 class="title">Patient information</h1>
-    {{#with onePatient}}
-    <ul>
-        <li>{{this.email}}</li>
-        <li>{{this.firstName}}</li>
-        <li>{{this.lastName}} </li>
-        <li>{{this.screenName}} </li>
-        <li>{{this.textBio}} </li>
-    </ul>
-    {{/with}}
+  <div class="breadcrumbs-navigation">
+    <p><a href="/patient">Home</a> > Patient Information</p>
+  </div>
+  <h1 class="title">Patient information</h1>
+  {{#with onePatient}}
+  <ul>
+    <h1>{{this.firstName}} {{this.lastName}}</h1><br>
+    <h3>My email:</h3>
+    <li>{{this.email}}</li>
+    <h3>My Screen Name:</h3>
+    <li>{{this.screenName}} </li>
+    <h3>My Text Bio:</h3>
+    <li>{{this.textBio}} </li>
+  </ul>
+  {{/with}}
 
-    <form action="" method="POST">
-        <label> Reset your password:</label></br>
-        <input type="text" name="new_pw" placeholder="Enter new password here." /></br>
-        <button type="submit" class="submit-button">Update Password</button>
-    </form></br>
-
-    <a href="/patient">
-        <button class="back-button"> Back </button>
-    </a>
+  <a href="/patient">
+    <button class="back-button"> Back </button>
+  </a>
 </section>

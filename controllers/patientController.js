@@ -91,7 +91,7 @@ const getPatientDataById = async(req, res, next) => {
     try {
         // get data for a specific patient from patient schema (fname, lname...)
 
-        const data = await allPatientData.findById(req.params.patient_id)
+        const data = await allPatientData.findById(req.params.patient_id).lean()
 
         if (!data) return res.sendStatus(404)
         return res.render('oneData.hbs', { onePatient: data })

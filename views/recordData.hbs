@@ -39,16 +39,16 @@
   </ul>
 
   <form id="logout" action="/clinician/logout" method="POST">
-  <ul class="logout">
-    <li>
-      <a onclick="document.getElementById('logout').submit()">
-        <i class="fa fa-power-off"></i>
-        <span class="nav-text">
-        Logout
-        </span>
-      </a>
-    </li>
-  </ul>
+    <ul class="logout">
+      <li>
+        <a onclick="document.getElementById('logout').submit()">
+          <i class="fa fa-power-off"></i>
+          <span class="nav-text">
+            Logout
+          </span>
+        </a>
+      </li>
+    </ul>
   </form>
 </nav>
 
@@ -73,49 +73,35 @@
       <th> Comment </th>
     </tr>
     {{#each records.data}}
-      <form action="" method="POST">
-        <tr>
-          <input type="hidden" name="key" value="{{@key}}" />
-          {{#ifUnrecorded this.thresholdStatus}}
-            <td><input type="checkbox" name="availability" value="true" /></td>
-          {{else}}
-            <td>{{this.availability}}</td>
-          {{/ifUnrecorded}}
-          <td> {{this.fullName}} </td>
-          <td> {{this.thresholdStatus}} </td>
-          <td> {{this.value}} </td>
-          {{#ifUnrecorded this.thresholdStatus}}
-            <td><input
-                type="number"
-                min="0"
-                max="9999"
-                name="minvalue"
-                placeholder="Enter min value here"
-                required
-              /></td>
-          {{else}}
-            <td>{{this.minValue}}</td>
-          {{/ifUnrecorded}}
-          {{#ifUnrecorded this.thresholdStatus}}
-            <td><input
-                type="number"
-                min="0"
-                max="9999"
-                name="maxvalue"
-                placeholder="Enter max value here"
-                required
-              /></td>
-          {{else}}
-            <td>{{this.maxValue}}</td>
-          {{/ifUnrecorded}}
+    <form action="" method="POST">
+      <tr>
+        <input type="hidden" name="key" value="{{@key}}" />
+        {{#ifUnrecorded this.thresholdStatus}}
+        <td><input type="checkbox" name="availability" value="true" /></td>
+        {{else}}
+        <td>{{this.availability}}</td>
+        {{/ifUnrecorded}}
+        <td> {{this.fullName}} </td>
+        <td> {{this.thresholdStatus}} </td>
+        <td> {{this.value}} </td>
+        {{#ifUnrecorded this.thresholdStatus}}
+        <td><input type="number" min="0" max="9999" name="minvalue" placeholder="Enter min value here" required /></td>
+        {{else}}
+        <td>{{this.minValue}}</td>
+        {{/ifUnrecorded}}
+        {{#ifUnrecorded this.thresholdStatus}}
+        <td><input type="number" min="0" max="9999" name="maxvalue" placeholder="Enter max value here" required /></td>
+        {{else}}
+        <td>{{this.maxValue}}</td>
+        {{/ifUnrecorded}}
 
-          <td> {{this.createdAt}} </td>
-          <td> {{this.comment}} </td>
-          {{#ifUnrecorded this.thresholdStatus}}
-            <td><button type="submit" class="submit-button">Submit</button></td>
-          {{/ifUnrecorded}}
-        </tr>
-      </form>
+        <td> {{this.createdAt}} </td>
+        <td> {{this.comment}} </td>
+        {{#ifUnrecorded this.thresholdStatus}}
+        <td><button type="submit" class="submit-button">Submit</button></td>
+        {{/ifUnrecorded}}
+      </tr>
+    </form>
     {{/each}}
 
   </table>
@@ -125,7 +111,7 @@
     <input class="message-box" type="text" name="message" />
     <button type="submit" class="submit-button">OK</button>
   </form>
-  
+
   <a href="/clinician">
     <button class="back-button"> Back </button>
   </a>
