@@ -255,6 +255,65 @@ header {
     color: var(--bt-green-hover-text);
 }
 
+.about {
+    height: 10em;
+    width: 100%;
+    padding: 30px;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.about > h2 {
+    font-size: 2em;
+    color: var(--blue);
+}
+
+.about > p {
+    color: var(--black);
+    line-height: 2;
+    font-size: 1.075em;
+}
+
+/* --- Dev Team Section --- */
+.dev-team {
+    height: 20em;
+    width: 100%;
+    background-color: var(--blue);
+}
+
+.dev-team > h2 {
+    font-size: 2em;
+    color: var(--white);
+    text-align: center;
+    padding: 30px;
+}
+
+.team {
+    display: flex;
+    justify-content: space-around;
+}
+
+.developer {
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: var(--black);
+    text-align: center;
+    background: var(--white);
+}
+
+.developer:hover:nth-child(odd) {
+    background-color: var(--gold);
+    color: var(--black);
+}
+
+.developer:hover:nth-child(even) {
+    background-color: var(--red);
+    color: var(--white);
+}
+
 
 /* Index Homepage */
 
@@ -536,24 +595,6 @@ header {
 }
 
 
-/* .sidebar-menu:hover,
-.sidebar-menu-clinician:hover {
-    width: 250px;
-    overflow: visible;
-}
-
-.sidebar-menu,
-.sidebar-menu-clinician {
-    position: fixed;
-    display: flex;
-    top: 120px;
-    left: 0;
-    bottom: 80px;
-    width: 75px;
-    width: 250px;
-    background-color: var(--blue);
-    z-index: 1;
-} */
 
 .sidebar-menu>ul,
 .sidebar-menu-clinician>ul {
@@ -723,7 +764,8 @@ td {
 
 .patient-entry {
     padding: var(--sec-padding);
-    }
+    
+}
 
 .patient-entry-form {
     max-width: 800px;
@@ -748,10 +790,7 @@ td {
     box-shadow: var(--button-box-shadow);
 }
 
-.patient-entry {
-    padding: 2rem;
-    background-color: var(--orange);
-}
+
 
 .form-entry {
     margin-left: auto;
