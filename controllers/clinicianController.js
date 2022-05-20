@@ -359,7 +359,7 @@ const postCliNote = async (req, res, next) => {
 
         // find the patient
         const cid = req.user._id
-        const doctor = await Clinician.findById(cid);
+        const doctor = await Clinician.findById(cid)
         for (var i = 0; i < doctor.patients.length; i++) {
             if (doctor.patients[i].patientID == req.params.id) {
                 // insert the new note to the array
@@ -380,7 +380,7 @@ const viewCliNote = async (req, res, next) => {
     try {
         data = null
         const cid = req.user._id
-        const doctor = await Clinician.findById(cid).lean();
+        const doctor = await Clinician.findById(cid).lean()
         for (var i = 0; i < doctor.patients.length; i++) {
             if (doctor.patients[i].patientID == req.params.id) {
                 data = doctor.patients[i].clinicalNotes
@@ -393,51 +393,51 @@ const viewCliNote = async (req, res, next) => {
 }
 
 const renderLogin = (req, res) => {
-    res.render("clinicianLogin.hbs", req.session.flash);
+    res.render("clinicianLogin.hbs", req.session.flash)
 };
 
 const logout = (req, res) => {
-    req.logout();
-    res.redirect("/clinician/login");
+    req.logout()
+    res.redirect("/clinician/login")
 };
 
 // reset password
 const renderChangePwd = (req, res) => {
-    res.render("changePwd.hbs");
+    res.render("changePwd.hbs")
 };
 
 const updatePwd = async (req, res) => {
     try {
-        console.log("-- req form to update password -- ", req.body);
-        const doctor = await Clinician.findById(req.user._id);
+        console.log("-- req form to update password -- ", req.body)
+        const doctor = await Clinician.findById(req.user._id)
         if (req.body.newPwd.length < 8) {
             return res.render("changePwd", {
               message: "Password is less than 8 characters",
-            });
+            })
           }
         if (!(req.body.newPwd == req.body.confirm)) {
             return res.render("changePwd", {
                 message: "Please enter the new Password again!",
-            });
+            })
         }
         if (req.body.oldPwd == req.body.newPwd) {
             return res.render("changePwd", {
                 message: "New Password CAN NOT Be The Same with Previous one!",
-            });
+            })
         }
         if (!(await bcrypt.compare(req.body.oldPwd, doctor.password))) {
             return res.render("changePwd", {
                 message: "Please Enter the Correct Current Password!",
-            });
+            })
         }
 
 
-        doctor.password = await bcrypt.hash(req.body.confirm, 9);
-        await doctor.save();
-        res.render("changePwd", { message: "Successfully change password!" });
+        doctor.password = await bcrypt.hash(req.body.confirm, 9)
+        await doctor.save()
+        res.render("changePwd", { message: "Successfully change password!" })
     } catch (err) {
-        console.log(err);
-        res.send("error happens on change password");
+        console.log(err)
+        res.send("error happens on change password")
     }
 };
 
