@@ -57,7 +57,6 @@ body {
     --nav-menu: var(--ivory);
     --bar-color: var(--black);
     --home-nav: var(--black);
-<<<<<<< HEAD
 
     --text-hover: var(--red);
     --heading-color: var(--black);
@@ -66,8 +65,6 @@ body {
     --table-heading-text: var(--white);
     --table-row: var(--bg);
 
-=======
->>>>>>> 98c2b3e762f6604322418c602041fa38460f3162
     /* Attributes */
     --heading-title: 2em;
     --additional-title-1: 1.5em;
@@ -97,16 +94,12 @@ body {
     --header-text-hover: var(--brown);
     --footer: var(--purple);
     --footer-text: var(--white);
-<<<<<<< HEAD
 
     --pg-title: var(--yellow);
     --pg-title-text: var(--black);
     --pg-title-hover: var(--purple);
 
     --nav-menu: var(--purple);
-=======
-    --nav-menu: var(--dark-blue);
->>>>>>> 98c2b3e762f6604322418c602041fa38460f3162
     --bar-color: var(--white);
     --home-nav: var(--white);
 
@@ -434,10 +427,6 @@ header {
     font-size: 1.5em;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 98c2b3e762f6604322418c602041fa38460f3162
 .sidebar-menu:hover,
 .sidebar-menu-clinician:hover {
     width: 250px;
