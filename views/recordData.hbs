@@ -95,20 +95,20 @@
         <td>{{this.maxValue}}</td>
         {{/ifUnrecorded}}
 
-        <td> {{this.createdAt}} </td>
-        <td> {{this.comment}} </td>
-        {{#ifUnrecorded this.thresholdStatus}}
-        <td><button type="submit" class="submit-button">Submit</button></td>
-        {{/ifUnrecorded}}
-      </tr>
-    </form>
+          <td> {{this.createdAt}} </td>
+          <td> {{this.comment}} </td>
+          {{#ifUnrecorded this.thresholdStatus}}
+            <td><button type="submit" class="submit-button">Submit</button></td>
+          {{/ifUnrecorded}}
+        </tr>
+      </form>
     {{/each}}
 
   </table>
   <!-- supporting message -->
   <h2>Current supporting message: {{patient.supportMessage}}</h2>
   <form action="/clinician/{{patient._id}}/message" method="POST">
-    <p> Change supporting message</p>
+    <h2> Change supporting message</h2>
     <input class="message-box" type="text" name="message" />
     <button type="submit" class="submit-button">OK</button>
   </form>

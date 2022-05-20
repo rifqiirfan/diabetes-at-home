@@ -40,16 +40,16 @@
     </ul>
 
     <form id="logout" action="/clinician/logout" method="POST">
-    <ul class="logout">
-      <li>
-        <a onclick="document.getElementById('logout').submit()">
-          <i class="fa fa-power-off"></i>
-          <span class="nav-text">
-          Logout
-          </span>
-        </a>
-      </li>
-    </ul>
+      <ul class="logout">
+        <li>
+          <a onclick="document.getElementById('logout').submit()">
+            <i class="fa fa-power-off"></i>
+            <span class="nav-text">
+              Logout
+            </span>
+          </a>
+        </li>
+      </ul>
     </form>
   </nav>
 
@@ -69,34 +69,59 @@
     </tr>
   </table>
 
-  <form action="" method="POST">
+  <form action="" method="POST" class="clinician-note-form">
     <div>
-      <label> Subjective Data: </label>
-      <input type="string" length="120" name="subjectiveData" required /><br />
+      <p> Subjective Data: </p>
+      <input
+        type="textbox"
+        class="box"
+        length="120"
+        name="subjectiveData"
+        required
+      /><br />
     </div>
     <div>
-      <label> Objective Data: </label>
-      <input type="string" length="120" name="objectiveData" required /><br />
+      <p> Objective Data: </p>
+      <input
+        type="textbox"
+        class="box"
+        length="120"
+        name="objectiveData"
+        required
+      /><br />
     </div>
     <div>
-      <label> Assessment Data: </label>
-      <input type="string" length="120" name="assessmentData" required /><br />
+      <p> Assessment Data: </p>
+      <input
+        type="textbox"
+        length="120"
+        class="box"
+        name="assessmentData"
+        required
+      /><br />
     </div>
     <div>
-      <label> Plan: </label>
-      <input type="string" length="120" name="plan" required /><br />
+      <p> Plan: </p>
+      <input type="textbox" class="box" length="120" name="plan" required /><br
+      />
     </div>
     <div>
-      <label> Additional Notes: </label>
-      <input type="string" length="120" name="additionalNotes" required /><br />
+      <p> Additional Notes: </p>
+      <input
+        type="textbox"
+        length="120"
+        class="box"
+        name="additionalNotes"
+        required
+      /><br />
     </div>
     <div>
-      <label> Clinician signature: </label>
-      <input type="string" name="signature" required /><br />
+      <p> Clinician signature: </p>
+      <input type="textbox" class="box" name="signature" required /><br />
     </div>
     <div>
-      <label> Notes Date: </label>
-      <input type="text" name="date" required /><br />
+      <p> Notes Date: </p>
+      <input type="textbox" class="box" name="date" required /><br />
     </div>
 
     <button type="submit" class="submit-button">Submit</button>
