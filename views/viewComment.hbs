@@ -39,16 +39,16 @@
   </ul>
 
   <form id="logout" action="/clinician/logout" method="POST">
-  <ul class="logout">
-    <li>
-      <a onclick="document.getElementById('logout').submit()">
-        <i class="fa fa-power-off"></i>
-        <span class="nav-text">
-        Logout
-        </span>
-      </a>
-    </li>
-  </ul>
+    <ul class="logout">
+      <li>
+        <a onclick="document.getElementById('logout').submit()">
+          <i class="fa fa-power-off"></i>
+          <span class="nav-text">
+            Logout
+          </span>
+        </a>
+      </li>
+    </ul>
   </form>
 </nav>
 
@@ -56,36 +56,46 @@
 
   <h1 class="title"> Comments</h1>
   {{#each record}}
-  <table class="CurComment">
-    <h3 class="username">Patient
-      {{this.patientName}}
-      in
-      {{this.recordDate}}</h3>
-    <tr>
-      <th>Attribute Name</th>
-      <th>Comment Text</th>
-    </tr>
+    <div class="responsive-table">
+      <table class="CurComment">
+        <h3 class="username">Patient
+          {{this.patientName}}
+          in
+          {{this.recordDate}}</h3>
+        <tr>
+          <th>Attribute Name</th>
+          <th>Comment Text</th>
+        </tr>
 
-    <tr>
-      <td>{{this.data.bgl.fullName}}</td>
-      <td><a href="/clinician/{{this.patientID}}">{{this.data.bgl.comment}}</a></td>
-    </tr>
+        <tr>
+          <td>{{this.data.bgl.fullName}}</td>
+          <td><a
+              href="/clinician/{{this.patientID}}"
+            >{{this.data.bgl.comment}}</a></td>
+        </tr>
 
-    <tr>
-      <td>{{this.data.weight.fullName}}</td>
-      <td><a href="/clinician/{{this.patientID}}">{{this.data.weight.comment}}</a></td>
-    </tr>
+        <tr>
+          <td>{{this.data.weight.fullName}}</td>
+          <td><a
+              href="/clinician/{{this.patientID}}"
+            >{{this.data.weight.comment}}</a></td>
+        </tr>
 
-    <tr>
-      <td>{{this.data.doit.fullName}}</td>
-      <td><a href="/clinician/{{this.patientID}}">{{this.data.doit.comment}}</a></td>
-    </tr>
+        <tr>
+          <td>{{this.data.doit.fullName}}</td>
+          <td><a
+              href="/clinician/{{this.patientID}}"
+            >{{this.data.doit.comment}}</a></td>
+        </tr>
 
-    <tr>
-      <td>{{this.data.exercise.fullName}}</td>
-      <td><a href="/clinician/{{this.patientID}}">{{this.data.exercise.comment}}</a></td>
-    </tr>
-  </table>
+        <tr>
+          <td>{{this.data.exercise.fullName}}</td>
+          <td><a
+              href="/clinician/{{this.patientID}}"
+            >{{this.data.exercise.comment}}</a></td>
+        </tr>
+      </table>
+    </div>
   {{/each}}
 
   <a href="/clinician">
