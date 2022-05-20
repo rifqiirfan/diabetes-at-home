@@ -1,78 +1,126 @@
+<nav class="sidebar-menu-clinician">
+  <ul>
+    <li>
+      <a href="/clinician">
+        <i class="fa fa-solid fa-house"></i>
+        <span class="nav-text">
+          Dashboard
+        </span>
+      </a>
+
+    </li>
+
+    <li>
+      <a href="/clinician/updatePwd">
+        <i class="fa fa-solid fa-key"></i>
+        <span class="nav-text">
+          Change Password
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/clinician/new_patient">
+        <i class="fa fa-solid fa-circle-plus"></i>
+        <span class="nav-text">
+          Create New Patient
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/clinician/view">
+        <i class="fa fa-solid fa-comment"></i>
+        <span class="nav-text">
+          Comment
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <form id="logout" action="/clinician/logout" method="POST">
+  <ul class="logout">
+    <li>
+      <a onclick="document.getElementById('logout').submit()">
+        <i class="fa fa-power-off"></i>
+        <span class="nav-text">
+        Logout
+        </span>
+      </a>
+    </li>
+  </ul>
+  </form>
+</nav>
+
 <section class="clinician-dashboard">
-    <h1>Dashboard</h1>
-    <a href="/clinician/updatePwd"><button> Change Password </button> </a>
+    <h1 class="title">Dashboard</h1>
     <article class="article">All data in the dashboard is based on the last 24 hours at <strong>{{date}}</strong>
     </article>
 
-    <table class="safety-threshold-table">
-        <tr>
-            <th>Patient Name</th>
-            <th>Blood Glocose Level <br />(in mmol/L)</th>
-            <th>Weight <br />(in kg)</th>
-            <th>Doses of Insulin Taken</th>
-            <th>Exercise <br />(Step Count)</th>
-            <th>Date</th>
-        </tr>
+    <div class="responsive-table">
+      <table class="safety-threshold-table">
+          <tr>
+              <th>Patient Name</th>
+              <th>Blood Glocose Level <br />(in mmol/L)</th>
+              <th>Weight <br />(in kg)</th>
+              <th>Doses of Insulin Taken</th>
+              <th>Exercise <br />(Step Count)</th>
+              <th>Date</th>
+          </tr>
 
-        {{#each data}}
-        <tr>
-            <td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
-            <td style="background-color:   
-            {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
+          {{#each data}}
+          <tr>
+              <td><a href="/clinician/{{this.id}}">{{this.name}}</a> </td>
+              <td style="background-color:   
+              {{#thresholdJudge this.bgl this.bgl_max this.bgl_min}}
 
-            {{else}}
-            {{#ifMissing this.bgl}}
-            grey  
-            {{else}}
-            orange
-            {{/ifMissing}}
-            {{/thresholdJudge}};">
-                {{this.bgl}} </td>
-            <td style="background-color:   
-            {{#thresholdJudge this.weight this.weight_max this.weight_min}}
+              {{else}}
+              {{#ifMissing this.bgl}}
+              grey  
+              {{else}}
+              orange
+              {{/ifMissing}}
+              {{/thresholdJudge}};">
+                  {{this.bgl}} </td>
+              <td style="background-color:   
+              {{#thresholdJudge this.weight this.weight_max this.weight_min}}
 
-            {{else}}
-            {{#ifMissing this.weight}}
-            grey  
-            {{else}}
-            orange
-            {{/ifMissing}}
-            {{/thresholdJudge}};">
-                {{this.weight}} </td>
-            <td style="background-color:   
-            {{#thresholdJudge this.doit this.doit_max this.doit_min}}
+              {{else}}
+              {{#ifMissing this.weight}}
+              grey  
+              {{else}}
+              orange
+              {{/ifMissing}}
+              {{/thresholdJudge}};">
+                  {{this.weight}} </td>
+              <td style="background-color:   
+              {{#thresholdJudge this.doit this.doit_max this.doit_min}}
 
-            {{else}}
-            {{#ifMissing this.doit}}
-            grey  
-            {{else}}
-            orange
-            {{/ifMissing}}
-            {{/thresholdJudge}};">
-                {{this.doit}} </td>
-            <td style="background-color:   
-            {{#thresholdJudge this.exercise this.exercise_max this.exercise_min}}
+              {{else}}
+              {{#ifMissing this.doit}}
+              grey  
+              {{else}}
+              orange
+              {{/ifMissing}}
+              {{/thresholdJudge}};">
+                  {{this.doit}} </td>
+              <td style="background-color:   
+              {{#thresholdJudge this.exercise this.exercise_max this.exercise_min}}
 
-            {{else}}
-            {{#ifMissing this.exercise}}
-            grey  
-            {{else}}
-            orange
-            {{/ifMissing}}
-            {{/thresholdJudge}};">
-                {{this.exercise}} </td>
-            <td>{{../date}} </td>
+              {{else}}
+              {{#ifMissing this.exercise}}
+              grey  
+              {{else}}
+              orange
+              {{/ifMissing}}
+              {{/thresholdJudge}};">
+                  {{this.exercise}} </td>
+              <td>{{../date}} </td>
 
-        </tr>
-        {{/each}}
-    </table>
-
-    <a href="/clinician/new_patient">
-        <button> Create New Patient </button>
-    </a>
-    <a href="/clinician/view"><button>comment</button></a>
+          </tr>
+          {{/each}}
+      </table>
+    </div>
     <form id="logout" action="/clinician/logout" method="POST"></form>
-    <button form="logout">Logout</button>
     <form id="encrypt" action="/clinician/encrypt" method="POST"></form>
-    <button form="encrypt">Encrypt</button>
 </section>

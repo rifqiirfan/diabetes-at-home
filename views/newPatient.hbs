@@ -1,4 +1,59 @@
-<form action="" method="POST">
+<nav class="sidebar-menu-clinician">
+  <ul>
+    <li>
+      <a href="/clinician">
+        <i class="fa fa-solid fa-house"></i>
+        <span class="nav-text">
+          Dashboard
+        </span>
+      </a>
+
+    </li>
+
+    <li>
+      <a href="/clinician/updatePwd">
+        <i class="fa fa-solid fa-key"></i>
+        <span class="nav-text">
+          Change Password
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/clinician/new_patient">
+        <i class="fa fa-solid fa-circle-plus"></i>
+        <span class="nav-text">
+          Create New Patient
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/clinician/view">
+        <i class="fa fa-solid fa-comment"></i>
+        <span class="nav-text">
+          Comment
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <form id="logout" action="/clinician/logout" method="POST">
+  <ul class="logout">
+    <li>
+      <a onclick="document.getElementById('logout').submit()">
+        <i class="fa fa-power-off"></i>
+        <span class="nav-text">
+        Logout
+        </span>
+      </a>
+    </li>
+  </ul>
+  </form>
+</nav>
+
+<section class="new-patient">
+    <form action="" method="POST">
     <label> Patient's First Name:</label>
     <input type="text" name="firstName" /></br>
 
@@ -22,3 +77,4 @@
 
     <button type="submit" class="submit-button">Submit</button>
 </form>
+</section>

@@ -36,8 +36,8 @@ body {
     --header: var(--ivory);
     --header-text: var(--dark-green);
     --header-text-hover: var(--blue);
-    --footer: var(--dark-green);
-    --footer-text: var(--ivory);
+    --footer: var(--ivory);
+    --footer-text: var(--dark-green);
 
     --bt-red: var(--red);
     --bt-blue: var(--blue);
@@ -397,12 +397,12 @@ header {
 }
 
 
-.main-menu:hover {
+.sidebar-menu:hover, .sidebar-menu-clinician:hover {
     width: 250px;
     overflow: visible;
 }
 
-.main-menu {
+.sidebar-menu, .sidebar-menu-clinician {
     position: absolute;
     top: 120px;
     left: 0;
@@ -414,35 +414,33 @@ header {
 
     -webkit-transition: width .05s linear;
     transition: width .05s linear;
-    -webkit-transform: translateZ(0) scale(1, 1);
-    z-index: 100;
+    z-index: 1;
 }
 
-.main-menu>ul {
+.sidebar-menu>ul, .sidebar-menu-clinician>ul  {
     margin: 10px 0;
 }
 
-.main-menu li {
+.sidebar-menu li, .sidebar-menu-clinician li {
     position: relative;
     display: block;
     width: 250px;
     padding: 11px;
 }
 
-.main-menu li>a {
+.sidebar-menu li>a, .sidebar-menu-clinician li>a {
     position: relative;
     display: table;
     border-collapse: collapse;
     border-spacing: 0;
     color: var(--white);
     text-decoration: none;
-    -webkit-transform: translateZ(0) scale(1, 1);
     -webkit-transition: all .1s linear;
     transition: all .1s linear;
-
+    cursor: pointer;
 }
 
-.main-menu>ul.logout {
+.logout {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -626,6 +624,7 @@ td {
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
+    overflow-x: scroll;
 }
 
 .patient-history-table th {
@@ -670,10 +669,11 @@ td {
 }
 
 .safety-threshold-table {
-    width: 100%;
     margin-left: auto;
     margin-right: auto;
     border-collapse: collapse;
+    width: 100%;
+    overflow-x: scroll;
 }
 
 .safety-threshold-table th {
@@ -697,28 +697,11 @@ td {
     margin-bottom: var(--margin-title);
 }
 
-.clinician-button {
-    background-color: var(--ivory);
-    color: var(--dark-green);
-    padding: 10px;
-    width: 100px;
-    border: 3px solid var(--dark-green);
-    font-size: 1em;
-    font-weight: 700;
-    border-radius: 999em;
-    box-shadow: var(--button-box-shadow);
-    cursor: pointer;
-}
-
-.clinician-button:hover {
-    background-color: var(--dark-green);
-    color: var(--ivory);
-}
-
 .patient-comment {
     width: 100%;
     font-family: 'Helvetica';
     font-size: 1em;
+    padding: var(--sec-padding);
 }
 
 .message-box {
@@ -754,6 +737,12 @@ td {
     padding: var(--sec-padding);
 }
 
+/* New Patient */
+
+.new-patient {
+    padding: var(--sec-padding);
+}
+
 /* Responsive Navigation Menu */
 
 @media only screen and (max-width: 968px) {
@@ -761,7 +750,7 @@ td {
         position: absolute;
         left: -100%;
         top: 7.5rem;
-        z-index: 1;
+        z-index: 2;
         flex-direction: column;
         background-color: var(--nav-menu);
         width: 100%;
@@ -801,13 +790,13 @@ td {
 
     /* Index Homepage */
     .home-image img {
-        height: 30vh;
-        width: 100vw;
-        object-fit: cover;
+        height: 100%;
+        width: 50vw;
     }
 
     .home-navigation {
-        width: 100%;
+        position: initial;
+        
     }
 
     /* Patient Homepage */

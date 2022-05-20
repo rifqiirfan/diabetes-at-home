@@ -1,3 +1,57 @@
+<nav class="sidebar-menu">
+  <ul>
+    <li>
+      <a href="/clinician">
+        <i class="fa fa-solid fa-house"></i>
+        <span class="nav-text">
+          Dashboard
+        </span>
+      </a>
+
+    </li>
+
+    <li>
+      <a href="/clinician/hist_rec/{{patient._id}}">
+        <i class="fa fa-solid fa-key"></i>
+        <span class="nav-text">
+          Historical Data
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/clinician/view_cli_note/{{patient._id}}">
+        <i class="fa fa-solid fa-circle-plus"></i>
+        <span class="nav-text">
+          View Clinician Notes
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="/clinician/new_cli_note/{{patient._id}}">
+        <i class="fa fa-solid fa-comment"></i>
+        <span class="nav-text">
+          Enter Clinician Notes
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <form id="logout" action="/clinician/logout" method="POST">
+  <ul class="logout">
+    <li>
+      <a onclick="document.getElementById('logout').submit()">
+        <i class="fa fa-power-off"></i>
+        <span class="nav-text">
+        Logout
+        </span>
+      </a>
+    </li>
+  </ul>
+  </form>
+</nav>
+
 <section class="clinician-safety-threshold">
   <h1 class="title">
     Patient
@@ -71,20 +125,8 @@
     <input class="message-box" type="text" name="message" />
     <button type="submit" class="submit-button">OK</button>
   </form>
-
-  <a href="/clinician/hist_rec/{{patient._id}}">
-    <button class="submit-button"> View Historical Data </button>
-  </a>
-
+  
   <a href="/clinician">
     <button class="back-button"> Back </button>
-  </a>
-
-  <a href="/clinician/view_cli_note/{{patient._id}}">
-    <button class="button"> View ClinicianNotes </button>
-  </a>
-
-  <a href="/clinician/new_cli_note/{{patient._id}}">
-    <button class="button"> Enter ClinicianNotes </button>
   </a>
 </section>
