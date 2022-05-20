@@ -207,13 +207,13 @@ const postNewPatient = async (req, res, next) => {
 
 
         const cid = req.user._id
-        // const pwd = await bcrypt.hash('password', 10)
+        const pwd = await bcrypt.hash('password', 10)
         const new_pati = new Patient({
             firstName: firstName,
             lastName: lastName,
             email: email,
             // generate a random password and secret
-            password: 'password',
+            password: pwd,
             secret: (Math.random() + 1).toString(36).substring(8),
             eRate: 0,
             createAt: formatDate(new Date()),
